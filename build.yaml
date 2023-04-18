@@ -1,0 +1,147 @@
+targets:
+  $default:
+    sources:
+      - lib/**
+      - src/**
+      - test/**
+      - web/**
+       - pubspec.*
+      - $package$
+      # Need to replicate the default whitelist here or other build will break:
+      - "benchmark/**"
+      - "bin/**"
+  d2p_gen:d2p_gen:
+    builders:
+      #
+      d2p_gen:d2pTmpBuilder:
+        # generate_for:
+        #   - lib/*.dart 
+        enabled: true
+        generate_for:
+          - lib/**.dart
+        options:
+          enableLog: false
+          rootProto: proto
+          # ignore_for_file:
+          #   - lines_longer_than_80_chars
+          #   - lint_alpha
+          #   - lint_beta
+          generate_for:
+            - test/multiplatform/**_test.dart
+            - test/web/**_test.dart
+            - web/**.dart
+            - lib/$lib$
+            - lib/**.dart
+            - lib/**.freezed.dart
+
+      #
+      d2p_gen:d2pUnionBuilder:
+        enabled: true
+        options:
+          ignore_for_file:
+            - lines_longer_than_80_chars
+            - lint_alpha
+            - lint_beta
+      #
+      d2p_gen:d2pMapperBuilder:
+        enabled: true
+        generate_for:
+          - lib/**.dart
+        options:
+          enableLog: false
+          ignore_for_file:
+            - lines_longer_than_80_chars
+            - lint_alpha
+            - lint_beta
+      #
+      d2p_gen:ptotocRunner:
+        enabled: true
+        generate_for:
+          - "**/*.proto"
+        options:
+          enableLog: false
+builders:
+  #
+  d2pTmpBuilder:
+    import: "package:d2p_gen/d2p_gen.dart"
+    builder_factories:
+      - "d2pTmpBuilder"
+    build_extensions:
+      # $lib$:
+      .dart:
+        - .tmp_proto
+        - .tmp_log
+        - "{{}}.tmp_proto"
+    build_to: cache
+    auto_apply: dependents
+    # applies_builders:
+    #     - "source_gen|combining_builder"
+    defaults:
+      generate_for:
+        include:
+          - lib/**
+        exclude:
+            - .freezed.dart
+
+  #
+  # fd
+
+  d2pUnionBuilder:
+    import: "package:d2p_gen/d2p_gen.dart"
+    builder_factories:
+      - "d2pUnionBuilder"
+    required_inputs:
+      - "{{}}.tmp_proto"
+    build_extensions:
+      $package$:
+        - messages.proto
+        - warnings.log
+    build_to: source
+    auto_apply: dependents
+  #
+  ptotocRunner:
+    import: "package:d2p_gen/d2p_gen.dart"
+    builder_factories:
+      - "ptotocRunner"
+    build_extensions:
+      messages.proto:
+        - .ds.dart
+    required_inputs:
+      - messages.proto
+    runs_before:
+      - d2pUnionBuilder
+      - d2pTmpBuilder
+    auto_apply: dependents
+    build_to: source
+
+  #
+  d2pMapperBuilder:
+    import: "package:d2p_gen/d2p_gen.dart"
+    builder_factories:
+      - "d2pMapperBuilder"
+    build_extensions:
+      # .dart:
+      $lib$:
+        # Шаблон для соответствия любому пути к файлу messages.pb.dart
+        # '{{**}}.pb.dart':
+        # messages.pb.dart:
+        - "**/*..mapper.dart"
+
+    # $web$:
+    #   - exports.proto
+    # required_inputs:
+    #   - lib/src/generated/messages.pb.dart
+  
+    build_to: source
+    auto_apply: dependents
+
+
+
+# The post process builder config, extracts `.tar.gz` files.
+# post_process_builders:
+#   partCleanup:
+#     import: "package:d2p_gen/d2p_gen.dart"
+#     builder_factory: "partCleanup"
+#     input_extensions:
+#       - ".pb.dart"
+#       - '{{**}}.pb.dart'

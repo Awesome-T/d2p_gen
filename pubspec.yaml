@@ -1,0 +1,31 @@
+name: d2p_gen
+description: >-
+  This package creates messages for .proto based on existing dart 
+  classes through recursive traversal of AST nodes . 
+  If necessary, creates mappers for DTO classes (obtained through 
+  the protocol utility, which runs automatically).
+version: 0.0.1
+homepage: https://github.com/Awesome-T/d2p_gen
+repository: https://github.com/Awesome-T/d2p_gen
+issue_tracker: https://github.com/Awesome-T/d2p_gen/issues
+documentation: https://github.com/Awesome-T/d2p_gen
+publish_to: none
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+dependencies:
+  build: ^2.3.1
+  source_gen:
+  d2p_annotation:
+    path: ../d2p_annotation/
+  analyzer: any
+dev_dependencies:
+  build_runner: ^2.3.3
+  build_test:
+
+  mocktail: ^1.0.3
+
+topics:
+  - network
+  - proto
+  - build_runner
+  - code_gen
