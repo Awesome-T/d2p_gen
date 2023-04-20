@@ -1,0 +1,12 @@
+targets:
+  $default:
+    builders:
+      d2p_gen:d2pTmpBuilder:
+        options:
+          f: gem
+          p: proto/d
+          pb: lib/generated
+      d2p_gen:d2pMapperBuilder:
+        options:
+          m: lib/mappers
+          # Глобальная опция для билдера d2pTmpBuilder
