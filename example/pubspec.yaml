@@ -10,6 +10,12 @@ environment:
 dependencies:
   protobuf: ^3.0.0
   grpc: ^3.2.4
+  # d2p_annotation:
+  #   git:
+  #     url: git://github.com/Awesome-T/d2p_annotation.git
+  #     ref: master
+  d2p_annotation:
+    path: ../../d2p_annotation/
 
 
 dev_dependencies:
@@ -17,7 +23,6 @@ dev_dependencies:
   freezed: ^2.3.2
   d2p_gen:
     path: ../../d2p_gen/
-  d2p_annotation:
-    path: ../../d2p_annotation/
+
   freezed_annotation: ^2.4.1
 

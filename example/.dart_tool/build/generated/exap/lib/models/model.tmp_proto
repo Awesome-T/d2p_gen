@@ -1,0 +1,42 @@
+/*
+  class: Pioijh
+  Source: 'package:/exap/lib/models/model.dart';
+*/
+  message DTOPioijh {
+    // List<Blah>? Pioijh.smthn
+    repeated DTOBlah smthn = 1;
+    // int Pioijh.age
+    int32 age = 2;
+  }
+
+/*
+  class: Person
+  Source: 'package:/exap/lib/models/model.dart';
+*/
+  message DTOPerson {
+    // DateTime Person.createdAt
+    string createdAt = 1;
+    // List<Blah>? Person.blahs
+    repeated DTOBlah blahs = 2;
+  }
+
+/*
+  class: Blah
+  Source: 'package:/exap/lib/models/model.dart';
+*/
+  message DTOBlah {
+    // String Blah.id
+    string id = 1;
+    // List<String> Blah.tags
+    repeated string tags = 2;
+    // double Blah.price
+    double price = 3;
+    // bool Blah.isVerifyed
+    bool isVerifyed = 4;
+    // Map<String, double> Blah.settings
+    string settings = 5;
+    // int? Blah.count
+    optional int32 count = 6;
+  }
+
+

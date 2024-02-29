@@ -1,9 +1,4 @@
-// ignore_for_file:  sort_constructors_first
-// import 'package:d2p_annotation/dart_to_proto_annotations.dart';
-
-// ignore_for_file: public_member_api_docs
-
-import 'package:d2p_annotation/dart_to_proto_annotations.dart';
+import 'package:d2p_annotation/d2p_annotation.dart';
 
 // part 'model222.freezed.dart';
 @ProtoGen(createMappers: true)

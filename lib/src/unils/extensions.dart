@@ -1,6 +1,6 @@
 import 'package:analyzer/dart/element/element.dart';
 import 'package:analyzer/dart/element/type.dart';
-import 'package:d2p_annotation/dart_to_proto_annotations.dart';
+import 'package:d2p_annotation/d2p_annotation.dart';
 import 'package:source_gen/source_gen.dart';
 
 //

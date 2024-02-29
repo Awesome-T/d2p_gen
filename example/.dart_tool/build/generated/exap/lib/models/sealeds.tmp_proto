@@ -1,0 +1,47 @@
+/*
+  class: Cow
+  Source: 'package:/exap/lib/models/sealeds.dart';
+*/
+  message DTOCow {
+    // int? Cow.weight
+    optional int32 weight = 1;
+    // String? Cow.nullableString
+    optional string nullableString = 2;
+    // DateTime? Cow.nullableDateTime
+    optional string nullableDateTime = 3;
+  }
+
+/*
+  class: Sheep
+  Source: 'package:/exap/lib/models/sealeds.dart';
+*/
+  message DTOSheep {
+    // String Sheep.one
+    string one = 1;
+  }
+
+/*
+  class: Pig
+  Source: 'package:/exap/lib/models/sealeds.dart';
+*/
+  message DTOPig {
+    // double Pig.se
+    double se = 1;
+  }
+
+/*
+ * class: animal
+*/
+  message DTOAnimal_Union   {
+    //single inherited  class of Animal 
+    oneof animal {
+       //class Cow
+       DTOCow cow = 1;
+       //class Sheep
+       DTOSheep sheep = 2;
+       //class Pig
+       DTOPig pig = 3;
+    }
+  }
+
+

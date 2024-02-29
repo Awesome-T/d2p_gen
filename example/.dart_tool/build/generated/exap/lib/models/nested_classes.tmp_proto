@@ -1,0 +1,56 @@
+/*
+  class: FirstLevel
+  Source: 'package:/exap/lib/models/nested_classes.dart';
+*/
+  message DTOFirstLevel {
+    // DateTime? FirstLevel.dt
+    optional string dt = 1;
+    // double FirstLevel.ninew
+    double ninew = 2;
+    // double? FirstLevel.pwqwq
+    optional double pwqwq = 3;
+    // List<SecondLevel> FirstLevel.nesyed
+    repeated DTOSecondLevel nesyed = 4;
+    // Map<String, dynamic> FirstLevel.mapa
+    string mapa = 5;
+    // int FirstLevel.one
+    int32 one = 6;
+    // String FirstLevel.three
+    string three = 7;
+    // bool FirstLevel.seven
+    bool seven = 8;
+    // List<DateTime> FirstLevel.nine
+    repeated string nine = 9;
+    // DateTime FirstLevel.ten
+    string ten = 10;
+    // int? FirstLevel.zerro
+    optional int32 zerro = 11;
+    // List<double>? FirstLevel.float
+    repeated double float = 12;
+    // String? FirstLevel.two
+    optional string two = 13;
+    // bool? FirstLevel.eight
+    optional bool eight = 14;
+  }
+
+/*
+  class: SecondLevel
+  Source: 'package:/exap/lib/models/nested_classes.dart';
+*/
+  message DTOSecondLevel {
+    // int SecondLevel.count
+    int32 count = 1;
+    // List<TherdLevel> SecondLevel.arr
+    repeated DTOTherdLevel arr = 2;
+  }
+
+/*
+  class: TherdLevel
+  Source: 'package:/exap/lib/models/nested_classes.dart';
+*/
+  message DTOTherdLevel {
+    // List<int> TherdLevel.count
+    repeated int32 count = 1;
+  }
+
+

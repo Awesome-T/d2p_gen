@@ -1,4 +1,4 @@
-import 'package:d2p_annotation/dart_to_proto_annotations.dart';
+import 'package:d2p_annotation/d2p_annotation.dart';
 
 @ProtoGen(createMappers: true)
 enum Corpus {

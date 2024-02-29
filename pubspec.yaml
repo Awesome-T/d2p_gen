@@ -17,11 +17,14 @@ dependencies:
   source_gen:
   d2p_annotation:
     path: ../d2p_annotation/
+  # d2p_annotation:
+  #   git:
+  #     url: git://github.com/Awesome-T/d2p_annotation.git
+  #     ref: master
   analyzer: any
 dev_dependencies:
   build_runner: ^2.3.3
   build_test:
-
   mocktail: ^1.0.3
 
 topics:

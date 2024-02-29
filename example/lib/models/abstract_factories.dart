@@ -1,8 +1,6 @@
-// ignore_for_file: public_member_api_docs
 
-import 'package:d2p_annotation/dart_to_proto_annotations.dart';
+import 'package:d2p_annotation/d2p_annotation.dart';
 
-//protoGen
 @ProtoGen(createMappers: true)
 abstract class AbsFactories {
   const AbsFactories();
