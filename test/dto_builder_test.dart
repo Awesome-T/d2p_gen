@@ -11,7 +11,6 @@ Future<void> main() async {
   late LibraryElement library;
 
   group('Core', () {
-    late WrittenAssetReader reader;
     late InMemoryAssetWriter writerIntoMemory;
     late AssetId textAsset;
     late AssetId dartModetAsset;
@@ -24,7 +23,6 @@ Future<void> main() async {
 
       await writerIntoMemory.writeAsString(textAsset, 'some text written here');
       await writerIntoMemory.writeAsString(dartModetAsset, inputSource);
-      reader = WrittenAssetReader(writerIntoMemory);
     });
 
     test('Analyze test code', () async {
@@ -33,7 +31,7 @@ Future<void> main() async {
           inputSource, (r) async => (await r.findLibraryByName('example'))!);
 
       // Analyzing test code
-      final List<ParameterElement> types = valueReader
+      final types = valueReader
           .cls(library.definingCompilationUnit.classes)['Ctypes']!
           .first
           .parameters
@@ -41,7 +39,7 @@ Future<void> main() async {
           .toList();
 
       // Detailed descriptions for each test assertion
-      final String o = 'optional';
+      const o = 'optional';
       expect(types.check('String?'), '$o string',
           reason: 'String type should be optional');
       expect(types.check('String'), 'string',
@@ -142,10 +140,9 @@ Future<void> main() async {
 
 //
 extension _ExOnList on List<ParameterElement> {
-  String check(String dart) => this
-      .singleWhere(
-          (e) => e.type.getDisplayString(withNullability: true) == dart)
-      .toProtoType;
+  String check(String dart) =>
+      singleWhere((e) => e.type.getDisplayString(withNullability: true) == dart)
+          .toProtoType;
 }
 
 class MockValueReader with ValueReader {}
@@ -274,93 +271,16 @@ class Ctypes {
   }
 ''';
 
-extension _ExtensionName on List<ParameterElement> {
-  //
-  convertTo(String p) => this.singleWhere((e) => '${e.type}' == '$p');
-}
-
 const Map<String, String> tC = {
-  "num": "double",
-  "double": "double",
-  "int": "int32",
-  "bool": "bool",
-  "String": "string",
-  "Map": "string",
-  "enum": "enum",
-  "DateTime": 'string',
-  "Set": "repeated",
-  "Iterable": "repeated",
-  "List": "repeated",
+  'num': 'double',
+  'double': 'double',
+  'int': 'int32',
+  'bool': 'bool',
+  'String': 'string',
+  'Map': 'string',
+  'enum': 'enum',
+  'DateTime': 'string',
+  'Set': 'repeated',
+  'Iterable': 'repeated',
+  'List': 'repeated',
 };
-
-// test('can pass a custom reader', () async {
-//   final reader = await PackageAssetReader.currentIsolate(rootPackage: 'd2p_gen');
-//   final builder = TestBuilder(
-//       buildExtensions: {
-//         '.dart': ['.tmp_proto']
-//       },
-//       build: (BuildStep buildStep, _) async => await buildStep.writeAsString(
-//           buildStep.inputId, //  final id = buildStep.inputId.addExtension('.tmp_proto');
-//           buildStep.readAsString(AssetId('d2p_gen', 'lib/data/models.tmp_proto'))));
-//   await testBuilder(
-//     builder,
-//     {'d2p_gen|lib/data/models.dart': ''},
-//     outputs: {'d2p_gen|lib/data/models.tmp_proto': 'hello world'},
-//     reader: reader,
-//   );
-// });
-
-// test('can glob files in the root package', () async {
-//   var assets = {'$dartModetAsset': ''};
-//   var expectedOutputs = {'$dartModetAsset': 'example|lib/a.tmp_proto'};
-//   //await testBuilder(D2pTmpBuilder(), assets);
-//   final String content = await reader.readAsString(dartModetAsset);
-//   //print(content);
-
-//   // library = await resolveSource(content, (r) async => (await r.findLibraryByName('example'))!);
-//   // expect(await reader.readAsString(textAsset), equals('some text writen here'));
-//   // dartModetAsset.uri.replace(pathSegments: [dartModetAsset.uri.pathSegments.removeLast(), OutputFormats.tmpProto.val]);
-//   // final String content2 = await reader.readAsString(AssetId.parse('example|lib/a.dart'));
-//   // library = await resolveSource(content, (r) async => (await r.findLibraryByName('example'))!);
-//   // expect(await reader.readAsString(textAsset), equals('some text writen here'));
-//   // dartModetAsset.uri.replace(pathSegments: [dartModetAsset.uri.pathSegments.removeLast(), OutputFormats.tmpProto.val]);
-// });
-//!
-// test('can read own outputs', () async {
-//   final reader = await PackageAssetReader.currentIsolate(rootPackage: 'd2p_gen');
-//   await testBuilder(
-//     TestBuilder(
-//       buildExtensions: {
-//         '.dart': ['.tmp_proto']
-//       },
-//       build: (buildStep, _) async {
-//             print(buildStep.inputId.path);
-//         final Resolver resolver = buildStep.resolver;
-//         final bool isLibrary = await resolver.isLibrary(buildStep.inputId);
-//         if (!isLibrary) return;
-//         final AssetId inputAssetId = buildStep.inputId;
-//         final LibraryElement libElement = await buildStep.inputLibrary;
-//         final LibraryReader libReader = LibraryReader(libElement);
-//         final Iterable<AnnotatedElement> annotatedElements = libReader.selectClassesAndEnums();
-//         if (annotatedElements.isEmpty) return;
-//         final StringBuffer buf = StringBuffer();
-//         final List<ConstructorElement> enums2 = valueReader.enums(annotatedElements);
-//         final Map<String, List<ConstructorElement>> classes2 = valueReader.classes(annotatedElements);
-//         [TmpClasProtoBuilder(classes2).messages, TmpEnumsProtoBuilder(enums2).messages]
-//             .nonNulls
-//             .forEach(buf.writeln);
-//         if (buf.isEmpty) return;
-//         final String result = buf.toString();
-//         // await buildStep.writeAsString(copyAssetIdproto, result);
-//         // var id = inputAssetId.changeExtension(OutputFormats.tmpProto.val);
-//         // await writerIntoMemory.writeAsString(id, result);
-//         //print(await reader.canRead(id));
-//         //  expect(readOutput, content.toUpperCase());
-//       },
-//     ),
-//     {'d2p_gen|lib/data/models.dart': ''},
-//     outputs: {'d2p_gen|lib/data/models.tmp_proto': 'hello world'},
-//     reader: reader,
-//   );
-// });
-//

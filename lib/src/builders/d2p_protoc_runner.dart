@@ -14,11 +14,11 @@ class PtotocRunner extends Builder {
   FutureOr<void> build(BuildStep buildStep) async {
     // Create the directory for generated Dart files
     //if it doesn't exist
-    final Directory generatedDir = Directory('lib/src/generated');
+    final generatedDir = Directory('lib/src/generated');
     if (!generatedDir.existsSync()) generatedDir.createSync();
 
     // Start the process to run protoc compiler
-    final Process process = await Process.start('protoc', [
+    final process = await Process.start('protoc', [
       // Specify the proto path
       '--proto_path=proto',
       // Specify the output directory for generated Dart files
@@ -31,7 +31,7 @@ class PtotocRunner extends Builder {
     process.stderr.transform(utf8.decoder).listen(stderr.writeln);
 
     // Wait for the process to complete
-    final int exitCode = await process.exitCode;
+    final exitCode = await process.exitCode;
 
     // Output the exit code of the process
     stdout.writeln('Exit code: $exitCode');

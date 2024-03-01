@@ -33,17 +33,15 @@ extension ExtensionNme on LibraryReader {
 
 ///
 extension ExtensionConstructorElement on ConstructorElement {
-  String get showNsmeOfCurrentClass =>
-      (this.nameOfRdrConstr ?? this.displayName).trim();
+  String get showNsmeOfCurrentClass => (nameOfRdrConstr ?? displayName).trim();
 
   ///
-  String get nameOfMapper =>
-      '$_prefixMapper${this.nameOfInheritedClass}'.trim();
+  String get nameOfMapper => '$_prefixMapper$nameOfInheritedClass'.trim();
 
   ///
-  String get dtoMsgName => (this.nameOfInheritedClass == this.displayName)
-      ? 'DTO${this.displayName}'.trim()
-      : 'DTO${this.nameOfInheritedClass}_Union '.trim();
+  String get dtoMsgName => (nameOfInheritedClass == displayName)
+      ? 'DTO$displayName'.trim()
+      : 'DTO${nameOfInheritedClass}_Union '.trim();
 
   /// Name of inherited class  or super class
   String get nameOfInheritedClass =>
@@ -53,15 +51,15 @@ extension ExtensionConstructorElement on ConstructorElement {
       enclosingElement.name.trim();
 
   ///
-  String get namedConstr => this.displayName;
+  String get namedConstr => displayName;
 
   ///
   ///
-  String get enclosingElementDisplayName => this.enclosingElement.displayName;
+  String get enclosingElementDisplayName => enclosingElement.displayName;
 
   ///
   ///
-  String? get nameOfRdrConstr => this.redirectedConstructor?.displayName;
+  String? get nameOfRdrConstr => redirectedConstructor?.displayName;
 
   ///
   ///
@@ -77,27 +75,25 @@ extension ExtensionConstructorElement on ConstructorElement {
   ///
   ///
   String get nameOfField =>
-      (this.declaration.name == '' ? fomDtoRD : this.declaration.name)
-          .toLowerCase();
+      (declaration.name == '' ? fomDtoRD : declaration.name).toLowerCase();
 
   ///
   ///
   String get protoMessageCl {
     final buf = StringBuffer();
-    final String msgMane =
-        '$prefixMsg${this.fomDtoRD.replaceAll(RegExp(r'\.'), '_')}';
+    final msgMane = '$prefixMsg${fomDtoRD.replaceAll(RegExp(r'\.'), '_')}';
     buf.writeln('''
 /*
-  class: ${this.displayName}
-  Source: 'package:${this.source}';
+  class: $displayName
+  Source: 'package:$source';
 */
   message $msgMane {''');
-    for (int i = 0; i < this.parameters.length; i++) {
-      final ParameterElement param = this.parameters[i];
+    for (var i = 0; i < parameters.length; i++) {
+      final param = parameters[i];
       buf.writeln('''
-    // ${param.type} ${this.fomDtoRD}.${param.name}
+    // ${param.type} $fomDtoRD.${param.name}
     ${param.toProtoType} ${param.name} = ${i + 1};''');
-      if (i == this.parameters.length - 1) {
+      if (i == parameters.length - 1) {
         buf.writeln('''
   }''');
       }
@@ -109,19 +105,19 @@ extension ExtensionConstructorElement on ConstructorElement {
 
   /// Generates a message string for an enum type.
   String get protoMessageEn {
-    final StringBuffer buf = StringBuffer();
-    final String name = this.displayName;
+    final buf = StringBuffer();
+    final name = displayName;
     buf.writeln('''
 /**
     Enum $name
-    Source: 'package:${this.source}';
+    Source: 'package:$source';
 */
 enum $prefixMsg$name {''');
-    for (var i = 0; i < this.enclosingElement.thisType.accessors.length; i++) {
+    for (var i = 0; i < enclosingElement.thisType.accessors.length; i++) {
       if ('VALUES' !=
-          this.enclosingElement.thisType.accessors[i].name.toUpperCase()) {
+          enclosingElement.thisType.accessors[i].name.toUpperCase()) {
         buf.writeln(
-          '   ${this.enclosingElement.thisType.accessors[i].name.toUpperCase()} = $i;',
+          '   ${enclosingElement.thisType.accessors[i].name.toUpperCase()} = $i;',
         );
       }
     }
@@ -171,25 +167,25 @@ extension ExtensionParameterElement on ParameterElement {
       }
     }
 
-    return _toProtoType('${this.type}'.trim());
+    return _toProtoType('$type'.trim());
     // _toProtoType('${this.type}'.trim());
   }
 
   ///
-  Iterable<DartType> get generics => this.type.getGenericTypes();
+  Iterable<DartType> get generics => type.getGenericTypes();
 
   ///
   String get optional =>
-      this.isOptional || this.type.toString().endsWith('?') == true ? '?' : '';
+      isOptional || type.toString().endsWith('?') == true ? '?' : '';
 
   ///
   String get mapTypeWithGenerics =>
-      'Map<${generics.first},${generics.last}>${this.optional}'.trim();
+      'Map<${generics.first},${generics.last}>$optional'.trim();
 }
 
 /// Extension providing methods for Dart types.
 extension ERxtensionDartType on DartType {
-  String get toProtoType => switch ("$this") {
+  String get toProtoType => switch ('$this') {
         'String' || 'String?' || 'DateTime?' || 'DateTime' => 'string',
         'int' || 'int?' => 'int32',
         'bool' || 'bool?' => 'bool',
@@ -226,11 +222,11 @@ extension ERxtensionDartType on DartType {
 extension ExtensionMapEntry on MapEntry<String, List<ConstructorElement>> {
   ///
   String get dtoUnionMsgName {
-    return '$prefixMsg${this.key.replaceAll(RegExp(r'\.'), '_')}_$_postfixUnion';
+    return '$prefixMsg${key.replaceAll(RegExp(r'\.'), '_')}_$_postfixUnion';
   }
 
   ///
-  String get oneOfField => this.key.toLowerCase();
+  String get oneOfField => key.toLowerCase();
 }
 
 /// Extension providing methods for [ClassElement].
@@ -245,7 +241,7 @@ extension ExtensionClassElenemt on ClassElement {
   /// - The name of the parent class as a [String].
   ///
   String get nameOfParentClass =>
-      constructors.map((ConstructorElement e) => e.nameOfInheritedClass).first;
+      constructors.map((e) => e.nameOfInheritedClass).first;
 
   ///
   /// Groups constructor elements by a specified key function.
@@ -266,10 +262,10 @@ extension ExtensionClassElenemt on ClassElement {
     Iterable<ConstructorElement> arr,
     String Function(ConstructorElement constructor) key,
   ) {
-    final Map<String, List<ConstructorElement>> map =
-        <String, List<ConstructorElement>>{};
-    for (final ConstructorElement element in arr)
+    final map = <String, List<ConstructorElement>>{};
+    for (final element in arr) {
       (map[key(element)] ??= []).add(element);
+    }
     return map;
   }
 }
@@ -279,8 +275,7 @@ extension Iterables<E> on Iterable<E> {
   ///
   Map<K, List<E>> groupBy<K>(K Function(E) fn) => fold(
         <K, List<E>>{},
-        (Map<K, List<E>> map, E e) =>
-            map..putIfAbsent(fn(e), () => <E>[]).add(e),
+        (map, e) => map..putIfAbsent(fn(e), () => <E>[]).add(e),
       );
 }
 
@@ -308,15 +303,14 @@ mixin ValueReader {
               // Exploding each ClassElement into its constructors and filtering out unwanted ones
               .expand<ConstructorElement>((classElement) =>
                   classElement.constructors.where((constructor) {
-                    final bool _startWithUnderscore =
-                        !(constructor.nameOfRdrConstr.checkName_());
-                    final bool? s = classElement.constructors
-                        .map((e) => (e.redirectedConstructor?.isAbstract))
+                    final _startWithUnderscore =
+                        !constructor.nameOfRdrConstr.checkName_();
+                    final s = classElement.constructors
+                        .map((e) => e.redirectedConstructor?.isAbstract)
                         .firstWhere((element) => true);
-                    final bool abstractWoRedirects =
-                        !(classElement.isAbstract &&
-                            (classElement.constructors.length == 1) &&
-                            (s != null || s != true));
+                    final abstractWoRedirects = !(classElement.isAbstract &&
+                        (classElement.constructors.length == 1) &&
+                        (s != null || s != true));
                     return abstractWoRedirects &&
                         _startWithUnderscore &&
                         constructor.parameters.isNotEmpty &&
@@ -364,20 +358,19 @@ mixin ValueReader {
               .map<Element>((annotatedElement) => annotatedElement.element)
               // Filtering elements to keep only instances of ClassElement and excluding private or synthetic classes
               .whereType<ClassElement>()
-              .where((ClassElement classElement) =>
+              .where((classElement) =>
                   !classElement.isPrivate && !classElement.isSynthetic)
               // Exploding each ClassElement into its constructors and filtering out unwanted ones
               .expand<ConstructorElement>((classElement) =>
                   classElement.constructors.where((constructor) {
-                    final bool _startWithUnderscore =
-                        !(constructor.nameOfRdrConstr.checkName_());
-                    final bool? s = classElement.constructors
-                        .map((e) => (e.redirectedConstructor?.isAbstract))
+                    final _startWithUnderscore =
+                        !constructor.nameOfRdrConstr.checkName_();
+                    final s = classElement.constructors
+                        .map((e) => e.redirectedConstructor?.isAbstract)
                         .firstWhere((element) => true);
-                    final bool abstractWoRedirects =
-                        !(classElement.isAbstract &&
-                            (classElement.constructors.length == 1) &&
-                            (s != null || s != true));
+                    final abstractWoRedirects = !(classElement.isAbstract &&
+                        (classElement.constructors.length == 1) &&
+                        (s != null || s != true));
                     return abstractWoRedirects &&
                         _startWithUnderscore &&
                         constructor.parameters.isNotEmpty &&
@@ -385,18 +378,16 @@ mixin ValueReader {
                         !constructor.isSynthetic;
                   }))
               // Grouping constructors by superclass name
-              .groupBy((ConstructorElement constructor) =>
-                  constructor.nameOfInheritedClass)
+              .groupBy((constructor) => constructor.nameOfInheritedClass)
               .entries
               // Transforming the map entries to keep only constructors with non-empty parameters
-              .map<MapEntry<String, List<ConstructorElement>>>(
-                  (MapEntry<String, List<ConstructorElement>> entry) =>
-                      MapEntry<String, List<ConstructorElement>>(
-                          entry.key,
-                          entry.value
-                              .where((constructor) =>
-                                  constructor.parameters.isNotEmpty)
-                              .toList())));
+              .map<MapEntry<String, List<ConstructorElement>>>((entry) =>
+                  MapEntry<String, List<ConstructorElement>>(
+                      entry.key,
+                      entry.value
+                          .where((constructor) =>
+                              constructor.parameters.isNotEmpty)
+                          .toList())));
 
   ///
   /// Retrieves enum constructors.
@@ -411,9 +402,9 @@ mixin ValueReader {
       List<ConstructorElement>.from(
         d
             // Transforming each annotated element into an element and filtering to keep only EnumElement instances
-            .map<Element>((AnnotatedElement a) => a.element)
+            .map<Element>((a) => a.element)
             // Transforming each EnumElement into its first constructor
             .whereType<EnumElement>()
-            .map((EnumElement e) => e.constructors.first),
+            .map((e) => e.constructors.first),
       );
 }

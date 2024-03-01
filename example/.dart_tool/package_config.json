@@ -135,7 +135,7 @@
     },
     {
       "name": "dart_style",
-      "rootUri": "file:///Users/shentsov1988gmail.com/.pub-cache/hosted/pub.dev/dart_style-2.3.5",
+      "rootUri": "file:///Users/shentsov1988gmail.com/.pub-cache/hosted/pub.dev/dart_style-2.3.6",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
@@ -410,7 +410,7 @@
       "languageVersion": "3.0"
     }
   ],
-  "generated": "2024-02-29T14:24:58.632035Z",
+  "generated": "2024-03-01T06:36:53.209863Z",
   "generator": "pub",
   "generatorVersion": "3.4.0-176.0.dev"
 }

@@ -1,4 +1,3 @@
-
 import 'package:d2p_annotation/d2p_annotation.dart';
 
 @ProtoGen(createMappers: true)

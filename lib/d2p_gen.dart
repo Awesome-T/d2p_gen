@@ -1,8 +1,8 @@
 import 'package:build/build.dart';
-import 'package:d2p_gen/src/builders/d2p_mapper.dart';
-import 'package:d2p_gen/src/builders/d2p_protoc_runner.dart';
-import 'package:d2p_gen/src/builders/d2p_tmp.dart';
-import 'package:d2p_gen/src/builders/d2p_unioner.dart';
+import 'src/builders/d2p_mapper.dart';
+import 'src/builders/d2p_protoc_runner.dart';
+import 'src/builders/d2p_tmp.dart';
+import 'src/builders/d2p_unioner.dart';
 
 // protoc --dart_out=grpc:lib/src/generated **/*.proto
 /// [D2pTmpBuilder]

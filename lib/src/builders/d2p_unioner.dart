@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:build/build.dart';
-import 'package:d2p_gen/src/unils/header.dart';
+import '../unils/header.dart';
 import 'package:glob/glob.dart';
 
 /// A builder class for generating union protocol buffer files.
@@ -11,14 +11,14 @@ class D2pUnionBuilder implements Builder {
 
   /// Method for handling the creation of protocol buffer files.
   Future<void> _generateProto(BuildStep buildStep) async {
-    final StringBuffer buf = StringBuffer();
+    final buf = StringBuffer();
     late Uri uriNew;
-    final Glob protoGlob = Glob('**/*${OutputFormats.tmpProto.val}');
-    final Stream<AssetId> protoExports = buildStep.findAssets(protoGlob);
+    final protoGlob = Glob('**/*${OutputFormats.tmpProto.val}');
+    final protoExports = buildStep.findAssets(protoGlob);
 
     await for (final AssetId assetId in protoExports) {
       uriNew = assetId.uri.replace(path: OIDir.exportedProto.val);
-      if (buf.isEmpty)
+      if (buf.isEmpty) {
         buf
           ..writeln(header)
           ..writeln('''
@@ -34,14 +34,15 @@ class D2pUnionBuilder implements Builder {
 
 */
 ''');
-      final String content = await buildStep.readAsString(assetId);
+      }
+      final content = await buildStep.readAsString(assetId);
       buf.writeln(content);
     }
     if (buf.isNotEmpty) {
-      final RegExp pattern = RegExp(r'''
+      final pattern = RegExp(r'''
 .*(\/\/ GENERATED CODE - DO NOT MODIFY BY HAND.*\n\n\/\/.*
     \/\/ Generator: protoTmpBuilder\n *.*)''', multiLine: true);
-      final String data = buf.toString().replaceAll(pattern, '');
+      final data = buf.toString().replaceAll(pattern, '');
       buf.clear();
       await buildStep
           .writeAsString(AssetId(buildStep.inputId.package, uriNew.path), data)
@@ -60,7 +61,7 @@ class D2pUnionBuilder implements Builder {
   final Map<String, List<String>> buildExtensions = <String, List<String>>{
     OIDir.root.val: [
       'proto/messages${OutputFormats.proto.val}',
-     'proto/warnings.log',
+      'proto/warnings.log',
     ]
   };
 }

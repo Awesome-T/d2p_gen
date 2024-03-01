@@ -135,7 +135,7 @@
     },
     {
       "name": "dart_style",
-      "rootUri": "file:///Users/shentsov1988gmail.com/.pub-cache/hosted/pub.dev/dart_style-2.3.4",
+      "rootUri": "file:///Users/shentsov1988gmail.com/.pub-cache/hosted/pub.dev/dart_style-2.3.6",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
@@ -204,6 +204,12 @@
       "rootUri": "file:///Users/shentsov1988gmail.com/.pub-cache/hosted/pub.dev/json_annotation-4.8.1",
       "packageUri": "lib/",
       "languageVersion": "2.19"
+    },
+    {
+      "name": "lint",
+      "rootUri": "file:///Users/shentsov1988gmail.com/.pub-cache/hosted/pub.dev/lint-2.3.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.2"
     },
     {
       "name": "logging",
@@ -381,9 +387,9 @@
     },
     {
       "name": "vm_service",
-      "rootUri": "file:///Users/shentsov1988gmail.com/.pub-cache/hosted/pub.dev/vm_service-14.0.0",
+      "rootUri": "file:///Users/shentsov1988gmail.com/.pub-cache/hosted/pub.dev/vm_service-14.1.0",
       "packageUri": "lib/",
-      "languageVersion": "3.0"
+      "languageVersion": "3.3"
     },
     {
       "name": "watcher",
@@ -422,7 +428,7 @@
       "languageVersion": "3.0"
     }
   ],
-  "generated": "2024-02-29T14:24:57.149291Z",
+  "generated": "2024-03-01T07:30:49.562317Z",
   "generator": "pub",
   "generatorVersion": "3.4.0-176.0.dev"
 }

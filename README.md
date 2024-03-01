@@ -1,7 +1,21 @@
 # d2p_gen
 
-A Dart package for generating protocol buffer files (.proto) based on Dart code annotations [d2p_annotation](https://github.com/Awesome-T/d2p_annotation )
+A Dart package for generating protocol buffer files (.proto) based on Dart code annotations [d2p_annotation](https://github.com/Awesome-T/d2p_annotation)
 
+### Table of comparison of Dart types to Proto which is implemented by the package
+
+                | proto3   | dart     |
+                |----------|----------|
+                | double   | double   |
+                | double   | mun      |
+                | Int64    | int      |
+                | bool     | bool     |
+                | string   | String   |
+                | string   | Map      |
+                | enum     | enum     |
+                | repeated | Iterables|
+
+> Full comparison of proto types to programming languages on the official website [website](https://protobuf.dev/programming-guides/proto3/#scalar)
  <!-- > It's not a -->
 
 <!-- ## How to use -->
@@ -13,10 +27,10 @@ First, install [build_runner] and [d2p_gen] by adding them to your `pubspec.yaml
 
 ```yaml
 dependencies:
- d2p_annotation:
+ d2p_annotation: any
  # other dependencies
 dev_dependencies:
-  d2p_gen:
+  d2p_gen: any
 ```
 
 Alternativies for install the package - run conamd folowwing comand:
@@ -42,7 +56,7 @@ dart pub add dev:d2p_gen
 Put annotation under the clases wich you prefer to generate message.
 
 ```dart
-import 'package:d2p_gen/d2p_gen.dart';
+import 'package:d2p_annotation/d2p_annotation.dart';
 
 @ProtoGen(createMappers:false)
 class User {
@@ -62,7 +76,7 @@ result' be like this:
 
 ```proto
 <!-- some other fields -->
-message User {
+message DTOUser {
   string name = 1;
   int32 age = 2;
 }
@@ -71,6 +85,8 @@ message User {
 if you need union classes, example below:
 
 ```dart
+import 'package:d2p_annotation/d2p_annotation.dart';
+
 @ProtoGen()
 sealed class Animal {
   const Animal();
