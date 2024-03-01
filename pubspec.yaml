@@ -13,22 +13,28 @@ publish_to: none
 environment:
   sdk: ">=3.0.0 <4.0.0"
 dependencies:
-  build: any
+  build: ^2.4.1
   source_gen: ^1.5.0
-  d2p_annotation:
-    path: ../d2p_annotation/
+  d2p_annotation: ^0.0.1
   analyzer: ^6.4.1
-  glob: any
+  glob: ^2.1.2
 dev_dependencies:
   build_runner: ^2.3.3
-  build_test: 
+  build_test:
   lint: ^2.3.0
   mocktail: ^1.0.3
-  # very_good_analysis: ^5.1.0
+  test:
 
-  test: any
 topics:
   - network
   - proto
   - build_runner
-  - code_gen
+
+
+platforms:
+  android:
+  ios:
+  linux:
+  macos:
+  web:
+  windows:

@@ -11,11 +11,9 @@ dependencies:
   protobuf: ^3.0.0
   grpc: ^3.2.4
   # d2p_annotation:
-  #   git:
-  #     url: git://github.com/Awesome-T/d2p_annotation.git
-  #     ref: master
-  d2p_annotation:
-    path: ../../d2p_annotation/
+    # path: ../d2p_annotation/
+  d2p_annotation: ^0.0.1
+
 
 
 dev_dependencies:

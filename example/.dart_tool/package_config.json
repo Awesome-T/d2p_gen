@@ -123,7 +123,7 @@
     },
     {
       "name": "d2p_annotation",
-      "rootUri": "../../../d2p_annotation",
+      "rootUri": "file:///Users/shentsov1988gmail.com/.pub-cache/hosted/pub.dev/d2p_annotation-0.0.1",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
@@ -410,7 +410,7 @@
       "languageVersion": "3.0"
     }
   ],
-  "generated": "2024-03-01T06:36:53.209863Z",
+  "generated": "2024-03-01T08:19:07.973328Z",
   "generator": "pub",
   "generatorVersion": "3.4.0-176.0.dev"
 }

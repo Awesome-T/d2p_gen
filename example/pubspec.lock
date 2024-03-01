@@ -164,9 +164,10 @@ packages:
   d2p_annotation:
     dependency: "direct main"
     description:
-      path: "../../d2p_annotation"
-      relative: true
-    source: path
+      name: d2p_annotation
+      sha256: c6ec3394ef93a73a0e19be224822606dab4c276f3fcaf6598635c4a27c2a8722
+      url: "https://pub.dev"
+    source: hosted
     version: "0.0.1"
   d2p_gen:
     dependency: "direct dev"
