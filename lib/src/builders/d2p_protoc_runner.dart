@@ -19,11 +19,8 @@ class PtotocRunner extends Builder {
 
     // Start the process to run protoc compiler
     final process = await Process.start('protoc', [
-      // Specify the proto path
       '--proto_path=proto',
-      // Specify the output directory for generated Dart files
       '--dart_out=grpc:${generatedDir.path}',
-      // Input proto file path
       buildStep.inputId.path,
     ]);
 
@@ -35,13 +32,11 @@ class PtotocRunner extends Builder {
 
     // Output the exit code of the process
     stdout.writeln('Exit code: $exitCode');
+    //await Process.start('dart', ['format .']);
   }
 
   @override
   Map<String, List<String>> get buildExtensions => {
-        // Define the build extensions mapping
-        // For each input file with extension "messages.proto",
-        // generate a corresponding output file with extension ".ds.dart"
-        'messages.proto': ['.ds.dart'],
+        'messages.proto': ['.ds.dart']
       };
 }

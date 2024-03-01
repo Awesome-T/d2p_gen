@@ -1,5 +1,6 @@
-import '../src/generated/messages.pb.dart';
-import 'enums.dart';
+import 'dart:convert';
+import 'package:exap/src/generated/messages.pb.dart';
+import 'package:exap/models/enums.dart';
 
 ///
 /// Mapper that converts a DTO [$MapperCorpus] object into a enum [Corpus] and back.
@@ -13,10 +14,10 @@ abstract class $MapperCorpus {
       return DTOCorpus.values.firstWhere(
           (e) => e.name.toUpperCase() == enumField.name.toUpperCase());
     } on FormatException catch (e, trace) {
-      throw FormatException('''Error
+      throw FormatException("""Error
 ${e.source}
 ${e.message}
-$trace''');
+$trace""");
     }
   }
 
@@ -28,10 +29,10 @@ $trace''');
       return Corpus.values.firstWhere(
           (e) => e.name.toUpperCase() == enumField.name.toUpperCase());
     } on FormatException catch (e, trace) {
-      throw FormatException('''Error
+      throw FormatException("""Error
 ${e.source}
 ${e.message}
-$trace''');
+$trace""");
     }
   }
 }
@@ -48,10 +49,10 @@ abstract class $MapperErrorCodeExeptions {
       return DTOErrorCodeExeptions.values.firstWhere(
           (e) => e.name.toUpperCase() == enumField.name.toUpperCase());
     } on FormatException catch (e, trace) {
-      throw FormatException('''Error
+      throw FormatException("""Error
 ${e.source}
 ${e.message}
-$trace''');
+$trace""");
     }
   }
 
@@ -63,10 +64,10 @@ $trace''');
       return ErrorCodeExeptions.values.firstWhere(
           (e) => e.name.toUpperCase() == enumField.name.toUpperCase());
     } on FormatException catch (e, trace) {
-      throw FormatException('''Error
+      throw FormatException("""Error
 ${e.source}
 ${e.message}
-$trace''');
+$trace""");
     }
   }
 }

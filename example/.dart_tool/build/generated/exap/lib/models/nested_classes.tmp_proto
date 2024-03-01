@@ -11,26 +11,28 @@
     optional double pwqwq = 3;
     // List<SecondLevel> FirstLevel.nesyed
     repeated DTOSecondLevel nesyed = 4;
+    // List<EnumForArr> FirstLevel.arrOfEnums
+    repeated DTOEnumForArr arrOfEnums = 5;
     // Map<String, dynamic> FirstLevel.mapa
-    string mapa = 5;
+    string mapa = 6;
     // int FirstLevel.one
-    int32 one = 6;
+    int32 one = 7;
     // String FirstLevel.three
-    string three = 7;
+    string three = 8;
     // bool FirstLevel.seven
-    bool seven = 8;
+    bool seven = 9;
     // List<DateTime> FirstLevel.nine
-    repeated string nine = 9;
+    repeated string nine = 10;
     // DateTime FirstLevel.ten
-    string ten = 10;
+    string ten = 11;
     // int? FirstLevel.zerro
-    optional int32 zerro = 11;
+    optional int32 zerro = 12;
     // List<double>? FirstLevel.float
-    repeated double float = 12;
+    repeated double float = 13;
     // String? FirstLevel.two
-    optional string two = 13;
+    optional string two = 14;
     // bool? FirstLevel.eight
-    optional bool eight = 14;
+    optional bool eight = 15;
   }
 
 /*
@@ -52,5 +54,16 @@
     // List<int> TherdLevel.count
     repeated int32 count = 1;
   }
+
+
+/**
+    Enum EnumForArr
+    Source: 'package:/exap/lib/models/nested_classes.dart';
+*/
+enum DTOEnumForArr {
+   ONE = 0;
+   TWO = 1;
+   SIX = 2;
+}
 
 

@@ -2,26 +2,15 @@ import 'dart:async';
 
 import 'package:analyzer/dart/element/element.dart';
 import 'package:build/build.dart';
+import 'package:source_gen/source_gen.dart';
+
 import '../unils/extensions.dart';
 import '../unils/header.dart';
-import 'package:source_gen/source_gen.dart';
 
 ///
 base class D2PMapperBuilder extends Builder with ValueReader {
   D2PMapperBuilder(this.options);
   final BuilderOptions options;
-
-  // bool hasProtoAnnotation(Element element) {
-  //   for (ElementAnnotation metadata in element.metadata) {
-  //     if (metadata.computeConstantValue() != null &&
-  //         metadata
-  //                 .computeConstantValue()!
-  //                 .type!
-  //                 .getDisplayString(withNullability: false) ==
-  //             'ProtoGen') return true;
-  //   }
-  //   return false;
-  // }
 
   @override
   FutureOr<void> build(BuildStep buildStep) async {
@@ -35,9 +24,8 @@ base class D2PMapperBuilder extends Builder with ValueReader {
     final libReader = LibraryReader(libElement);
     // Get all annotated elements in the library.
     // Filter annotated elements that have the 'createMappers' annotation set to true.
-    final annotatedElements = libReader
-        .selectClassesAndEnums()
-        .where((e) => e.annotation.read('createMappers').boolValue == true);
+    final annotatedElements =
+        libReader.selectClassesAndEnums().where((e) => e.annotation.read('createMappers').boolValue == true);
     // If there are no annotated elements, return.
     if (annotatedElements.isEmpty) return;
     //
@@ -52,9 +40,7 @@ base class D2PMapperBuilder extends Builder with ValueReader {
     //
     final enums2 = enums(annotatedElements);
 
-    [ClassBuilder(classes2).content(), EnumBuilder(enums2).content()]
-        .nonNulls
-        .forEach(buf.writeln);
+    [ClassBuilder(classes2).content(), EnumBuilder(enums2).content()].nonNulls.forEach(buf.writeln);
     //
     if (buf.isEmpty) return;
     //
@@ -69,21 +55,18 @@ base class D2PMapperBuilder extends Builder with ValueReader {
   }
 
   /// Writes the generated mapper code to a file.
-  Future<void> _createFile(BuildStep buildStep, String result) async =>
-      buildStep
-          .writeAsString(
-            buildStep.inputId.changeExtension(OutputFormats.mapperDart.val),
-            result,
-          )
-          .onError(
-            (error, stackTrace) => throw switch (error) {
-              InvalidOutputException _ =>
-                throw InvalidOutputException(buildStep.inputId, result),
-              final PackageNotFoundException e =>
-                throw PackageNotFoundException('${e.name}'),
-              _ => throw Exception('$runtimeType\nerror $error\n$stackTrace')
-            },
-          );
+  Future<void> _createFile(BuildStep buildStep, String result) async => buildStep
+      .writeAsString(
+        buildStep.inputId.changeExtension(OutputFormats.mapperDart.val),
+        result,
+      )
+      .onError(
+        (error, stackTrace) => throw switch (error) {
+          InvalidOutputException _ => throw InvalidOutputException(buildStep.inputId, result),
+          final PackageNotFoundException e => throw PackageNotFoundException('${e.name}'),
+          _ => throw Exception('$runtimeType\nerror $error\n$stackTrace')
+        },
+      );
 
   ///
   @override
@@ -92,7 +75,7 @@ base class D2PMapperBuilder extends Builder with ValueReader {
       };
 }
 
-//////
+///
 abstract final class MapperGene<T> {
   final T element;
   const MapperGene(this.element);
@@ -100,9 +83,7 @@ abstract final class MapperGene<T> {
 }
 
 ///
-///
-base class ClassBuilder
-    extends MapperGene<Map<String, List<ConstructorElement>>> {
+base class ClassBuilder extends MapperGene<Map<String, List<ConstructorElement>>> {
   const ClassBuilder(super.element);
   @override
   String? content() {
@@ -146,8 +127,7 @@ base class ClassBuilder
             fromDto.write('''
       if ($_pathToField.has${constructor.nameOfField[0].toUpperCase()}${constructor.nameOfField.substring(1, constructor.nameOfField.length).toLowerCase()}()) {
         return''');
-            final pathToField =
-                '$_pathToField.${constructor.nameOfField}'.trim();
+            final pathToField = '$_pathToField.${constructor.nameOfField}'.trim();
             for (final param in constructor.parameters) {
               final _dataFromDTO = param.type.isIterableValue()
                   ? _iterables(param, false, null, pathToField)
@@ -281,9 +261,7 @@ base class ClassBuilder
             final cl = generics.first.element as ClassElement;
             final _parametsOfGeneric = cl.constructors.first.parameters;
             final buff = StringBuffer();
-            buff.write(
-              "${isToDTO ? 'DTO${cl.displayName}' : cl.displayName} (",
-            );
+            buff.write("${isToDTO ? 'DTO${cl.displayName}' : cl.displayName} (");
             for (var q = 0; q < _parametsOfGeneric.length; q++) {
               final _param = _parametsOfGeneric[q];
               final _optional = _param.isOptional ? '?' : '';
@@ -292,23 +270,24 @@ base class ClassBuilder
                 isToDTO,
                 '$pathToField$_optional.${_param.name}',
               );
-              final _name = isToDTO
-                  ? '${_param.name} '
-                  : '''${_param.isNamed ? '${_param.name}' : ''}''';
+              final _name = isToDTO ? '${_param.name} ' : '''${_param.isNamed ? '${_param.name}' : ''}''';
               buff.write('''$_name : $val,''');
             }
             buff.write(')');
             final typeOfIterable = param.type.element?.displayName;
-            final generic =
-                isToDTO ? '$prefixMsg${generics.first}' : '${generics.first}';
+            final generic = isToDTO ? '$prefixMsg${generics.first}' : '${generics.first}';
             return '''($fieldName$isNullable.isNotEmpty??false)?
           $typeOfIterable<$generic>.from($fieldName!.map<$generic>(($_pathToField)=>${buff.toString()},),):
           []''';
           case EnumElement():
-            //final cl = generics.first.element as EnumElement;
-            throw Exception();
+            final enumField = generics.first.element as EnumElement;
+            final _dto = enumField.constructors.first.dtoMsgName;
+            final _className = enumField.constructors.first.displayName;
+            return isToDTO
+                ? '$_dto.values.firstWhere((e) => e.name.toUpperCase() == enumField.name.toUpperCase())'
+                : '$_className.values.firstWhere((e) => e.name.toUpperCase() == enumField.name.toUpperCase())';
           default:
-            throw Exception();
+            throw Exception('This type ${generics.first.element} is not supported.');
         }
       }
     } on Exception catch (e) {
@@ -324,9 +303,7 @@ base class ClassBuilder
     String pathToField = _pathToField,
   ]) {
     final fieldName = innerPath ?? '$pathToField.${param.name}'; //
-    return isToDTO
-        ? 'jsonEncode($fieldName)'
-        : 'jsonDecode($fieldName) as ${param.mapTypeWithGenerics}';
+    return isToDTO ? 'jsonEncode($fieldName)' : 'jsonDecode($fieldName) as ${param.mapTypeWithGenerics}';
   }
 
   ///
@@ -349,14 +326,11 @@ base class ClassBuilder
           final clElement = element;
           final constructor = clElement.constructors.first;
           final buf = StringBuffer();
-          isToDTO
-              ? buf.write('$prefixMsg${clElement.name}(')
-              : buf.write('${clElement.name}(');
+          isToDTO ? buf.write('$prefixMsg${clElement.name}(') : buf.write('${clElement.name}(');
 
           for (final param in constructor.parameters) {
             late String val;
-            final innerPath =
-                '$pathToField.${name == null || name == '' ? '' : '$name.'}${param.name}';
+            final innerPath = '$pathToField.${name == null || name == '' ? '' : '$name.'}${param.name}';
             if (param.type.element?.displayName == 'DateTime') {
               val = _dateTime(
                 isToDTO,
@@ -476,9 +450,6 @@ base class EnumBuilder extends MapperGene<List<ConstructorElement>> {
     }
     return _buf.toString();
   }
-
-  // @override
-  // List<ConstructorElement> get element => _element;
 }
 
 //

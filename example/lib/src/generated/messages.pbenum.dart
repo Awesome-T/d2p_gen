@@ -74,4 +74,28 @@ class DTOErrorCodeExeptions extends $pb.ProtobufEnum {
   const DTOErrorCodeExeptions._($core.int v, $core.String n) : super(v, n);
 }
 
+/// *
+/// Enum EnumForArr
+/// Source: 'package:/exap/lib/models/nested_classes.dart';
+class DTOEnumForArr extends $pb.ProtobufEnum {
+  static const DTOEnumForArr ONE =
+      DTOEnumForArr._(0, _omitEnumNames ? '' : 'ONE');
+  static const DTOEnumForArr TWO =
+      DTOEnumForArr._(1, _omitEnumNames ? '' : 'TWO');
+  static const DTOEnumForArr SIX =
+      DTOEnumForArr._(2, _omitEnumNames ? '' : 'SIX');
+
+  static const $core.List<DTOEnumForArr> values = <DTOEnumForArr>[
+    ONE,
+    TWO,
+    SIX,
+  ];
+
+  static final $core.Map<$core.int, DTOEnumForArr> _byValue =
+      $pb.ProtobufEnum.initByValue(values);
+  static DTOEnumForArr? valueOf($core.int value) => _byValue[value];
+
+  const DTOEnumForArr._($core.int v, $core.String n) : super(v, n);
+}
+
 const _omitEnumNames = $core.bool.fromEnvironment('protobuf.omit_enum_names');

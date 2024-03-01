@@ -49,6 +49,20 @@ final $typed_data.Uint8List dTOErrorCodeExeptionsDescriptor = $convert.base64Dec
     'ChVEVE9FcnJvckNvZGVFeGVwdGlvbnMSGQoVUEVSTUlTU0lPTl9OT1RfRklOREVEEAASDgoKTk'
     'VUV09SS19FWBAB');
 
+@$core.Deprecated('Use dTOEnumForArrDescriptor instead')
+const DTOEnumForArr$json = {
+  '1': 'DTOEnumForArr',
+  '2': [
+    {'1': 'ONE', '2': 0},
+    {'1': 'TWO', '2': 1},
+    {'1': 'SIX', '2': 2},
+  ],
+};
+
+/// Descriptor for `DTOEnumForArr`. Decode as a `google.protobuf.EnumDescriptorProto`.
+final $typed_data.Uint8List dTOEnumForArrDescriptor = $convert
+    .base64Decode('Cg1EVE9FbnVtRm9yQXJyEgcKA09ORRAAEgcKA1RXTxABEgcKA1NJWBAC');
+
 @$core.Deprecated('Use dTOAbsSecondDescriptor instead')
 const DTOAbsSecond$json = {
   '1': 'DTOAbsSecond',
@@ -125,16 +139,24 @@ const DTOFirstLevel$json = {
       '6': '.messages.DTOSecondLevel',
       '10': 'nesyed'
     },
-    {'1': 'mapa', '3': 5, '4': 1, '5': 9, '10': 'mapa'},
-    {'1': 'one', '3': 6, '4': 1, '5': 5, '10': 'one'},
-    {'1': 'three', '3': 7, '4': 1, '5': 9, '10': 'three'},
-    {'1': 'seven', '3': 8, '4': 1, '5': 8, '10': 'seven'},
-    {'1': 'nine', '3': 9, '4': 3, '5': 9, '10': 'nine'},
-    {'1': 'ten', '3': 10, '4': 1, '5': 9, '10': 'ten'},
-    {'1': 'zerro', '3': 11, '4': 1, '5': 5, '9': 2, '10': 'zerro', '17': true},
-    {'1': 'float', '3': 12, '4': 3, '5': 1, '10': 'float'},
-    {'1': 'two', '3': 13, '4': 1, '5': 9, '9': 3, '10': 'two', '17': true},
-    {'1': 'eight', '3': 14, '4': 1, '5': 8, '9': 4, '10': 'eight', '17': true},
+    {
+      '1': 'arrOfEnums',
+      '3': 5,
+      '4': 3,
+      '5': 14,
+      '6': '.messages.DTOEnumForArr',
+      '10': 'arrOfEnums'
+    },
+    {'1': 'mapa', '3': 6, '4': 1, '5': 9, '10': 'mapa'},
+    {'1': 'one', '3': 7, '4': 1, '5': 5, '10': 'one'},
+    {'1': 'three', '3': 8, '4': 1, '5': 9, '10': 'three'},
+    {'1': 'seven', '3': 9, '4': 1, '5': 8, '10': 'seven'},
+    {'1': 'nine', '3': 10, '4': 3, '5': 9, '10': 'nine'},
+    {'1': 'ten', '3': 11, '4': 1, '5': 9, '10': 'ten'},
+    {'1': 'zerro', '3': 12, '4': 1, '5': 5, '9': 2, '10': 'zerro', '17': true},
+    {'1': 'float', '3': 13, '4': 3, '5': 1, '10': 'float'},
+    {'1': 'two', '3': 14, '4': 1, '5': 9, '9': 3, '10': 'two', '17': true},
+    {'1': 'eight', '3': 15, '4': 1, '5': 8, '9': 4, '10': 'eight', '17': true},
   ],
   '8': [
     {'1': '_dt'},
@@ -149,12 +171,13 @@ const DTOFirstLevel$json = {
 final $typed_data.Uint8List dTOFirstLevelDescriptor = $convert.base64Decode(
     'Cg1EVE9GaXJzdExldmVsEhMKAmR0GAEgASgJSABSAmR0iAEBEhQKBW5pbmV3GAIgASgBUgVuaW'
     '5ldxIZCgVwd3F3cRgDIAEoAUgBUgVwd3F3cYgBARIwCgZuZXN5ZWQYBCADKAsyGC5tZXNzYWdl'
-    'cy5EVE9TZWNvbmRMZXZlbFIGbmVzeWVkEhIKBG1hcGEYBSABKAlSBG1hcGESEAoDb25lGAYgAS'
-    'gFUgNvbmUSFAoFdGhyZWUYByABKAlSBXRocmVlEhQKBXNldmVuGAggASgIUgVzZXZlbhISCgRu'
-    'aW5lGAkgAygJUgRuaW5lEhAKA3RlbhgKIAEoCVIDdGVuEhkKBXplcnJvGAsgASgFSAJSBXplcn'
-    'JviAEBEhQKBWZsb2F0GAwgAygBUgVmbG9hdBIVCgN0d28YDSABKAlIA1IDdHdviAEBEhkKBWVp'
-    'Z2h0GA4gASgISARSBWVpZ2h0iAEBQgUKA19kdEIICgZfcHdxd3FCCAoGX3plcnJvQgYKBF90d2'
-    '9CCAoGX2VpZ2h0');
+    'cy5EVE9TZWNvbmRMZXZlbFIGbmVzeWVkEjcKCmFyck9mRW51bXMYBSADKA4yFy5tZXNzYWdlcy'
+    '5EVE9FbnVtRm9yQXJyUgphcnJPZkVudW1zEhIKBG1hcGEYBiABKAlSBG1hcGESEAoDb25lGAcg'
+    'ASgFUgNvbmUSFAoFdGhyZWUYCCABKAlSBXRocmVlEhQKBXNldmVuGAkgASgIUgVzZXZlbhISCg'
+    'RuaW5lGAogAygJUgRuaW5lEhAKA3RlbhgLIAEoCVIDdGVuEhkKBXplcnJvGAwgASgFSAJSBXpl'
+    'cnJviAEBEhQKBWZsb2F0GA0gAygBUgVmbG9hdBIVCgN0d28YDiABKAlIA1IDdHdviAEBEhkKBW'
+    'VpZ2h0GA8gASgISARSBWVpZ2h0iAEBQgUKA19kdEIICgZfcHdxd3FCCAoGX3plcnJvQgYKBF90'
+    'd29CCAoGX2VpZ2h0');
 
 @$core.Deprecated('Use dTOSecondLevelDescriptor instead')
 const DTOSecondLevel$json = {

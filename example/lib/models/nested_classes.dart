@@ -6,23 +6,21 @@ import 'package:d2p_annotation/d2p_annotation.dart';
   singleProtofile: false,
 )
 class FirstLevel {
-  //
   const FirstLevel(
     this.dt,
     this.ninew,
     this.pwqwq,
-    this.nesyed, {
-    required this.mapa, // required this.five,
+    this.nesyed,
+    this.arrOfEnums, {
+    required this.mapa,
     required this.one,
-    required this.three, // this.six,
+    required this.three,
     required this.seven,
     required this.nine,
     required this.ten,
     this.zerro,
-    //   required this.nesyed,
     this.float,
     this.two,
-    // required this.four,
     this.eight,
   });
 
@@ -30,6 +28,7 @@ class FirstLevel {
   final bool? eight;
   final List<double>? float;
   final List<SecondLevel> nesyed;
+  final List<EnumForArr> arrOfEnums;
   final Map<String, dynamic> mapa;
 
   final List<DateTime> nine;
@@ -41,8 +40,6 @@ class FirstLevel {
   final String three;
   final String? two;
   final int? zerro;
-
-  // const ClassForTesting({required this.fieldone});
 }
 
 @ProtoGen(createMappers: true)
@@ -57,8 +54,10 @@ class TherdLevel {
   const TherdLevel({required this.count});
   final List<int> count;
 }
-// @ProtoGen(createMappers: true)
-// abstract final class FFF {
-//   final int aw;
-//   const FFF({required this.aw});
-// }
+
+@ProtoGen(createMappers: true)
+enum EnumForArr {
+  one,
+  two,
+  six;
+}

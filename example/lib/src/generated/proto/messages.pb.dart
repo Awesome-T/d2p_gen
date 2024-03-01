@@ -13,6 +13,8 @@ import 'dart:core' as $core;
 
 import 'package:protobuf/protobuf.dart' as $pb;
 
+import 'messages.pbenum.dart';
+
 export 'messages.pbenum.dart';
 
 ///
@@ -292,6 +294,7 @@ class DTOFirstLevel extends $pb.GeneratedMessage {
     $core.double? ninew,
     $core.double? pwqwq,
     $core.Iterable<DTOSecondLevel>? nesyed,
+    $core.Iterable<DTOEnumForArr>? arrOfEnums,
     $core.String? mapa,
     $core.int? one,
     $core.String? three,
@@ -315,6 +318,9 @@ class DTOFirstLevel extends $pb.GeneratedMessage {
     }
     if (nesyed != null) {
       $result.nesyed.addAll(nesyed);
+    }
+    if (arrOfEnums != null) {
+      $result.arrOfEnums.addAll(arrOfEnums);
     }
     if (mapa != null) {
       $result.mapa = mapa;
@@ -365,16 +371,22 @@ class DTOFirstLevel extends $pb.GeneratedMessage {
     ..a<$core.double>(3, _omitFieldNames ? '' : 'pwqwq', $pb.PbFieldType.OD)
     ..pc<DTOSecondLevel>(4, _omitFieldNames ? '' : 'nesyed', $pb.PbFieldType.PM,
         subBuilder: DTOSecondLevel.create)
-    ..aOS(5, _omitFieldNames ? '' : 'mapa')
-    ..a<$core.int>(6, _omitFieldNames ? '' : 'one', $pb.PbFieldType.O3)
-    ..aOS(7, _omitFieldNames ? '' : 'three')
-    ..aOB(8, _omitFieldNames ? '' : 'seven')
-    ..pPS(9, _omitFieldNames ? '' : 'nine')
-    ..aOS(10, _omitFieldNames ? '' : 'ten')
-    ..a<$core.int>(11, _omitFieldNames ? '' : 'zerro', $pb.PbFieldType.O3)
-    ..p<$core.double>(12, _omitFieldNames ? '' : 'float', $pb.PbFieldType.KD)
-    ..aOS(13, _omitFieldNames ? '' : 'two')
-    ..aOB(14, _omitFieldNames ? '' : 'eight')
+    ..pc<DTOEnumForArr>(
+        5, _omitFieldNames ? '' : 'arrOfEnums', $pb.PbFieldType.KE,
+        protoName: 'arrOfEnums',
+        valueOf: DTOEnumForArr.valueOf,
+        enumValues: DTOEnumForArr.values,
+        defaultEnumValue: DTOEnumForArr.ONE)
+    ..aOS(6, _omitFieldNames ? '' : 'mapa')
+    ..a<$core.int>(7, _omitFieldNames ? '' : 'one', $pb.PbFieldType.O3)
+    ..aOS(8, _omitFieldNames ? '' : 'three')
+    ..aOB(9, _omitFieldNames ? '' : 'seven')
+    ..pPS(10, _omitFieldNames ? '' : 'nine')
+    ..aOS(11, _omitFieldNames ? '' : 'ten')
+    ..a<$core.int>(12, _omitFieldNames ? '' : 'zerro', $pb.PbFieldType.O3)
+    ..p<$core.double>(13, _omitFieldNames ? '' : 'float', $pb.PbFieldType.KD)
+    ..aOS(14, _omitFieldNames ? '' : 'two')
+    ..aOB(15, _omitFieldNames ? '' : 'eight')
     ..hasRequiredFields = false;
 
   @$core.Deprecated('Using this can add significant overhead to your binary. '
@@ -443,117 +455,121 @@ class DTOFirstLevel extends $pb.GeneratedMessage {
   @$pb.TagNumber(4)
   $core.List<DTOSecondLevel> get nesyed => $_getList(3);
 
+  /// List<EnumForArr> FirstLevel.arrOfEnums
+  @$pb.TagNumber(5)
+  $core.List<DTOEnumForArr> get arrOfEnums => $_getList(4);
+
   /// Map<String, dynamic> FirstLevel.mapa
-  @$pb.TagNumber(5)
-  $core.String get mapa => $_getSZ(4);
-  @$pb.TagNumber(5)
+  @$pb.TagNumber(6)
+  $core.String get mapa => $_getSZ(5);
+  @$pb.TagNumber(6)
   set mapa($core.String v) {
-    $_setString(4, v);
+    $_setString(5, v);
   }
 
-  @$pb.TagNumber(5)
-  $core.bool hasMapa() => $_has(4);
-  @$pb.TagNumber(5)
-  void clearMapa() => clearField(5);
+  @$pb.TagNumber(6)
+  $core.bool hasMapa() => $_has(5);
+  @$pb.TagNumber(6)
+  void clearMapa() => clearField(6);
 
   /// int FirstLevel.one
-  @$pb.TagNumber(6)
-  $core.int get one => $_getIZ(5);
-  @$pb.TagNumber(6)
+  @$pb.TagNumber(7)
+  $core.int get one => $_getIZ(6);
+  @$pb.TagNumber(7)
   set one($core.int v) {
-    $_setSignedInt32(5, v);
+    $_setSignedInt32(6, v);
   }
 
-  @$pb.TagNumber(6)
-  $core.bool hasOne() => $_has(5);
-  @$pb.TagNumber(6)
-  void clearOne() => clearField(6);
+  @$pb.TagNumber(7)
+  $core.bool hasOne() => $_has(6);
+  @$pb.TagNumber(7)
+  void clearOne() => clearField(7);
 
   /// String FirstLevel.three
-  @$pb.TagNumber(7)
-  $core.String get three => $_getSZ(6);
-  @$pb.TagNumber(7)
+  @$pb.TagNumber(8)
+  $core.String get three => $_getSZ(7);
+  @$pb.TagNumber(8)
   set three($core.String v) {
-    $_setString(6, v);
+    $_setString(7, v);
   }
 
-  @$pb.TagNumber(7)
-  $core.bool hasThree() => $_has(6);
-  @$pb.TagNumber(7)
-  void clearThree() => clearField(7);
+  @$pb.TagNumber(8)
+  $core.bool hasThree() => $_has(7);
+  @$pb.TagNumber(8)
+  void clearThree() => clearField(8);
 
   /// bool FirstLevel.seven
-  @$pb.TagNumber(8)
-  $core.bool get seven => $_getBF(7);
-  @$pb.TagNumber(8)
+  @$pb.TagNumber(9)
+  $core.bool get seven => $_getBF(8);
+  @$pb.TagNumber(9)
   set seven($core.bool v) {
-    $_setBool(7, v);
+    $_setBool(8, v);
   }
 
-  @$pb.TagNumber(8)
-  $core.bool hasSeven() => $_has(7);
-  @$pb.TagNumber(8)
-  void clearSeven() => clearField(8);
+  @$pb.TagNumber(9)
+  $core.bool hasSeven() => $_has(8);
+  @$pb.TagNumber(9)
+  void clearSeven() => clearField(9);
 
   /// List<DateTime> FirstLevel.nine
-  @$pb.TagNumber(9)
-  $core.List<$core.String> get nine => $_getList(8);
+  @$pb.TagNumber(10)
+  $core.List<$core.String> get nine => $_getList(9);
 
   /// DateTime FirstLevel.ten
-  @$pb.TagNumber(10)
-  $core.String get ten => $_getSZ(9);
-  @$pb.TagNumber(10)
+  @$pb.TagNumber(11)
+  $core.String get ten => $_getSZ(10);
+  @$pb.TagNumber(11)
   set ten($core.String v) {
-    $_setString(9, v);
+    $_setString(10, v);
   }
 
-  @$pb.TagNumber(10)
-  $core.bool hasTen() => $_has(9);
-  @$pb.TagNumber(10)
-  void clearTen() => clearField(10);
+  @$pb.TagNumber(11)
+  $core.bool hasTen() => $_has(10);
+  @$pb.TagNumber(11)
+  void clearTen() => clearField(11);
 
   /// int? FirstLevel.zerro
-  @$pb.TagNumber(11)
-  $core.int get zerro => $_getIZ(10);
-  @$pb.TagNumber(11)
+  @$pb.TagNumber(12)
+  $core.int get zerro => $_getIZ(11);
+  @$pb.TagNumber(12)
   set zerro($core.int v) {
-    $_setSignedInt32(10, v);
+    $_setSignedInt32(11, v);
   }
 
-  @$pb.TagNumber(11)
-  $core.bool hasZerro() => $_has(10);
-  @$pb.TagNumber(11)
-  void clearZerro() => clearField(11);
+  @$pb.TagNumber(12)
+  $core.bool hasZerro() => $_has(11);
+  @$pb.TagNumber(12)
+  void clearZerro() => clearField(12);
 
   /// List<double>? FirstLevel.float
-  @$pb.TagNumber(12)
-  $core.List<$core.double> get float => $_getList(11);
+  @$pb.TagNumber(13)
+  $core.List<$core.double> get float => $_getList(12);
 
   /// String? FirstLevel.two
-  @$pb.TagNumber(13)
-  $core.String get two => $_getSZ(12);
-  @$pb.TagNumber(13)
+  @$pb.TagNumber(14)
+  $core.String get two => $_getSZ(13);
+  @$pb.TagNumber(14)
   set two($core.String v) {
-    $_setString(12, v);
+    $_setString(13, v);
   }
 
-  @$pb.TagNumber(13)
-  $core.bool hasTwo() => $_has(12);
-  @$pb.TagNumber(13)
-  void clearTwo() => clearField(13);
+  @$pb.TagNumber(14)
+  $core.bool hasTwo() => $_has(13);
+  @$pb.TagNumber(14)
+  void clearTwo() => clearField(14);
 
   /// bool? FirstLevel.eight
-  @$pb.TagNumber(14)
-  $core.bool get eight => $_getBF(13);
-  @$pb.TagNumber(14)
+  @$pb.TagNumber(15)
+  $core.bool get eight => $_getBF(14);
+  @$pb.TagNumber(15)
   set eight($core.bool v) {
-    $_setBool(13, v);
+    $_setBool(14, v);
   }
 
-  @$pb.TagNumber(14)
-  $core.bool hasEight() => $_has(13);
-  @$pb.TagNumber(14)
-  void clearEight() => clearField(14);
+  @$pb.TagNumber(15)
+  $core.bool hasEight() => $_has(14);
+  @$pb.TagNumber(15)
+  void clearEight() => clearField(15);
 }
 
 ///

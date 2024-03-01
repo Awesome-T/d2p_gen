@@ -1,5 +1,6 @@
-import '../src/generated/messages.pb.dart';
-import 'fr_union.dart';
+import 'dart:convert';
+import 'package:exap/src/generated/messages.pb.dart';
+import 'package:exap/models/fr_union.dart';
 
 /// Mapper that converts a DTO [DTOFreezedCl_Union] object
 /// into a Model [FreezedCl] and back.

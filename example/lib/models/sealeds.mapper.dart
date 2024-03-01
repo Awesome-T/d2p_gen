@@ -1,5 +1,6 @@
-import '../src/generated/messages.pb.dart';
-import 'sealeds.dart';
+import 'dart:convert';
+import 'package:exap/src/generated/messages.pb.dart';
+import 'package:exap/models/sealeds.dart';
 
 /// Mapper that converts a DTO [DTOAnimal_Union] object
 /// into a Model [Animal] and back.
@@ -18,6 +19,11 @@ abstract class $MapperAnimal {
       if (model.hasSheep()) {
         return Sheep(
           one: model.sheep.one,
+        );
+      }
+      if (model.hasPig()) {
+        return Pig(
+          se: model.pig.se,
         );
       } else {
         throw FormatException('No valid DTO $model');
@@ -49,6 +55,13 @@ abstract class $MapperAnimal {
         return DTOAnimal_Union(
           sheep: DTOSheep(
             one: model.one,
+          ),
+        );
+      }
+      if (model is Pig) {
+        return DTOAnimal_Union(
+          pig: DTOPig(
+            se: model.se,
           ),
         );
       } else {

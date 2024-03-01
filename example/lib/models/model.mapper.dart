@@ -1,6 +1,6 @@
 import 'dart:convert';
-import '../src/generated/messages.pb.dart';
-import 'model.dart';
+import 'package:exap/src/generated/messages.pb.dart';
+import 'package:exap/models/model.dart';
 
 /// Mapper that converts a DTO [DTOPioijh] object
 /// into a Model [Pioijh] and back.
@@ -12,7 +12,7 @@ abstract class $MapperPioijh {
       return Pioijh(
         (model.smthn.isNotEmpty ?? false)
             ? List<Blah>.from(
-                model.smthn.map<Blah>(
+                model.smthn!.map<Blah>(
                   (model) => Blah(
                     id: model.id,
                     tags: model.tags,
@@ -41,7 +41,7 @@ abstract class $MapperPioijh {
   static DTOPioijh toDTO(Pioijh model) {
     try {
       return DTOPioijh(
-        smthn: (model.smthn?.isNotEmpty ?? false)
+        smthn: (model.smthn.isNotEmpty ?? false)
             ? List<DTOBlah>.from(
                 model.smthn!.map<DTOBlah>(
                   (model) => DTOBlah(
@@ -77,9 +77,9 @@ abstract class $MapperPerson {
     try {
       return Person(
         DateTime.parse(model.createdAt),
-        blahs: (model.blahs.isNotEmpty ?? false)
+        blahs: (model.blahs?.isNotEmpty ?? false)
             ? List<Blah>.from(
-                model.blahs.map<Blah>(
+                model.blahs!.map<Blah>(
                   (model) => Blah(
                     id: model.id,
                     tags: model.tags,
@@ -107,7 +107,7 @@ abstract class $MapperPerson {
   static DTOPerson toDTO(Person model) {
     try {
       return DTOPerson(
-        createdAt: model.createdAt.toIso8601String(),
+        createdAt: model.createdAt?.toIso8601String(),
         blahs: (model.blahs?.isNotEmpty ?? false)
             ? List<DTOBlah>.from(
                 model.blahs!.map<DTOBlah>(

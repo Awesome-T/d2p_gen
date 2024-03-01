@@ -1,5 +1,6 @@
-import '../src/generated/messages.pb.dart';
-import 'abstract_factories.dart';
+import 'dart:convert';
+import 'package:exap/src/generated/messages.pb.dart';
+import 'package:exap/models/abstract_factories.dart';
 
 /// Mapper that converts a DTO [DTOAbsFactories_Union] object
 /// into a Model [AbsFactories] and back.

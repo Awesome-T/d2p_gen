@@ -1,7 +1,6 @@
 import 'dart:convert';
-
-import '../src/generated/messages.pb.dart';
-import 'nested_classes.dart';
+import 'package:exap/src/generated/messages.pb.dart';
+import 'package:exap/models/nested_classes.dart';
 
 /// Mapper that converts a DTO [DTOFirstLevel] object
 /// into a Model [FirstLevel] and back.
@@ -16,12 +15,12 @@ abstract class $MapperFirstLevel {
         model.pwqwq,
         (model.nesyed.isNotEmpty ?? false)
             ? List<SecondLevel>.from(
-                model.nesyed.map<SecondLevel>(
+                model.nesyed!.map<SecondLevel>(
                   (model) => SecondLevel(
                     count: model.count,
                     arr: (model.arr.isNotEmpty ?? false)
                         ? List<TherdLevel>.from(
-                            model.arr.map<TherdLevel>(
+                            model.arr!.map<TherdLevel>(
                               (model) => TherdLevel(
                                 count: model.count,
                               ),
@@ -32,13 +31,15 @@ abstract class $MapperFirstLevel {
                 ),
               )
             : [],
+        EnumForArr.values.firstWhere(
+            (e) => e.name.toUpperCase() == enumField.name.toUpperCase()),
         mapa: jsonDecode(model.mapa) as Map<String, dynamic>,
         one: model.one,
         three: model.three,
         seven: model.seven,
         nine: (model.nine.isNotEmpty ?? false)
-            ? List<DateTime>.from(model.nine.map(
-                DateTime.parse,
+            ? List<DateTime>.from(model.nine!.map(
+                (e) => DateTime.parse(e),
               ))
             : [],
         ten: DateTime.parse(model.ten),
@@ -67,12 +68,12 @@ abstract class $MapperFirstLevel {
         pwqwq: model.pwqwq,
         nesyed: (model.nesyed.isNotEmpty ?? false)
             ? List<DTOSecondLevel>.from(
-                model.nesyed.map<DTOSecondLevel>(
+                model.nesyed!.map<DTOSecondLevel>(
                   (model) => DTOSecondLevel(
                     count: model.count,
                     arr: (model.arr.isNotEmpty ?? false)
                         ? List<DTOTherdLevel>.from(
-                            model.arr.map<DTOTherdLevel>(
+                            model.arr!.map<DTOTherdLevel>(
                               (model) => DTOTherdLevel(
                                 count: model.count,
                               ),
@@ -83,16 +84,18 @@ abstract class $MapperFirstLevel {
                 ),
               )
             : [],
+        arrOfEnums: DTOEnumForArr.values.firstWhere(
+            (e) => e.name.toUpperCase() == enumField.name.toUpperCase()),
         mapa: jsonEncode(model.mapa),
         one: model.one,
         three: model.three,
         seven: model.seven,
-        nine: (model.nine.isNotEmpty)
-            ? List<String>.from(model.nine.map(
-                (e) => e.toIso8601String(),
+        nine: (model.nine.isNotEmpty ?? false)
+            ? List<String>.from(model.nine!.map(
+                (e) => e?.toIso8601String(),
               ))
             : [],
-        ten: model.ten.toIso8601String(),
+        ten: model.ten?.toIso8601String(),
         zerro: model.zerro,
         float: model.float,
         two: model.two,
@@ -120,7 +123,7 @@ abstract class $MapperSecondLevel {
         count: model.count,
         arr: (model.arr.isNotEmpty ?? false)
             ? List<TherdLevel>.from(
-                model.arr.map<TherdLevel>(
+                model.arr!.map<TherdLevel>(
                   (model) => TherdLevel(
                     count: model.count,
                   ),
@@ -144,9 +147,9 @@ abstract class $MapperSecondLevel {
     try {
       return DTOSecondLevel(
         count: model.count,
-        arr: (model.arr.isNotEmpty)
+        arr: (model.arr.isNotEmpty ?? false)
             ? List<DTOTherdLevel>.from(
-                model.arr.map<DTOTherdLevel>(
+                model.arr!.map<DTOTherdLevel>(
                   (model) => DTOTherdLevel(
                     count: model.count,
                   ),
@@ -199,6 +202,41 @@ abstract class $MapperTherdLevel {
       ${e.message}
       $trace''',
       );
+    }
+  }
+}
+
+///
+/// Mapper that converts a DTO [$MapperEnumForArr] object into a enum [EnumForArr] and back.
+///
+abstract class $MapperEnumForArr {
+  ///
+  /// Mapper that converts a DTO [$MapperEnumForArr] object into an [Enum] [EnumForArr].
+  ///
+  static DTOEnumForArr toDTO(EnumForArr enumField) {
+    try {
+      return DTOEnumForArr.values.firstWhere(
+          (e) => e.name.toUpperCase() == enumField.name.toUpperCase());
+    } on FormatException catch (e, trace) {
+      throw FormatException("""Error
+${e.source}
+${e.message}
+$trace""");
+    }
+  }
+
+  ///
+  /// Mapper that converts a DTO [$MapperEnumForArr] object into an [Enum] [EnumForArr].
+  ///
+  static EnumForArr fromDTO(DTOEnumForArr enumField) {
+    try {
+      return EnumForArr.values.firstWhere(
+          (e) => e.name.toUpperCase() == enumField.name.toUpperCase());
+    } on FormatException catch (e, trace) {
+      throw FormatException("""Error
+${e.source}
+${e.message}
+$trace""");
     }
   }
 }
