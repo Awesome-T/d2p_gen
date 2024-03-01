@@ -9,7 +9,7 @@ homepage: https://github.com/Awesome-T/d2p_gen
 repository: https://github.com/Awesome-T/d2p_gen
 issue_tracker: https://github.com/Awesome-T/d2p_gen/issues
 documentation: https://github.com/Awesome-T/d2p_gen
-publish_to: none
+
 environment:
   sdk: ">=3.0.0 <4.0.0"
 dependencies:
@@ -28,7 +28,6 @@ dev_dependencies:
 topics:
   - network
   - proto
-  - build_runner
 
 
 platforms:
