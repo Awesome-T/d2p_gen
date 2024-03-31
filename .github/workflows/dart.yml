@@ -64,12 +64,3 @@ jobs:
 
       - name: Run tests
         run: dart test
-
-      - name: Upgrade version and CHANGELOG
-        run: |
-          .github/upgrade_version.sh
-          git add pubspec.yaml
-          .github/update_changelog.sh
-          git add CHANGELOG.md
-          git commit  -m "Updete changelog [skin ci]"
-          git push -f -u origin master
