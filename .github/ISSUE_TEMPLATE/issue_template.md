@@ -1,11 +1,12 @@
 ---
 name: Tracking issue
 about: Create a report to help us improve
-title: "fix: "
+title: 'fix: '
 labels: bug
-date: "[DATE]:"
-assignees: octocat
+assignees: ''
+
 ---
+
 <!-- 
 **Description**
 A clear and concise description of what the bug is.
