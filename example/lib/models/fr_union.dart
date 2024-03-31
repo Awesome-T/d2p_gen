@@ -7,8 +7,10 @@ part 'fr_union.freezed.dart';
 @ProtoGen(createMappers: true)
 @freezed
 class FreezedCl with _$FreezedCl {
+// should skip because hasn't aby parameters.
   const factory FreezedCl.loading() = Loading;
-  const factory FreezedCl.loading3({required final double gfg}) = _Loading2;
+  // should skip because name of redirected clasess start from underscore
+  const factory FreezedCl.loading3({required final double percent}) = _Loading2;
   const factory FreezedCl.error([final String? message]) = ErrorDetails;
   const factory FreezedCl.complex(final int a, final String b) = Complex;
 }

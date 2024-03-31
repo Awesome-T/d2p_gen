@@ -7,11 +7,17 @@ sealed class Animal {
 
 @ProtoGen(createMappers: true)
 class Cow extends Animal {
-  final int? weight;
+  final int? height;
   final String? nullableString;
   final DateTime? nullableDateTime;
-  const Cow({
-    this.weight,
+  final List<DateTime>? dates;
+  final bool bolean;
+  final double weight;
+  const Cow(
+    this.dates,
+    this.bolean, {
+    required this.weight,
+    this.height,
     this.nullableString,
     this.nullableDateTime,
   });

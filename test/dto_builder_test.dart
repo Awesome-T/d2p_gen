@@ -1,7 +1,7 @@
 import 'package:analyzer/dart/element/element.dart';
 import 'package:build/build.dart';
 import 'package:build_test/build_test.dart';
-import 'package:d2p_gen/src/builders/d2p_tmp.dart';
+import 'package:d2p_gen/src/builders/tmp_proto_b.dart';
 import 'package:d2p_gen/src/unils/extensions.dart';
 import 'package:d2p_gen/src/unils/header.dart';
 import 'package:test/test.dart';
@@ -22,17 +22,18 @@ Future<void> main() async {
       writerIntoMemory = InMemoryAssetWriter();
 
       await writerIntoMemory.writeAsString(textAsset, 'some text written here');
-      await writerIntoMemory.writeAsString(dartModetAsset, inputSource);
+      await writerIntoMemory.writeAsString(dartModetAsset, fakeSource);
     });
 
     test('Analyze test code', () async {
       // Resolving the source code of the library
       library = await resolveSource(
-          inputSource, (r) async => (await r.findLibraryByName('example'))!);
+          fakeSource, (r) async => (await r.findLibraryByName('example'))!);
 
       // Analyzing test code
       final types = valueReader
-          .cls(library.definingCompilationUnit.classes)['Ctypes']!
+          .extractClassConstructorsFiltered(
+              library.definingCompilationUnit.classes)['Ctypes']!
           .first
           .parameters
           .toSet()
@@ -51,7 +52,7 @@ Future<void> main() async {
       // Additional assertions ...
     });
 
-    test('Output file extension', () {
+    test('Output file extension should match expected format', () {
       // Verify the output file extension
       expect(
         dartModetAsset.changeExtension(OutputFormats.tmpProto.val),
@@ -68,8 +69,9 @@ Future<void> main() async {
     setUpAll(() async {
       valueReader = MockValueReader();
       library = await resolveSource(
-          inputSource, (r) async => (await r.findLibraryByName('example'))!);
-      result = valueReader.cls(library.definingCompilationUnit.classes);
+          fakeSource, (r) async => (await r.findLibraryByName('example'))!);
+      result = valueReader.extractClassConstructorsFiltered(
+          library.definingCompilationUnit.classes);
     });
 
     test('Compare class names', () {
@@ -115,7 +117,7 @@ Future<void> main() async {
     setUpAll(() async {
       valueReader = MockValueReader();
       library = await resolveSource(
-          inputSource, (r) async => (await r.findLibraryByName('example'))!);
+          fakeSource, (r) async => (await r.findLibraryByName('example'))!);
       result = valueReader.enms(library.definingCompilationUnit.enums);
     });
 
@@ -140,15 +142,18 @@ Future<void> main() async {
 
 //
 extension _ExOnList on List<ParameterElement> {
-  String check(String dart) =>
-      singleWhere((e) => e.type.getDisplayString(withNullability: true) == dart)
-          .toProtoType;
+  String check(String dart) {
+    final parameter = firstWhere(
+        (e) => e.type.getDisplayString(withNullability: true) == dart,
+        orElse: () => throw 'Parameter not found');
+    return parameter.toProtoType;
+  }
 }
 
 class MockValueReader with ValueReader {}
 
 ///
-const String inputSource = r'''
+const String fakeSource = r'''
 library example;
 
 import 'package:d2p_annotation/dart_to_proto_annotations.dart';

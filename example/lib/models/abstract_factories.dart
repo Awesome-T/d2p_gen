@@ -1,12 +1,16 @@
 import 'package:d2p_annotation/d2p_annotation.dart';
 
-@ProtoGen(createMappers: true)
+@ProtoGen()
 abstract class AbsFactories {
   const AbsFactories();
+  // should be ignored
+  const factory AbsFactories.private() = _PrivateClass;
+  // should be ignored
   const factory AbsFactories.empty() = AbsEmptyClass;
+
+  //
   const factory AbsFactories.first(String a, int b, bool c) = AbsSecond;
   const factory AbsFactories.second(String d) = AbsTherd;
-  const factory AbsFactories.private() = _PrivateClass;
 }
 
 class AbsEmptyClass extends AbsFactories {

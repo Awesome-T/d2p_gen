@@ -1,0 +1,17 @@
+syntax = "proto3";
+package grpc_service;
+import "proto/messages.g.proto";
+option java_multiple_files = true;
+option optimize_for = SPEED;
+// This file relies on plugins to generate service code.
+option cc_generic_services = false;
+option java_generic_services = false;
+option py_generic_services = false;
+option objc_class_prefix = "RTG";
+///
+service AService {
+// Sends a greeting
+ 
+  rpc streamModels(stream messages.DTOCarModel) returns (stream messages.DTOCarModel) {}
+
+}

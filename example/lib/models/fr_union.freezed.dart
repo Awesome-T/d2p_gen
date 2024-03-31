@@ -19,7 +19,7 @@ mixin _$FreezedCl {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(double gfg) loading3,
+    required TResult Function(double percent) loading3,
     required TResult Function(String? message) error,
     required TResult Function(int a, String b) complex,
   }) =>
@@ -27,7 +27,7 @@ mixin _$FreezedCl {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(double gfg)? loading3,
+    TResult? Function(double percent)? loading3,
     TResult? Function(String? message)? error,
     TResult? Function(int a, String b)? complex,
   }) =>
@@ -35,7 +35,7 @@ mixin _$FreezedCl {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(double gfg)? loading3,
+    TResult Function(double percent)? loading3,
     TResult Function(String? message)? error,
     TResult Function(int a, String b)? complex,
     required TResult orElse(),
@@ -124,7 +124,7 @@ class _$LoadingImpl implements Loading {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(double gfg) loading3,
+    required TResult Function(double percent) loading3,
     required TResult Function(String? message) error,
     required TResult Function(int a, String b) complex,
   }) {
@@ -135,7 +135,7 @@ class _$LoadingImpl implements Loading {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(double gfg)? loading3,
+    TResult? Function(double percent)? loading3,
     TResult? Function(String? message)? error,
     TResult? Function(int a, String b)? complex,
   }) {
@@ -146,7 +146,7 @@ class _$LoadingImpl implements Loading {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(double gfg)? loading3,
+    TResult Function(double percent)? loading3,
     TResult Function(String? message)? error,
     TResult Function(int a, String b)? complex,
     required TResult orElse(),
@@ -205,7 +205,7 @@ abstract class _$$Loading2ImplCopyWith<$Res> {
           _$Loading2Impl value, $Res Function(_$Loading2Impl) then) =
       __$$Loading2ImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({double gfg});
+  $Res call({double percent});
 }
 
 /// @nodoc
@@ -219,12 +219,12 @@ class __$$Loading2ImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? gfg = null,
+    Object? percent = null,
   }) {
     return _then(_$Loading2Impl(
-      gfg: null == gfg
-          ? _value.gfg
-          : gfg // ignore: cast_nullable_to_non_nullable
+      percent: null == percent
+          ? _value.percent
+          : percent // ignore: cast_nullable_to_non_nullable
               as double,
     ));
   }
@@ -233,14 +233,14 @@ class __$$Loading2ImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$Loading2Impl implements _Loading2 {
-  const _$Loading2Impl({required this.gfg});
+  const _$Loading2Impl({required this.percent});
 
   @override
-  final double gfg;
+  final double percent;
 
   @override
   String toString() {
-    return 'FreezedCl.loading3(gfg: $gfg)';
+    return 'FreezedCl.loading3(percent: $percent)';
   }
 
   @override
@@ -248,11 +248,11 @@ class _$Loading2Impl implements _Loading2 {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$Loading2Impl &&
-            (identical(other.gfg, gfg) || other.gfg == gfg));
+            (identical(other.percent, percent) || other.percent == percent));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, gfg);
+  int get hashCode => Object.hash(runtimeType, percent);
 
   @JsonKey(ignore: true)
   @override
@@ -264,35 +264,35 @@ class _$Loading2Impl implements _Loading2 {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(double gfg) loading3,
+    required TResult Function(double percent) loading3,
     required TResult Function(String? message) error,
     required TResult Function(int a, String b) complex,
   }) {
-    return loading3(gfg);
+    return loading3(percent);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(double gfg)? loading3,
+    TResult? Function(double percent)? loading3,
     TResult? Function(String? message)? error,
     TResult? Function(int a, String b)? complex,
   }) {
-    return loading3?.call(gfg);
+    return loading3?.call(percent);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(double gfg)? loading3,
+    TResult Function(double percent)? loading3,
     TResult Function(String? message)? error,
     TResult Function(int a, String b)? complex,
     required TResult orElse(),
   }) {
     if (loading3 != null) {
-      return loading3(gfg);
+      return loading3(percent);
     }
     return orElse();
   }
@@ -336,9 +336,9 @@ class _$Loading2Impl implements _Loading2 {
 }
 
 abstract class _Loading2 implements FreezedCl {
-  const factory _Loading2({required final double gfg}) = _$Loading2Impl;
+  const factory _Loading2({required final double percent}) = _$Loading2Impl;
 
-  double get gfg;
+  double get percent;
   @JsonKey(ignore: true)
   _$$Loading2ImplCopyWith<_$Loading2Impl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -409,7 +409,7 @@ class _$ErrorDetailsImpl implements ErrorDetails {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(double gfg) loading3,
+    required TResult Function(double percent) loading3,
     required TResult Function(String? message) error,
     required TResult Function(int a, String b) complex,
   }) {
@@ -420,7 +420,7 @@ class _$ErrorDetailsImpl implements ErrorDetails {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(double gfg)? loading3,
+    TResult? Function(double percent)? loading3,
     TResult? Function(String? message)? error,
     TResult? Function(int a, String b)? complex,
   }) {
@@ -431,7 +431,7 @@ class _$ErrorDetailsImpl implements ErrorDetails {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(double gfg)? loading3,
+    TResult Function(double percent)? loading3,
     TResult Function(String? message)? error,
     TResult Function(int a, String b)? complex,
     required TResult orElse(),
@@ -562,7 +562,7 @@ class _$ComplexImpl implements Complex {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(double gfg) loading3,
+    required TResult Function(double percent) loading3,
     required TResult Function(String? message) error,
     required TResult Function(int a, String b) complex,
   }) {
@@ -573,7 +573,7 @@ class _$ComplexImpl implements Complex {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(double gfg)? loading3,
+    TResult? Function(double percent)? loading3,
     TResult? Function(String? message)? error,
     TResult? Function(int a, String b)? complex,
   }) {
@@ -584,7 +584,7 @@ class _$ComplexImpl implements Complex {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(double gfg)? loading3,
+    TResult Function(double percent)? loading3,
     TResult Function(String? message)? error,
     TResult Function(int a, String b)? complex,
     required TResult orElse(),

@@ -1,0 +1,401 @@
+syntax = "proto3";
+package messages;
+
+// [START declaration]
+// import "google/protobuf/any.proto";
+// import "google/protobuf/api.proto";
+// import "google/protobuf/duration.proto";
+// import "google/protobuf/empty.proto";
+// import "google/protobuf/field_mask.proto";
+// import "google/protobuf/source_context.proto";
+// import "google/protobuf/struct.proto";
+// import "google/protobuf/timestamp.proto";
+// import "google/protobuf/type.proto";
+// import "google/protobuf/wrappers.proto";
+// [END declaration]
+
+// option go_package = "messages";
+// option php_namespace = "protocmmessages";
+// option php_metadata_namespace = "messages";
+// option java_package = "io.grpc.gen.messages";
+option java_outer_classname = "MessagesProto";
+option java_multiple_files = true;
+option java_generic_services = false;
+// [END java_declaration]
+// [SPEED,CODE_SIZE,LITE_RUNTIME]
+option optimize_for = SPEED;
+
+// This file relies on plugins to generate service code.
+option cc_generic_services = false;
+option py_generic_services = false;
+
+// [START csharp_declaration]
+// option csharp_namespace = "Google.Protobuf.Examples.AddressBook";
+// [END csharp_declaration]
+
+// [START go_declaration]
+// option go_package = "github.com/protocolbuffers/protobuf/examples/go/tutorialpb";
+// [END go_declaration]
+
+option objc_class_prefix = "RTG";
+
+// **************************************************************************
+//                               DATA TYPES
+//                           proto3   |   Dart
+//                           ---------|-----------
+//                           double   |   double
+//                           Int64    |   int
+//                           bool     |   bool
+//                           string   |   String
+//                           string   |   Map
+//                           enum     |   enum
+//                           repeated |   Iterables
+//                           string   |   DateTime                           
+// **************************************************************************
+// Generated At at 2024-03-31 14:41:55.898662Z
+
+/*
+      google/protobuf/empty.proto 
+      google/protobuf/source_context.proto 
+      google/protobuf/struct.proto 
+      google/protobuf/any.proto 
+      google/protobuf/api.proto 
+      google/protobuf/type.proto 
+      google/protobuf/duration.proto 
+      google/protobuf/field_mask.proto 
+      google/protobuf/wrappers.proto 
+
+    To start generating the DTO `.dart` files, 
+    please run the following command in the terminal:
+
+
+    ```dart
+      dart pub global activate protoc_plugin && \
+      protoc \
+      --proto_path= \
+      proto/messages.g.proto \
+      proto/grpc_service.proto \
+      --dart_out=grpc:lib/generated
+    ```
+*/
+
+
+/*
+  class: AbsFactories.first
+  Source: 'package:/exap/lib/models/abstract_factories.dart';
+*/
+  message DTOAbsSecond {
+    // String AbsSecond.a
+    string a = 1;
+    // int AbsSecond.b
+    int32 b = 2;
+    // bool AbsSecond.c
+    bool c = 3;
+  }
+
+/*
+  class: AbsFactories.second
+  Source: 'package:/exap/lib/models/abstract_factories.dart';
+*/
+  message DTOAbsTherd {
+    // String AbsTherd.d
+    string d = 1;
+  }
+
+  /*
+   * class: absfactories
+  */
+    message DTOAbsFactories_Union   {
+  //single inherited  class of AbsFactories 
+  oneof absfactories {
+     //class AbsSecond
+     DTOAbsSecond first = 1;
+     //class AbsTherd
+     DTOAbsTherd second = 2;
+  }
+    }
+
+
+
+/*
+  class: CarModel
+  Source: 'package:/exap/lib/models/auto.dart';
+*/
+  message DTOCarModel {
+    // DateTime CarModel.produsedAt
+    string produsedAt = 1;
+    // DateTime? CarModel.dateOfSale
+    optional string dateOfSale = 2;
+    // String CarModel.modelName
+    string modelName = 3;
+    // Automakers CarModel.produser
+    DTOAutomakers produser = 4;
+    // List<BodyStyle> CarModel.bodyStyles
+    repeated DTOBodyStyle_Union bodyStyles = 5;
+    // Map<String, int> CarModel.variants
+    string variants = 6;
+    // Colors CarModel.avalebleColors
+    DTOColors avalebleColors = 7;
+    // List<Engine> CarModel.engines
+    repeated DTOEngine_Union engines = 8;
+    // Gears CarModel.gear
+    DTOGears gear = 9;
+  }
+
+/*
+  class: Automakers
+  Source: 'package:/exap/lib/models/auto.dart';
+*/
+  message DTOAutomakers {
+    // List<String> Automakers.brands
+    repeated string brands = 1;
+    // String Automakers.name
+    string name = 2;
+    // String Automakers.country
+    string country = 3;
+  }
+
+/*
+  class: Brand
+  Source: 'package:/exap/lib/models/auto.dart';
+*/
+  message DTOBrand {
+    // String Brand.name
+    string name = 1;
+    // List<CarModel> Brand.models
+    repeated DTOCarModel models = 2;
+  }
+
+/*
+  class: BodyStyle.sUv
+  Source: 'package:/exap/lib/models/auto.dart';
+*/
+  message DTOSuV {
+    // bool SuV.is4WD
+    bool is4WD = 1;
+  }
+
+/*
+  class: BodyStyle.coupe
+  Source: 'package:/exap/lib/models/auto.dart';
+*/
+  message DTOCoupe {
+    // bool Coupe.isFoldingRoof
+    bool isFoldingRoof = 1;
+  }
+
+/*
+  class: BodyStyle.pickup
+  Source: 'package:/exap/lib/models/auto.dart';
+*/
+  message DTOPickup {
+    // double Pickup.cargoSpace
+    double cargoSpace = 1;
+  }
+
+  /*
+   * class: bodystyle
+  */
+    message DTOBodyStyle_Union   {
+  //single inherited  class of BodyStyle 
+  oneof bodystyle {
+     //class SuV
+     DTOSuV suv = 1;
+     //class Coupe
+     DTOCoupe coupe = 2;
+     //class Pickup
+     DTOPickup pickup = 3;
+  }
+    }
+
+/*
+  class: GasolineEngine
+  Source: 'package:/exap/lib/models/auto.dart';
+*/
+  message DTOGasolineEngine {
+    // int GasolineEngine.hp
+    int32 hp = 1;
+    // double GasolineEngine.fuelConsumption
+    double fuelConsumption = 2;
+  }
+
+/*
+  class: DiselEngine
+  Source: 'package:/exap/lib/models/auto.dart';
+*/
+  message DTODiselEngine {
+    // int DiselEngine.hp
+    int32 hp = 1;
+    // double DiselEngine.fuelConsumption
+    double fuelConsumption = 2;
+  }
+
+/*
+  class: ElectricEngine
+  Source: 'package:/exap/lib/models/auto.dart';
+*/
+  message DTOElectricEngine {
+    // int ElectricEngine.hp
+    int32 hp = 1;
+  }
+
+  /*
+   * class: engine
+  */
+    message DTOEngine_Union   {
+  //single inherited  class of Engine 
+  oneof engine {
+     //class GasolineEngine
+     DTOGasolineEngine gasolineengine = 1;
+     //class DiselEngine
+     DTODiselEngine diselengine = 2;
+     //class ElectricEngine
+     DTOElectricEngine electricengine = 3;
+  }
+    }
+
+
+/**
+    Enum Gears
+    Source: 'package:/exap/lib/models/auto.dart';
+*/
+enum DTOGears {
+   NAMUAL = 0;
+   AUTO = 1;
+}
+
+/**
+    Enum Colors
+    Source: 'package:/exap/lib/models/auto.dart';
+*/
+enum DTOColors {
+   RED = 0;
+   BLUE = 1;
+   GREEN = 2;
+   WTHITE = 3;
+   BLACK = 4;
+}
+
+
+
+/*
+  class: Person
+  Source: 'package:/exap/lib/models/model.dart';
+*/
+  message DTOPerson {
+    // DateTime Person.createdAt
+    string createdAt = 1;
+    // List<Blah>? Person.blahs
+    repeated DTOBlah blahs = 2;
+  }
+
+/*
+  class: Blah
+  Source: 'package:/exap/lib/models/model.dart';
+*/
+  message DTOBlah {
+    // String Blah.id
+    string id = 1;
+    // List<String> Blah.tags
+    repeated string tags = 2;
+    // double Blah.price
+    double price = 3;
+    // bool Blah.isVerifyed
+    bool isVerifyed = 4;
+    // Map<String, double> Blah.settings
+    string settings = 5;
+    // int? Blah.count
+    optional int32 count = 6;
+  }
+
+
+
+/*
+  class: FreezedCl.error
+  Source: 'package:/exap/lib/models/fr_union.dart';
+*/
+  message DTOErrorDetails {
+    // String? ErrorDetails.message
+    optional string message = 1;
+  }
+
+/*
+  class: FreezedCl.complex
+  Source: 'package:/exap/lib/models/fr_union.dart';
+*/
+  message DTOComplex {
+    // int Complex.a
+    int32 a = 1;
+    // String Complex.b
+    string b = 2;
+  }
+
+  /*
+   * class: freezedcl
+  */
+    message DTOFreezedCl_Union   {
+  //single inherited  class of FreezedCl 
+  oneof freezedcl {
+     //class ErrorDetails
+     DTOErrorDetails error = 1;
+     //class Complex
+     DTOComplex complex = 2;
+  }
+    }
+
+
+
+/*
+  class: Cow
+  Source: 'package:/exap/lib/models/sealeds.dart';
+*/
+  message DTOCow {
+    // List<DateTime>? Cow.dates
+    repeated string dates = 1;
+    // bool Cow.bolean
+    bool bolean = 2;
+    // double Cow.weight
+    double weight = 3;
+    // int? Cow.height
+    optional int32 height = 4;
+    // String? Cow.nullableString
+    optional string nullableString = 5;
+    // DateTime? Cow.nullableDateTime
+    optional string nullableDateTime = 6;
+  }
+
+/*
+  class: Sheep
+  Source: 'package:/exap/lib/models/sealeds.dart';
+*/
+  message DTOSheep {
+    // String Sheep.one
+    string one = 1;
+  }
+
+/*
+  class: Pig
+  Source: 'package:/exap/lib/models/sealeds.dart';
+*/
+  message DTOPig {
+    // double Pig.se
+    double se = 1;
+  }
+
+  /*
+   * class: animal
+  */
+    message DTOAnimal_Union   {
+  //single inherited  class of Animal 
+  oneof animal {
+     //class Cow
+     DTOCow cow = 1;
+     //class Sheep
+     DTOSheep sheep = 2;
+     //class Pig
+     DTOPig pig = 3;
+  }
+    }
+
+
+

@@ -57,7 +57,7 @@
     },
     {
       "name": "build_runner",
-      "rootUri": "file:///Users/shentsov1988gmail.com/.pub-cache/hosted/pub.dev/build_runner-2.4.8",
+      "rootUri": "file:///Users/shentsov1988gmail.com/.pub-cache/hosted/pub.dev/build_runner-2.4.9",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
@@ -129,7 +129,7 @@
     },
     {
       "name": "d2p_annotation",
-      "rootUri": "file:///Users/shentsov1988gmail.com/.pub-cache/hosted/pub.dev/d2p_annotation-0.0.1",
+      "rootUri": "../../d2p_annotation",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
@@ -153,9 +153,9 @@
     },
     {
       "name": "frontend_server_client",
-      "rootUri": "file:///Users/shentsov1988gmail.com/.pub-cache/hosted/pub.dev/frontend_server_client-3.2.0",
+      "rootUri": "file:///Users/shentsov1988gmail.com/.pub-cache/hosted/pub.dev/frontend_server_client-4.0.0",
       "packageUri": "lib/",
-      "languageVersion": "2.12"
+      "languageVersion": "3.0"
     },
     {
       "name": "glob",
@@ -387,7 +387,7 @@
     },
     {
       "name": "vm_service",
-      "rootUri": "file:///Users/shentsov1988gmail.com/.pub-cache/hosted/pub.dev/vm_service-14.1.0",
+      "rootUri": "file:///Users/shentsov1988gmail.com/.pub-cache/hosted/pub.dev/vm_service-14.2.0",
       "packageUri": "lib/",
       "languageVersion": "3.3"
     },
@@ -399,7 +399,7 @@
     },
     {
       "name": "web",
-      "rootUri": "file:///Users/shentsov1988gmail.com/.pub-cache/hosted/pub.dev/web-0.5.0",
+      "rootUri": "file:///Users/shentsov1988gmail.com/.pub-cache/hosted/pub.dev/web-0.5.1",
       "packageUri": "lib/",
       "languageVersion": "3.3"
     },
@@ -428,7 +428,10 @@
       "languageVersion": "3.0"
     }
   ],
-  "generated": "2024-03-01T08:25:32.794639Z",
+  "generated": "2024-03-31T14:41:05.117900Z",
   "generator": "pub",
-  "generatorVersion": "3.4.0-176.0.dev"
+  "generatorVersion": "3.4.0-282.0.dev",
+  "flutterRoot": "file:///Users/shentsov1988gmail.com/development/flutter",
+  "flutterVersion": "3.22.0-1.0.pre.15",
+  "pubCache": "file:///Users/shentsov1988gmail.com/.pub-cache"
 }

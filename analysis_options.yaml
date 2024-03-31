@@ -18,8 +18,8 @@ analyzer:
     - lib/generated_plugin_registrant.dart
     - "**/**.freezed.dart"
     - "**.g.dart"
-    - "**/**.mapper.dart"
-    - "**/**.proto"
+    # - "**/**.tmp_mp"
+    - "**/**.g.proto"
     - example/*
 # 
 linter:
@@ -37,7 +37,7 @@ linter:
     # - avoid_implementing_value_types
     # - avoid_types_on_closure_parameters
     - test_types_in_equals
-    # - omit_local_variable_types
+    - omit_local_variable_types
     # - camel_case_types
     - avoid_single_cascade_in_expression_statements
     - await_only_futures
@@ -218,16 +218,10 @@ linter:
     # - type_annotate_public_apis
     # - type_init_formals
     # - unawaited_futures
-    # - unnecessary_await_in_return
-    # - unnecessary_breaks
-    # - unnecessary_brace_in_string_interps
-    # - unnecessary_const
-    # - unnecessary_constructor_name
-    # - unnecessary_getters_setters
-    # - unnecessary_lambdas
+    - unnecessary_await_in_return
+    - unnecessary_breaks
     - unnecessary_late
-    # - unnecessary_library_directive
-
+    - unnecessary_library_directive
     - unnecessary_null_aware_assignments
     - unnecessary_null_checks
     # - unnecessary_null_in_if_null_operators
