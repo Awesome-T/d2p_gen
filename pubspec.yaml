@@ -1,7 +1,11 @@
 name: d2p_gen
 description: >-
   This package .g.proto file, mappers and tests tor them.
+<<<<<<< HEAD
 version: 1.0.1
+=======
+version: 1.0.0
+>>>>>>> 7da097892859cba742b45345c54245112f084e40
 homepage: https://github.com/Awesome-T/d2p_gen
 repository: https://github.com/Awesome-T/d2p_gen
 issue_tracker: https://github.com/Awesome-T/d2p_gen/issues
@@ -9,13 +13,19 @@ documentation: https://github.com/Awesome-T/d2p_gen
 
 environment:
   sdk: ">=3.0.0 <4.0.0"
+  
 dependencies:
   build: ^2.4.1
   source_gen: ^1.5.0
   d2p_annotation: ^1.0.0
   analyzer: ^6.4.1
   glob: ^2.1.2
+<<<<<<< HEAD
   path: ^1.9.0
+=======
+  path: any
+  
+>>>>>>> 7da097892859cba742b45345c54245112f084e40
 dev_dependencies:
   build_runner: ^2.3.3
   build_test:
