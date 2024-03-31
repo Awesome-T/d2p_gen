@@ -1,0 +1,160 @@
+/*
+  class: CarModel
+  Source: 'package:/exap/lib/models/auto.dart';
+*/
+  message DTOCarModel {
+    // DateTime CarModel.produsedAt
+    string produsedAt = 1;
+    // DateTime? CarModel.dateOfSale
+    optional string dateOfSale = 2;
+    // String CarModel.modelName
+    string modelName = 3;
+    // Automakers CarModel.produser
+    DTOAutomakers produser = 4;
+    // List<BodyStyle> CarModel.bodyStyles
+    repeated DTOBodyStyle_Union bodyStyles = 5;
+    // Map<String, int> CarModel.variants
+    string variants = 6;
+    // Colors CarModel.avalebleColors
+    DTOColors avalebleColors = 7;
+    // List<Engine> CarModel.engines
+    repeated DTOEngine_Union engines = 8;
+    // Gears CarModel.gear
+    DTOGears gear = 9;
+  }
+
+/*
+  class: Automakers
+  Source: 'package:/exap/lib/models/auto.dart';
+*/
+  message DTOAutomakers {
+    // List<String> Automakers.brands
+    repeated string brands = 1;
+    // String Automakers.name
+    string name = 2;
+    // String Automakers.country
+    string country = 3;
+  }
+
+/*
+  class: Brand
+  Source: 'package:/exap/lib/models/auto.dart';
+*/
+  message DTOBrand {
+    // String Brand.name
+    string name = 1;
+    // List<CarModel> Brand.models
+    repeated DTOCarModel models = 2;
+  }
+
+/*
+  class: BodyStyle.sUv
+  Source: 'package:/exap/lib/models/auto.dart';
+*/
+  message DTOSuV {
+    // bool SuV.is4WD
+    bool is4WD = 1;
+  }
+
+/*
+  class: BodyStyle.coupe
+  Source: 'package:/exap/lib/models/auto.dart';
+*/
+  message DTOCoupe {
+    // bool Coupe.isFoldingRoof
+    bool isFoldingRoof = 1;
+  }
+
+/*
+  class: BodyStyle.pickup
+  Source: 'package:/exap/lib/models/auto.dart';
+*/
+  message DTOPickup {
+    // double Pickup.cargoSpace
+    double cargoSpace = 1;
+  }
+
+  /*
+   * class: bodystyle
+  */
+    message DTOBodyStyle_Union   {
+  //single inherited  class of BodyStyle 
+  oneof bodystyle {
+     //class SuV
+     DTOSuV suv = 1;
+     //class Coupe
+     DTOCoupe coupe = 2;
+     //class Pickup
+     DTOPickup pickup = 3;
+  }
+    }
+
+/*
+  class: GasolineEngine
+  Source: 'package:/exap/lib/models/auto.dart';
+*/
+  message DTOGasolineEngine {
+    // int GasolineEngine.hp
+    int32 hp = 1;
+    // double GasolineEngine.fuelConsumption
+    double fuelConsumption = 2;
+  }
+
+/*
+  class: DiselEngine
+  Source: 'package:/exap/lib/models/auto.dart';
+*/
+  message DTODiselEngine {
+    // int DiselEngine.hp
+    int32 hp = 1;
+    // double DiselEngine.fuelConsumption
+    double fuelConsumption = 2;
+  }
+
+/*
+  class: ElectricEngine
+  Source: 'package:/exap/lib/models/auto.dart';
+*/
+  message DTOElectricEngine {
+    // int ElectricEngine.hp
+    int32 hp = 1;
+  }
+
+  /*
+   * class: engine
+  */
+    message DTOEngine_Union   {
+  //single inherited  class of Engine 
+  oneof engine {
+     //class GasolineEngine
+     DTOGasolineEngine gasolineengine = 1;
+     //class DiselEngine
+     DTODiselEngine diselengine = 2;
+     //class ElectricEngine
+     DTOElectricEngine electricengine = 3;
+  }
+    }
+
+
+/**
+    Enum Gears
+    Source: 'package:/exap/lib/models/auto.dart';
+*/
+enum DTOGears {
+   NAMUAL = 0;
+   AUTO = 1;
+}
+
+/**
+    Enum Colors
+    Source: 'package:/exap/lib/models/auto.dart';
+*/
+enum DTOColors {
+   RED = 0;
+   BLUE = 1;
+   GREEN = 2;
+   WTHITE = 3;
+   BLACK = 4;
+}
+
+

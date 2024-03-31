@@ -82,8 +82,8 @@ void main() {
           () {
         // Arrange - Setup facts, Put Expected outputs or Initialize
         final model = Complex(
-          89,
-          'Tebr',
+          64,
+          'H0cM32Gv8',
         );
 
         // Act - Call the function that is to be tested
@@ -116,8 +116,8 @@ void main() {
         // Arrange - Setup facts, Put Expected outputs or Initialize
         final dto = DTOFreezedCl_Union(
             complex: DTOComplex(
-          a: 74,
-          b: 'es',
+          a: 2,
+          b: 'tGIWVGK4XPU9bOnG8b1vlckLzbiQ2HntZXs4aQjdGODeVDb6zihGdPPz',
         ));
 
         // Act - Call the function that is to be tested

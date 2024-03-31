@@ -156,17 +156,19 @@ packages:
   d2p_annotation:
     dependency: "direct main"
     description:
-      path: "../../d2p_annotation"
-      relative: true
-    source: path
-    version: "0.0.1"
+      name: d2p_annotation
+      sha256: e15b8f6d9dce33ff38b5ad2da83678b16c355ee85a39057fcdb0660cb9465cd3
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   d2p_gen:
     dependency: "direct main"
     description:
-      path: ".."
-      relative: true
-    source: path
-    version: "1.0.0"
+      name: d2p_gen
+      sha256: "243ec3798fe32f506b4c29aac4a317dcbbdf1a1003233e9f3db5f870c82a1cb3"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.1"
   dart_style:
     dependency: transitive
     description:

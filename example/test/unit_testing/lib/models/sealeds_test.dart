@@ -14,9 +14,9 @@ void main() {
         final model = Cow(
           <DateTime>[],
           true,
-          weight: 0.17529964401330422,
-          height: 37,
-          nullableString: 'q33O68eZvtGH4226c',
+          weight: 0.3399144425086371,
+          height: null,
+          nullableString: 'ChzgskgqWFNuvbTVOy9Hlp8RBp5AzgAu7hEPMtkGnhC1E',
           nullableDateTime: DateTime.now(),
         );
 
@@ -50,10 +50,10 @@ void main() {
         final dto = DTOAnimal_Union(
             cow: DTOCow(
           dates: <String>[],
-          bolean: false,
-          weight: 0.6464270303418109,
+          bolean: true,
+          weight: 0.3773296842840359,
           height: null,
-          nullableString: null,
+          nullableString: 'ZbwRDdlUw9KncsYaoFP8a1vkRyA0s0F897K',
           nullableDateTime: DateTime.now().toIso8601String(),
         ));
 
@@ -88,7 +88,7 @@ void main() {
           () {
         // Arrange - Setup facts, Put Expected outputs or Initialize
         final model = Sheep(
-          one: '4oMXOniBSbbqG20H9f8yHlvzYf4',
+          one: 'tJcoq5ab1Vthv6jyOnOyK6itGZ6vn',
         );
 
         // Act - Call the function that is to be tested
@@ -120,7 +120,7 @@ void main() {
         // Arrange - Setup facts, Put Expected outputs or Initialize
         final dto = DTOAnimal_Union(
             sheep: DTOSheep(
-          one: '5woImgGChadHPrQTAUnzY81qRcHoOcjZHoS3ZXFt7l',
+          one: 'Xd39Ui18sLRcUKIahWRftD',
         ));
 
         // Act - Call the function that is to be tested
@@ -154,7 +154,7 @@ void main() {
           () {
         // Arrange - Setup facts, Put Expected outputs or Initialize
         final model = Pig(
-          se: 0.3928036588217181,
+          se: 0.1489975480796275,
         );
 
         // Act - Call the function that is to be tested
@@ -186,7 +186,7 @@ void main() {
         // Arrange - Setup facts, Put Expected outputs or Initialize
         final dto = DTOAnimal_Union(
             pig: DTOPig(
-          se: 0.8366035505118375,
+          se: 0.4957275773210499,
         ));
 
         // Act - Call the function that is to be tested

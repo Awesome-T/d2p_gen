@@ -13,12 +13,13 @@ void main() {
         DateTime.now(),
         blahs: <Blah>[
           Blah(
-            id: 'SnI2',
+            id: 'KHfj19We1X5HsclaeOJjy5YEDD22F4fJPRoQGryFLtk',
             tags: <String>[],
-            price: 0.39125411888534134,
+            price: 0.028976342385629406,
             isVerifyed: true,
             settings: <String, double>{
-              '01wWLbf1f': 0.6998126984371026,
+              'Sz4eIXaoh3zqo7GHc3RNO5nM0JT1z7L8AE5QPRwwXzUopRVf84uB':
+                  0.32815123210632446,
             },
             count: null,
           )
@@ -56,16 +57,17 @@ void main() {
         createdAt: DateTime.now().toIso8601String(),
         blahs: <DTOBlah>[
           DTOBlah(
-            id: 'bOQCjC62lSDjVxpNQ2UIO0FvbWcXJDLhtOpkmlbobgV0UdQJ',
+            id: 'id8MC',
             tags: <String>[],
-            price: 0.5230000243581577,
-            isVerifyed: false,
+            price: 0.6338297758796516,
+            isVerifyed: true,
             settings: jsonEncode(
               <String, double>{
-                'PoFirb2Bm7z62mL4svzWkBUIsTPGtG6vW': 0.029938103371687896,
+                'CEVsPr1Ns9ndrQlcrFFThkDb3kjtxe0vxWjfTfQYzLDEFw5l686T':
+                    0.6860277832337819,
               },
             ),
-            count: 78,
+            count: 38,
           )
         ],
       );
@@ -100,14 +102,15 @@ void main() {
     test(r'$MapperBlah.toDTO Output class Blah should be DTOBlah', () {
       // Arrange - Setup facts, Put Expected outputs or Initialize
       final model = Blah(
-        id: 'sOLklJF6RMblzWiVcJyx7VWGUcG4wYZB92Eoig4',
+        id: 'aIm420gx9gLXjiVIptFWD',
         tags: <String>[],
-        price: 0.2606727086350974,
-        isVerifyed: true,
+        price: 0.8239957643821877,
+        isVerifyed: false,
         settings: <String, double>{
-          'XcX': 0.9808264396055829,
+          'YwC3NfQua0AP5LQTYp4yu1S18P8WdkPPs4Ezt3qqzmovMXcZ':
+              0.40539820938369464,
         },
-        count: 6,
+        count: 84,
       );
 
       // Act - Call the function that is to be tested
@@ -138,16 +141,16 @@ void main() {
     test(r'$MapperBlah.fromDTO Output class Blah should be Blah', () {
       // Arrange - Setup facts, Put Expected outputs or Initialize
       final dto = DTOBlah(
-        id: 'AZxGbgTK9BuxcQVc4nrdmcIm84e',
+        id: 'ORCP2Iyg0MikWKF',
         tags: <String>[],
-        price: 0.7299383457417256,
-        isVerifyed: false,
+        price: 0.27842247975895773,
+        isVerifyed: true,
         settings: jsonEncode(
           <String, double>{
-            'fDrdRVtOR4jawC02tDtPcrPiiCwd1OkPxf7EKvlXB': 0.9069888518047087,
+            'XsRbmhn6Op9xu6mHyZgzg4Jsi2WuFA8nQh4jvN8xBi': 0.05495463100972253,
           },
         ),
-        count: null,
+        count: 58,
       );
 
       // Act - Call the function that is to be tested
