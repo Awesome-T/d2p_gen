@@ -13,6 +13,28 @@ import 'dart:convert' as $convert;
 import 'dart:core' as $core;
 import 'dart:typed_data' as $typed_data;
 
+@$core.Deprecated('Use dTOCorpusDescriptor instead')
+const DTOCorpus$json = {
+  '1': 'DTOCorpus',
+  '2': [
+    {'1': 'CORPUS_UNSPECIFIED', '2': 0},
+    {'1': 'CORPUS_UNIVERSAL', '2': 1},
+    {'1': 'CORPUS_WEB', '2': 2},
+    {'1': 'CORPUS_IMAGES', '2': 3},
+    {'1': 'CORPUS_LOCAL', '2': 4},
+    {'1': 'CORPUS_NEWS', '2': 5},
+    {'1': 'CORPUS_PRODUCTS', '2': 6},
+    {'1': 'CORPUS_VIDEO', '2': 7},
+  ],
+};
+
+/// Descriptor for `DTOCorpus`. Decode as a `google.protobuf.EnumDescriptorProto`.
+final $typed_data.Uint8List dTOCorpusDescriptor = $convert.base64Decode(
+    'CglEVE9Db3JwdXMSFgoSQ09SUFVTX1VOU1BFQ0lGSUVEEAASFAoQQ09SUFVTX1VOSVZFUlNBTB'
+    'ABEg4KCkNPUlBVU19XRUIQAhIRCg1DT1JQVVNfSU1BR0VTEAMSEAoMQ09SUFVTX0xPQ0FMEAQS'
+    'DwoLQ09SUFVTX05FV1MQBRITCg9DT1JQVVNfUFJPRFVDVFMQBhIQCgxDT1JQVVNfVklERU8QBw'
+    '==');
+
 @$core.Deprecated('Use dTOGearsDescriptor instead')
 const DTOGears$json = {
   '1': 'DTOGears',

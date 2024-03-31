@@ -9,22 +9,21 @@ import '../models/sealeds.mp.dart';
 import '../random_feilds.dart';
 
 void main() async => runZonedGuarded(() async => run(), (e, t) {
-      stderr.writeln('An error occurred. $e\n$t');
+      stderr.writeln('An error occurred: $e\n$t');
     });
 
-///
-///
 Future<void> run() async {
   // Connect to WebSocket server
   final ws = await WebSocket.connect('ws://localhost:4041');
   ws.listen(
     (data) async {
-      // Check the type of RECIVED data
+      // Check the type of received data
       if (data is List<int>) {
-        dev.log('WS_CLIENT: RECIVED bytes: ${data.length}');
+        dev.log('WS_CLIENT: Received bytes: ${data.length}');
       } else {
         final msg = data as String;
-        if (data.startsWith('{') && data.endsWith('}')) {
+        if (msg.startsWith('{') && msg.endsWith('}')) {
+          // Decode JSON string to Map
           final map = jsonDecode(msg);
           if (map is Map) {
             final _map = map;
@@ -33,27 +32,24 @@ Future<void> run() async {
               final _dto = DTOCarModel.fromBuffer(bytes);
               final _model = $MapperCarModel.fromDTO(_dto);
               dev.log(
-                  '''WS_CLIENT: RECIVED bytes of wich converter into `${_model.runtimeType}`  ${bytes.length}''');
+                  'WS_CLIENT: Received bytes which converted into `${_model.runtimeType}`  ${bytes.length}');
             }
-            //
             if (_map.containsKey('Animal')) {
               final bytes = (_map.values.first as List).cast<int>();
               final _dto = DTOAnimal_Union.fromBuffer(bytes);
               final _model = $MapperAnimal.fromDTO(_dto);
               dev.log(
-                  '''WS_CLIENT: RECIVED bytes of wich converter into `${_model.runtimeType}`  ${bytes.length}''');
+                  'WS_CLIENT: Received bytes which converted into `${_model.runtimeType}`  ${bytes.length}');
             }
             if (_map.containsKey('FreezedCl')) {
-//
-              final _newMsg = 'New Messege sended at ${DateTime.now()}';
+              // Send a new message
+              final _newMsg = 'New Message sent at ${DateTime.now()}';
               ws.add(_newMsg);
             }
-            dev.log('''WS_CLIENT: RECIVED ecvoded a Map: ${map.keys.first}''');
+            dev.log('WS_CLIENT: Received encoded Map: ${map.keys.first}');
           }
-        }
-        //
-        else {
-          dev.log('''WS_CLIENT: RECIVED String data : $msg''');
+        } else {
+          dev.log('WS_CLIENT: Received String data: $msg');
         }
       }
     },
@@ -73,8 +69,8 @@ Future<void> run() async {
         base64.encode(data.writeToBuffer());
 
         if (i % 5 == 0) {
-          // Send message in raw string format
-          const msg = 'Message into raw string format';
+          // Send message as raw string
+          const msg = 'Message in raw string format';
           ws.add(msg);
           dev.log('WS_CLIENT: String sent: ${msg.runes.length}');
         } else if (i % 4 == 0) {

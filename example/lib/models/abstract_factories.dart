@@ -1,6 +1,6 @@
 import 'package:d2p_annotation/d2p_annotation.dart';
 
-@ProtoGen()
+@ProtoGen(createMappers: true)
 abstract class AbsFactories {
   const AbsFactories();
   // should be ignored

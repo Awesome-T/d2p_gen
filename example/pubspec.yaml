@@ -1,26 +1,16 @@
 name: exap
-version: 0.0.2
-description: >-
-  An example of how to use a package to implement data transmission using 
-  the protobuf format and d2p_gen code generation is provided. This package 
-  will generate: A single file containing all the messages in proto format.
-  Conversion mappings for messages to and from the model format, if necessary.
-  To generate these mappings, you can run the protocol utility, which should
-  be available on your system. Alternatively, you could use the appropriate 
-  package manager to install it. Once generated, these mappings can be used 
-  to convert messages between different formats.The developer would then write
-  unit tests to verify that these mappings are working correctly. 
-  They would test each mapping separately to ensure that it functions as expected.
-
+version: 0.0.1
+descriptio: >-
+  Eexample of using the package to generate 
+  proto files `d2p_gen'.
 publish_to: none
 environment:
   sdk: ">=3.0.0 <4.0.0"
 dependencies:
-  protobuf:
-  d2p_annotation: ^1.0.0
-
-  d2p_gen: ^1.0.1
-
+  protobuf: ^3.0.0
+  grpc: ^3.2.4
+  d2p_annotation:
+  d2p_gen:
 dev_dependencies:
   build_runner: ^2.3.3
   freezed: ^2.3.2
