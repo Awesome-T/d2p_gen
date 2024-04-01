@@ -2,7 +2,7 @@ name: d2p_gen
 description: >-
   This package .g.proto file, mappers and tests tor them.
 
-version: 1.0.1
+version: 1.0.2
 homepage: https://github.com/Awesome-T/d2p_gen
 repository: https://github.com/Awesome-T/d2p_gen
 issue_tracker: https://github.com/Awesome-T/d2p_gen/issues
