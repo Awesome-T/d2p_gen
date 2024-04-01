@@ -13,7 +13,7 @@ void main() {
           () {
         // Arrange - Setup facts, Put Expected outputs or Initialize
         final model = ErrorDetails(
-          'g4ILmvMGVBnDhVZoLvBeQn13UEkiWEL1V1iMGoMo6L',
+          null,
         );
 
         // Act - Call the function that is to be tested
@@ -82,8 +82,8 @@ void main() {
           () {
         // Arrange - Setup facts, Put Expected outputs or Initialize
         final model = Complex(
-          36,
-          'n90GUCPvikCaFnbg65l9UrXHQPeVX0Mq',
+          95,
+          '2CE6VZybFMkJ6yjQdkI63T81',
         );
 
         // Act - Call the function that is to be tested
@@ -116,8 +116,8 @@ void main() {
         // Arrange - Setup facts, Put Expected outputs or Initialize
         final dto = DTOFreezedCl_Union(
             complex: DTOComplex(
-          a: 48,
-          b: 'jhAIIwgWIxk0AfkDN9tglefvEJ',
+          a: 39,
+          b: 'xUlh',
         ));
 
         // Act - Call the function that is to be tested

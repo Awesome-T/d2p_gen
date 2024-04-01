@@ -52,7 +52,7 @@ option objc_class_prefix = "RTG";
 //                           repeated |   Iterables
 //                           string   |   DateTime                           
 // **************************************************************************
-// Generated At at 2024-03-31 17:29:32.165365Z
+// Generated At at 2024-04-01 04:04:57.272874Z
 
 /*
       google/protobuf/empty.proto 
@@ -294,6 +294,17 @@ enum DTOColors {
 }
 
 
+
+/*
+  class: User
+  Source: 'package:/exap/lib/models/model.dart';
+*/
+  message DTOUser {
+    // String User.name
+    string name = 1;
+    // int User.age
+    int32 age = 2;
+  }
 
 /*
   class: Person

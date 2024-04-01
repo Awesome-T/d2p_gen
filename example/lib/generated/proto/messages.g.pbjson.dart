@@ -399,6 +399,19 @@ final $typed_data.Uint8List dTOEngine_UnionDescriptor = $convert.base64Decode(
     '5lGAMgASgLMhsubWVzc2FnZXMuRFRPRWxlY3RyaWNFbmdpbmVIAFIOZWxlY3RyaWNlbmdpbmVC'
     'CAoGZW5naW5l');
 
+@$core.Deprecated('Use dTOUserDescriptor instead')
+const DTOUser$json = {
+  '1': 'DTOUser',
+  '2': [
+    {'1': 'name', '3': 1, '4': 1, '5': 9, '10': 'name'},
+    {'1': 'age', '3': 2, '4': 1, '5': 5, '10': 'age'},
+  ],
+};
+
+/// Descriptor for `DTOUser`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List dTOUserDescriptor = $convert.base64Decode(
+    'CgdEVE9Vc2VyEhIKBG5hbWUYASABKAlSBG5hbWUSEAoDYWdlGAIgASgFUgNhZ2U=');
+
 @$core.Deprecated('Use dTOPersonDescriptor instead')
 const DTOPerson$json = {
   '1': 'DTOPerson',

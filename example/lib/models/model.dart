@@ -1,6 +1,13 @@
 import 'package:d2p_annotation/d2p_annotation.dart';
 
 @ProtoGen(createMappers: true)
+class User {
+  final String name;
+  final int age;
+  const User(this.name, this.age);
+}
+
+@ProtoGen(createMappers: true)
 class Person {
   const Person(this.createdAt, {this.blahs});
   final List<Blah>? blahs;

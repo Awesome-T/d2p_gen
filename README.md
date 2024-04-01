@@ -1,24 +1,10 @@
 # d2p_gen
 
-A Dart package for generating protocol buffer files (.proto) based on Dart code annotations [d2p_annotation](https://github.com/Awesome-T/d2p_annotation)
+The "d2p_proto" Dart package facilitates the automatic generation of protocol buffer files (.proto) by leveraging Dart code annotations provided by the [d2p_annotation](https://github.com/Awesome-T/d2p_annotation) package. It streamlines the process of creating .g.proto files, mappers, and associated tests, enhancing the efficiency of working with protocol buffers in Dart projects.
 
-### Table of comparison of Dart types to Proto which is implemented by the package
+## Reason
 
-                | proto3   | dart     |
-                |----------|----------|
-                | double   | double   |
-                | double   | mun      |
-                | Int64    | int      |
-                | bool     | bool     |
-                | string   | String   |
-                | string   | Map      |
-                | enum     | enum     |
-                | repeated | Iterables|
-
-> Full comparison of proto types to programming languages on the official website [website](https://protobuf.dev/programming-guides/proto3/#scalar)
- <!-- > It's not a -->
-
-<!-- ## How to use -->
+Protocol Buffers (Proto) provides a compact representation of data, reducing the size of transmitted messages by up to 3-5 times compared to JSON. With more efficient serialization and deserialization, using Proto speeds up data exchange by 30-40%. Proto's data typing and strict schema simplify development and provide more robust data validation, making it the preferred choice for distributed systems.
 
 ## Installation
 
@@ -53,12 +39,13 @@ dart pub add dev:d2p_gen
 
 ## Annotation
 
-Put annotation under the clases wich you prefer to generate message.
+Place annotations under the classes that you prefer to receive notifications from.
 
 ```dart
+
 import 'package:d2p_annotation/d2p_annotation.dart';
 
-@ProtoGen(createMappers:false)
+@ProtoGen(createMappers: false)
 class User {
   final String name;
   final int age;
@@ -72,152 +59,157 @@ run the following command:
 dart run build_runner build
 ```
 
-result' be like this:
+This package create a new foldeer at the root directory of project proto with single file `messages.g.proto` with all of your proto messeges. For this class it will look like this:
 
 ```proto
-<!-- some other fields -->
-message DTOUser {
-  string name = 1;
-  int32 age = 2;
+syntax = "proto3";
+package messages;
+// -- Some other messages.
+/*
+  class: User
+*/
+  message DTOUser {
+    // String User.name
+    string name = 1;
+    // int User.age
+    int32 age = 2;
+  }
+
+```
+
+If you use the `@ProtoGen` annotation with the `createMappers` option set to `true`, you will also get a mapper class that can convert the generated Dart code into the model class and vice versa. These mapper classes are always saved in separate files with a `.mp.dart` extension.
+
+```dart
+/// Mapper that converts a DTO [DTOUser] object
+/// into a Model [User] and back.
+abstract class $MapperUser {
+  /// Converts the model [User]
+  /// to the DTO [DTOUser].
+  static User fromDTO(DTOUser model) {
+    try {
+      return User(
+        model.name,
+        model.age,
+      );
+    } on FormatException catch (e, trace) {
+      throw FormatException(
+        '''Exception
+      ${e.source}
+      ${e.message}
+      $trace''',
+      );
+    }
+  }
+
+  /// Converts the model [User]
+  /// to the DTO [DTOUser]
+  static DTOUser toDTO(User model) {
+    try {
+      return DTOUser(
+        name: model.name,
+        age: model.age,
+      );
+    } on FormatException catch (e, trace) {
+      throw FormatException(
+        '''Exception
+      ${e.source}
+      ${e.message}
+      $trace''',
+      );
+    }
+  }
 }
 ```
 
-if you need union classes, example below:
+In order to ensure that the mapper function operates correctly, the tool also generates a test case for each mapper function.
 
 ```dart
-import 'package:d2p_annotation/d2p_annotation.dart';
 
-@ProtoGen()
-sealed class Animal {
-  const Animal();
-}
-@ProtoGen(createMappers: true)
-class Cow extends Animal {
-  final int? weight;
-  final String? nullableString;
-  final DateTime? nullableDateTime;
-  const Cow({
-    this.weight,
-    this.nullableString,
-    this.nullableDateTime,
+  group(r'Testing $MapperUser methods', () {
+// Test the toDTO method (which returns a DTO class)
+    test(r'$MapperUser.toDTO Output class User should be DTOUser', () {
+      // Arrange - Setup facts, Put Expected outputs or Initialize
+      final model = User(
+        'ZymI7ohW2Dq9XeUE',
+        49,
+      );
+
+      // Act - Call the function that is to be tested
+      final dto = $MapperUser.toDTO(model);
+
+      // Assert - Compare the actual result and expected result
+      // Check if the output is of the expected type
+      expect(
+        dto,
+        TypeMatcher<DTOUser>(),
+        reason: 'The output should be of type DTOUser',
+      );
+// Check if the output is not null
+      expect(
+        dto,
+        isNotNull,
+        reason: 'The output must not be null',
+      );
+// Check if the output is not an exception
+      expect(
+        dto,
+        isNot(isException),
+        reason: 'The output must not be an exception',
+      );
+    });
+
+// Test the fromDTO method (which returns a dart data class or enum)
+    test(r'$MapperUser.fromDTO Output class User should be User', () {
+      // Arrange - Setup facts, Put Expected outputs or Initialize
+      final dto = DTOUser(
+        name: '8O',
+        age: 48,
+      );
+
+      // Act - Call the function that is to be tested
+      final model = $MapperUser.fromDTO(dto);
+
+      // Assert - Compare the actual result and expected result
+      // Check if the output is of the expected type
+      expect(
+        model,
+        TypeMatcher<User>(),
+        reason: 'The output should be of type User',
+      );
+// Check if the output is not null
+      expect(
+        model,
+        isNotNull,
+        reason: 'The output must not be null',
+      );
+// Check if the output is not an exception
+      expect(
+        model,
+        isNot(isException),
+        reason: 'The output must not be an exception',
+      );
+    });
   });
-}
-@ProtoGen(createMappers: true)
-class Sheep extends Animal {
-  final String one;
-  const Sheep({required this.one});
-}
 ```
 
-run the following command
+Once all relevant files have been created, the testing of the mapper will begin automatically. You will then see a screen similar to the one below.
 
-```bash
-dart run build_runner build
+```console
+🎉 2 tests passed.
 ```
 
-The result will look like this:
+### Table of comparison of Dart types to Proto which is implemented by the package
 
-```proto
-/*
-  class: Cow
-  Source: 'package:/exap/lib/models/sealeds.dart';
-*/
-  message DTOCow {
-    // int? Cow.weight
-    optional int32 weight = 1;
-    // String? Cow.nullableString
-    optional string nullableString = 2;
-    // DateTime? Cow.nullableDateTime
-    optional string nullableDateTime = 3;
-  }
+                | proto3   | dart     |
+                |----------|----------|
+                | double   | double   |
+                | double   | mun      |
+                | Int64    | int      |
+                | bool     | bool     |
+                | string   | String   |
+                | string   | Map      |
+                | enum     | enum     |
+                | repeated | Iterables|
 
-/*
-  class: Sheep
-  Source: 'package:/exap/lib/models/sealeds.dart';
-*/
-  message DTOSheep {
-    // String Sheep.one
-    string one = 1;
-  }
-
-/*
- * class: animal
-*/
-  message DTOAnimal_Union   {
-    //single inherited  class of Animal 
-    oneof animal {
-       //class Cow
-       DTOCow cow = 1;
-       //class Sheep
-       DTOSheep sheep = 2;
-    }
-  }
-```
-
-As you can see, at the moment we are receiving not only an addition message for the inherited class, but also a converter to convert the DTO to the model and back.
-
-```dart
-/// Mapper that converts a DTO [DTOAnimal_Union] object
-/// into a Model [Animal] and back.
-abstract class $MapperAnimal {
-  /// Converts the model [Animal]
-  /// to the DTO [DTOAnimal_Union].
-  static Animal fromDTO(DTOAnimal_Union model) {
-    try {
-      if (model.hasCow()) {
-        return Cow(
-          weight: model.cow.weight,
-          nullableString: model.cow.nullableString,
-          nullableDateTime: DateTime.tryParse(model.cow.nullableDateTime),
-        );
-      }
-      if (model.hasSheep()) {
-        return Sheep(
-          one: model.sheep.one,
-        );
-      } else {
-        throw FormatException('No valid DTO $model');
-      }
-    } on FormatException catch (e, trace) {
-      throw FormatException(
-        '''Exception
-      ${e.source}
-      ${e.message}
-      $trace''',
-      );
-    }
-  }
-
-  /// Converts the DTO [DTOAnimal_Union]
-  /// to the model [Animal]
-  static DTOAnimal_Union toDto(Animal model) {
-    try {
-      if (model is Cow) {
-        return DTOAnimal_Union(
-          cow: DTOCow(
-            weight: model.weight,
-            nullableString: model.nullableString,
-            nullableDateTime: model.nullableDateTime?.toIso8601String(),
-          ),
-        );
-      }
-      if (model is Sheep) {
-        return DTOAnimal_Union(
-          sheep: DTOSheep(
-            one: model.one,
-          ),
-        );
-      } else {
-        throw FormatException('No valid DTO $model');
-      }
-    } on FormatException catch (e, trace) {
-      throw FormatException(
-        '''Exception
-      ${e.source}
-      ${e.message}
-      $trace''',
-      );
-    }
-  }
-}
-```
+> Full comparison of proto types to programming languages on the official website [website](https://protobuf.dev/programming-guides/proto3/#scalar)
+ <!-- > It's not a -->

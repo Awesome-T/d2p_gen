@@ -20,20 +20,24 @@ extension ExtensionNme on LibraryReader {
 
   /// Returns annotated elements that are either [ClassElement] or [EnumElement].
   /// This method filters annotated elements and returns only those that are classes or enums.
-  Iterable<AnnotatedElement> selectClassesAndEnums() => List<AnnotatedElement>.from(
-      annotatedWith(_typeChecker).where((AnnotatedElement e) => e.element is ClassElement || e.element is EnumElement));
+  Iterable<AnnotatedElement> selectClassesAndEnums() =>
+      List<AnnotatedElement>.from(annotatedWith(_typeChecker).where(
+          (AnnotatedElement e) =>
+              e.element is ClassElement || e.element is EnumElement));
 
   /// Returns annotated elements that are neither classes nor enums.
   /// This method filters annotated elements and returns only those
   /// that are not classes or enums.
-  Iterable<AnnotatedElement> getNotApplyebles() => List<AnnotatedElement>.from(
-      annotatedWith(_typeChecker).where((final e) => e.element is! ClassElement || e.element is! EnumElement));
+  Iterable<AnnotatedElement> getNotApplyebles() =>
+      List<AnnotatedElement>.from(annotatedWith(_typeChecker).where((final e) =>
+          e.element is! ClassElement || e.element is! EnumElement));
 }
 
 ///
 extension ExtensionConstructorElement on ConstructorElement {
   /// Returns the name of the current class, considering redirected constructors.
-  String get showNsmeOfCurrentClass => (redirectedConstructor?.displayName ?? displayName).trim();
+  String get showNsmeOfCurrentClass =>
+      (redirectedConstructor?.displayName ?? displayName).trim();
 
   /// Returns the name of the mapper class.
   String get nameOfMapper => '$_prefixMapper$nameOfInheritedClass'.trim();
@@ -55,27 +59,33 @@ extension ExtensionConstructorElement on ConstructorElement {
   /// * base class A extend Foo{} => "Foo"
   /// * abstract class Foo {const factory Foo.A() = A;} => "Foo"
   String get nameOfInheritedClass =>
-      (declaration.superConstructor?.displayName == 'Object' ? null : declaration.superConstructor?.displayName) ??
+      (declaration.superConstructor?.displayName == 'Object'
+          ? null
+          : declaration.superConstructor?.displayName) ??
       enclosingElement.name.trim();
 
   ///
   ///
   ///
   String? get fdf {
-    return (superConstructor != null && superConstructor!.displayName != 'Object')
+    return (superConstructor != null &&
+            superConstructor!.displayName != 'Object')
         ? superConstructor!.displayName
         : enclosingElement.interfaces
-            .where((e) => e.getDisplayString(withNullability: false) != 'Object')
+            .where(
+                (e) => e.getDisplayString(withNullability: false) != 'Object')
             .singleOrNull
             ?.getDisplayString(withNullability: false);
   }
 
   ///
   DartType? get su {
-    return (superConstructor != null && superConstructor!.displayName != 'Object')
+    return (superConstructor != null &&
+            superConstructor!.displayName != 'Object')
         ? superConstructor!.enclosingElement.thisType
         : enclosingElement.interfaces
-            .where((e) => e.getDisplayString(withNullability: false) != 'Object')
+            .where(
+                (e) => e.getDisplayString(withNullability: false) != 'Object')
             .singleOrNull!
             .extensionTypeErasure;
     // ?.getDisplayString(withNullability: false);
@@ -104,14 +114,16 @@ extension ExtensionConstructorElement on ConstructorElement {
 
   ///
   ///
-  String get fomDtoRD =>
-      ((redirectedConstructor?.displayName != null ? ((redirectedConstructor?.displayName)!.startsWith('_')) : false)
-          ? enclosingElement.displayName
-          : redirectedConstructor?.displayName ?? displayName);
+  String get fomDtoRD => ((redirectedConstructor?.displayName != null
+          ? ((redirectedConstructor?.displayName)!.startsWith('_'))
+          : false)
+      ? enclosingElement.displayName
+      : redirectedConstructor?.displayName ?? displayName);
 
   ///
   ///
-  String get nameOfField => (declaration.name == '' ? fomDtoRD : declaration.name).toLowerCase();
+  String get nameOfField =>
+      (declaration.name == '' ? fomDtoRD : declaration.name).toLowerCase();
 
   ///
   ///
@@ -149,8 +161,10 @@ extension ExtensionConstructorElement on ConstructorElement {
 */
 enum $prefixMsg$displayName {''');
     for (var i = 0; i < enclosingElement.thisType.accessors.length; i++) {
-      if ('VALUES' != enclosingElement.thisType.accessors[i].name.toUpperCase()) {
-        buf.writeln('   ${enclosingElement.thisType.accessors[i].name.toUpperCase()} = $i;');
+      if ('VALUES' !=
+          enclosingElement.thisType.accessors[i].name.toUpperCase()) {
+        buf.writeln(
+            '   ${enclosingElement.thisType.accessors[i].name.toUpperCase()} = $i;');
       }
     }
     buf.writeln('}');
@@ -164,7 +178,8 @@ enum $prefixMsg$displayName {''');
   ///
   ConstructorElement? get notEmptyPuclicRedirect {
     if (redirectedConstructor != null) {
-      if (!redirectedConstructor!.displayName.startsWith('_') && redirectedConstructor!.parameters.isNotEmpty) {
+      if (!redirectedConstructor!.displayName.startsWith('_') &&
+          redirectedConstructor!.parameters.isNotEmpty) {
         return redirectedConstructor!;
       }
     }
@@ -190,13 +205,15 @@ extension ExtensionParameterElement on ParameterElement {
 
     /// Determines the protocol buffer type
     /// corresponding to the given [DartType] type.
-    String _typeMatching(final DartType type) => switch (type.getDisplayString(withNullability: false)) {
+    String _typeMatching(final DartType type) =>
+        switch (type.getDisplayString(withNullability: false)) {
           'String' || 'DateTime' => 'string',
           'int' => 'int32',
           'bool' => 'bool',
           'num' || 'double' => 'double',
           'Uint8List' => 'bytes',
-          _ => '$prefixMsg${type.getDisplayString(withNullability: false)}$_uPostfix',
+          _ =>
+            '$prefixMsg${type.getDisplayString(withNullability: false)}$_uPostfix',
         };
 
     /// Converts Dart type [type] to Proto type.
@@ -211,8 +228,8 @@ extension ExtensionParameterElement on ParameterElement {
 
         if (generics.isNotEmpty && generics.first.element is ClassElement) {
           final _cl = generics.first.element as ClassElement;
-          final _isUnion =
-              '$_cl'.startsWith('sealed') || (_cl.isAbstract && _cl.library.source.fullName != 'dart:core');
+          final _isUnion = '$_cl'.startsWith('sealed') ||
+              (_cl.isAbstract && _cl.library.source.fullName != 'dart:core');
           return 'repeated ${_typeMatching(generics.first)}${_isUnion ? postfixUnion : ''}';
         }
         return 'repeated ${_typeMatching(generics.first)}';
@@ -227,11 +244,14 @@ extension ExtensionParameterElement on ParameterElement {
   }
 
   /// `<K,V>`
-  String get mapGenerics => '<${type.allGenericTypes.first},${type.allGenericTypes.last}>${type.protoOptional}'.trim();
+  String get mapGenerics =>
+      '<${type.allGenericTypes.first},${type.allGenericTypes.last}>${type.protoOptional}'
+          .trim();
 
   ///
   String get mapTypeWithGenerics =>
-      'Map<${type.allGenericTypes.first},${type.allGenericTypes.last}>${type.protoOptional}'.trim();
+      'Map<${type.allGenericTypes.first},${type.allGenericTypes.last}>${type.protoOptional}'
+          .trim();
 }
 
 /// Extension providing methods for Dart types.
@@ -249,8 +269,9 @@ extension ERxtensionDartType on DartType {
   String get protoOptional => isNullable ? 'optional' : '';
 
   /// Returns the generic types of the given `DartType`.
-  Iterable<DartType> get allGenericTypes =>
-      this is ParameterizedType ? (this as ParameterizedType).typeArguments : const [];
+  Iterable<DartType> get allGenericTypes => this is ParameterizedType
+      ? (this as ParameterizedType).typeArguments
+      : const [];
 
   ///
   String get questionMark {
@@ -274,7 +295,8 @@ extension ERxtensionDartType on DartType {
   /// - `true` if the Dart type is an iterable value.
   /// - `false` otherwise.
   ///
-  bool get isIterableValue => <bool>[isDartCoreSet, isDartCoreList, isDartCoreIterable].contains(true);
+  bool get isIterableValue =>
+      <bool>[isDartCoreSet, isDartCoreList, isDartCoreIterable].contains(true);
 
   ///
   /// *  `String` `int`, `double`, `bool`, `num`, `DateTime`
@@ -293,7 +315,8 @@ extension ERxtensionDartType on DartType {
 ///
 extension ExtensionMapEntry on MapEntry<String, List<ConstructorElement>> {
   ///
-  String get dtoUnionMsgName => '$prefixMsg${key.replaceAll(RegExp(r'\.'), '_')}$postfixUnion';
+  String get dtoUnionMsgName =>
+      '$prefixMsg${key.replaceAll(RegExp(r'\.'), '_')}$postfixUnion';
 
   ///
   String get oneOfField => key.toLowerCase();
@@ -311,9 +334,12 @@ extension ConstructorElementListExtensions on List<ConstructorElement> {
   /// o check for illegal types within a list of constructor elements.
   bool get hasIllegalType {
     return any((constructor) {
-      final parameterTypes = <DartType>[...constructor.parameters.map((param) => param.type)];
+      final parameterTypes = <DartType>[
+        ...constructor.parameters.map((param) => param.type)
+      ];
       if (constructor.redirectedConstructor != null) {
-        parameterTypes.addAll(constructor.redirectedConstructor!.parameters.map((param) => param.type));
+        parameterTypes.addAll(constructor.redirectedConstructor!.parameters
+            .map((param) => param.type));
       }
       return parameterTypes.any((type) =>
           type.isDartCoreObject ||
@@ -339,16 +365,21 @@ extension ExtensionClassElenemt on ClassElement {
   /// * Additionally, the returned collection must not contain any abstract classes,
   /// * and the first constructor of each subclass must have at least one parameter
   /// * with a non-empty value.
-  Iterable<ClassElement> get sealedSub => library.definingCompilationUnit.classes
-      .where((cl) => cl.allSupertypes.any((InterfaceType intf) => intf.element == this))
-      .where(
-          (c) => !c.displayName.startsWith(RegExp('_')) && !c.isAbstract && c.constructors.first.parameters.isNotEmpty);
+  Iterable<ClassElement> get sealedSub => library
+      .definingCompilationUnit.classes
+      .where((cl) =>
+          cl.allSupertypes.any((InterfaceType intf) => intf.element == this))
+      .where((c) =>
+          !c.displayName.startsWith(RegExp('_')) &&
+          !c.isAbstract &&
+          c.constructors.first.parameters.isNotEmpty);
 
   /// Retrieves an iterable of constructors from sealed subclasses.
   /// It iterates through each sealed subclass and collects its constructors
   /// that are not private and have non-empty parameters.
   Iterable<ConstructorElement> get sealedConstructors =>
-      sealedSub.expand((e) => e.constructors.where((e) => !e.displayName.startsWith('_') && e.parameters.isNotEmpty));
+      sealedSub.expand((e) => e.constructors.where(
+          (e) => !e.displayName.startsWith('_') && e.parameters.isNotEmpty));
 
   /// Retrieves a list of non-empty constructors from the class.
   /// It checks each constructor and adds it to the list if it's not abstract,
@@ -359,7 +390,9 @@ extension ExtensionClassElenemt on ClassElement {
       final _rConstructor = contructor.notEmptyPuclicRedirect;
       _rConstructor != null
           ? _a.add(_rConstructor)
-          : (!contructor.isAbstract && contructor.parameters.isNotEmpty && !contructor.displayName.startsWith('_'))
+          : (!contructor.isAbstract &&
+                  contructor.parameters.isNotEmpty &&
+                  !contructor.displayName.startsWith('_'))
               ? _a.add(contructor)
               : null;
     }
@@ -381,11 +414,15 @@ extension ExtensionClassElenemt on ClassElement {
 
   bool get hasRedirectConstructor {
     // Find the first redirected constructor and check if it's abstract.
-    final s = constructors.map<bool?>((e) => e.redirectedConstructor?.isAbstract).firstWhere((bool? e) => true);
+    final s = constructors
+        .map<bool?>((e) => e.redirectedConstructor?.isAbstract)
+        .firstWhere((bool? e) => true);
     // Return true if the class is abstract and has only one constructor, and that constructor is not abstract,
     // or if the class has been redirected to use a different constructor that is not abstract,
     // otherwise return false.
-    return !(isAbstract && (constructors.length == 1) && (s != null || s != true));
+    return !(isAbstract &&
+        (constructors.length == 1) &&
+        (s != null || s != true));
   }
 
   /// Gets the name of the parent class for the current class element.
@@ -396,7 +433,8 @@ extension ExtensionClassElenemt on ClassElement {
   /// Returns:
   /// - The name of the parent class as a [String].
   ///
-  String get nameOfParentClass => constructors.map((e) => e.nameOfInheritedClass).first;
+  String get nameOfParentClass =>
+      constructors.map((e) => e.nameOfInheritedClass).first;
 
   /// Checks if the class is a simple single class.
   /// Returns true if the class has exactly one constructor
@@ -420,7 +458,8 @@ extension ExtensionClassElenemt on ClassElement {
           .where((r) =>
               r.getDisplayString(withNullability: false) != 'Object' &&
               librarySource.uri.pathSegments.first ==
-                  r.extensionTypeErasure.element?.librarySource?.uri.pathSegments.first)
+                  r.extensionTypeErasure.element?.librarySource?.uri
+                      .pathSegments.first)
           .firstOrNull // Retrieve the first matching supertype or null if none found.
           ?.extensionTypeErasure // Access the extension type erasure of the supertype.
           .element; // Get the element associated with the extension type erasure.
@@ -465,7 +504,9 @@ mixin ValueReader {
   /// - [d]: An iterable of annotated elements.
   /// Returns:
   /// - A map where keys are superclass names and values are lists of constructors.
-  Map<String, List<ConstructorElement>> extractClassConstructorsFiltered(Iterable<Element> d, [String? pack]) =>
+  Map<String, List<ConstructorElement>> extractClassConstructorsFiltered(
+          Iterable<Element> d,
+          [String? pack]) =>
       Map.fromEntries(
           // Filtering elements to keep only instances of
           // ClassElement and excluding private or synthetic classes
@@ -477,20 +518,28 @@ mixin ValueReader {
                   //
                   (pack != null ? getPackageName(clE.library) == pack : true))
               // Exploding each ClassElement into its constructors and filtering out unwanted ones
-              .expand<ConstructorElement>((clE) => clE.constructors.where((constructor) {
-                    final _startWithUnderscore = !(constructor.redirectedConstructor?.displayName).checkName_();
-                    return clE.hasRedirectConstructor &&
-                        _startWithUnderscore &&
-                        constructor.parameters.isNotEmpty &&
-                        !constructor.isPrivate &&
-                        !constructor.isSynthetic;
-                  }))
+              .expand<ConstructorElement>(
+                  (clE) => clE.constructors.where((constructor) {
+                        final _startWithUnderscore =
+                            !(constructor.redirectedConstructor?.displayName)
+                                .checkName_();
+                        return clE.hasRedirectConstructor &&
+                            _startWithUnderscore &&
+                            constructor.parameters.isNotEmpty &&
+                            !constructor.isPrivate &&
+                            !constructor.isSynthetic;
+                      }))
               // Grouping constructors by superclass name
               // Transforming the map entries to keep only constructors with non-empty parameters
               .groupBy((constructor) => constructor.nameOfInheritedClass)
               .entries
-              .map<MapEntry<String, List<ConstructorElement>>>((entry) => MapEntry<String, List<ConstructorElement>>(
-                  entry.key, entry.value.where((constructor) => constructor.parameters.isNotEmpty).toList())));
+              .map<MapEntry<String, List<ConstructorElement>>>((entry) =>
+                  MapEntry<String, List<ConstructorElement>>(
+                      entry.key,
+                      entry.value
+                          .where((constructor) =>
+                              constructor.parameters.isNotEmpty)
+                          .toList())));
 
   /// Retrieves enum constructors.
   /// Parameters:
@@ -498,68 +547,91 @@ mixin ValueReader {
   /// Returns:
   /// - A list of enum constructors.
   List<ConstructorElement> enms(final Iterable<Element> d) =>
-      List<ConstructorElement>.from(d.whereType<EnumElement>().map((final e) => e.constructors.first));
+      List<ConstructorElement>.from(
+          d.whereType<EnumElement>().map((final e) => e.constructors.first));
 
   ///
-  Map<String, List<ConstructorElement>> ces(Iterable<Element> d) => Map.fromEntries(
-      // Transforming each annotated element into a map entry
-      d
-          .whereType<ClassElement>()
-          .where((ClassElement classElement) {
-            return !classElement.isPrivate && !classElement.isSynthetic;
-          })
-          // Exploding each ClassElement into its constructors and filtering out unwanted ones
-          .expand<ConstructorElement>((final classElement) => classElement.constructors.where((final constructor) {
-                final _startWithUnderscore = !(constructor.redirectedConstructor?.displayName).checkName_();
-                return classElement.hasRedirectConstructor &&
-                    _startWithUnderscore &&
-                    constructor.parameters.isNotEmpty &&
-                    !constructor.isPrivate &&
-                    !constructor.isSynthetic;
-              }))
-          // Grouping constructors by superclass name
-          .groupBy((final constructor) => constructor.nameOfInheritedClass)
-          .entries
-          // Transforming the map entries to keep only constructors with non-empty parameters
-          .map<MapEntry<String, List<ConstructorElement>>>((entry) => MapEntry<String, List<ConstructorElement>>(
-              entry.key, entry.value.where((constructor) => constructor.parameters.isNotEmpty).toList())));
+  Map<String, List<ConstructorElement>> ces(Iterable<Element> d) =>
+      Map.fromEntries(
+          // Transforming each annotated element into a map entry
+          d
+              .whereType<ClassElement>()
+              .where((ClassElement classElement) {
+                return !classElement.isPrivate && !classElement.isSynthetic;
+              })
+              // Exploding each ClassElement into its constructors and filtering out unwanted ones
+              .expand<ConstructorElement>((final classElement) =>
+                  classElement.constructors.where((final constructor) {
+                    final _startWithUnderscore =
+                        !(constructor.redirectedConstructor?.displayName)
+                            .checkName_();
+                    return classElement.hasRedirectConstructor &&
+                        _startWithUnderscore &&
+                        constructor.parameters.isNotEmpty &&
+                        !constructor.isPrivate &&
+                        !constructor.isSynthetic;
+                  }))
+              // Grouping constructors by superclass name
+              .groupBy((final constructor) => constructor.nameOfInheritedClass)
+              .entries
+              // Transforming the map entries to keep only constructors with non-empty parameters
+              .map<MapEntry<String, List<ConstructorElement>>>((entry) =>
+                  MapEntry<String, List<ConstructorElement>>(
+                      entry.key,
+                      entry.value
+                          .where((constructor) =>
+                              constructor.parameters.isNotEmpty)
+                          .toList())));
 
   /// Retrieves constructors grouped by superclass name.
   /// Parameters:
   /// - [d]: An iterable of annotated elements.
   /// Returns:
   /// - A map where keys are superclass names and values are lists of constructors.
-  Map<String, List<ConstructorElement>> extractClassConstructors(Iterable<AnnotatedElement> d) => Map.fromEntries(
-      // Transforming each annotated element into a map entry
-      d
-          .map<Element>((AnnotatedElement annotatedElement) => annotatedElement.element)
-          // Filtering elements to keep only instances of ClassElement and excluding private or synthetic classes
-          .whereType<ClassElement>()
-          .where((ClassElement classElement) {
-            return !classElement.isPrivate && !classElement.isSynthetic;
-          })
-          // Exploding each ClassElement into its constructors and filtering out unwanted ones
-          .expand<ConstructorElement>((final classElement) => classElement.constructors.where((final constructor) {
-                final _startWithUnderscore = !(constructor.redirectedConstructor?.displayName).checkName_();
-                return classElement.hasRedirectConstructor &&
-                    _startWithUnderscore &&
-                    constructor.parameters.isNotEmpty &&
-                    !constructor.isPrivate &&
-                    !constructor.isSynthetic;
-              }))
-          // Grouping constructors by superclass name
-          .groupBy((final constructor) => constructor.nameOfInheritedClass)
-          .entries
-          // Transforming the map entries to keep only constructors with non-empty parameters
-          .map<MapEntry<String, List<ConstructorElement>>>((entry) => MapEntry<String, List<ConstructorElement>>(
-              entry.key, entry.value.where((constructor) => constructor.parameters.isNotEmpty).toList())));
+  Map<String, List<ConstructorElement>> extractClassConstructors(
+          Iterable<AnnotatedElement> d) =>
+      Map.fromEntries(
+          // Transforming each annotated element into a map entry
+          d
+              .map<Element>((AnnotatedElement annotatedElement) =>
+                  annotatedElement.element)
+              // Filtering elements to keep only instances of ClassElement and excluding private or synthetic classes
+              .whereType<ClassElement>()
+              .where((ClassElement classElement) {
+                return !classElement.isPrivate && !classElement.isSynthetic;
+              })
+              // Exploding each ClassElement into its constructors and filtering out unwanted ones
+              .expand<ConstructorElement>((final classElement) =>
+                  classElement.constructors.where((final constructor) {
+                    final _startWithUnderscore =
+                        !(constructor.redirectedConstructor?.displayName)
+                            .checkName_();
+                    return classElement.hasRedirectConstructor &&
+                        _startWithUnderscore &&
+                        constructor.parameters.isNotEmpty &&
+                        !constructor.isPrivate &&
+                        !constructor.isSynthetic;
+                  }))
+              // Grouping constructors by superclass name
+              .groupBy((final constructor) => constructor.nameOfInheritedClass)
+              .entries
+              // Transforming the map entries to keep only constructors with non-empty parameters
+              .map<MapEntry<String, List<ConstructorElement>>>((entry) =>
+                  MapEntry<String, List<ConstructorElement>>(
+                      entry.key,
+                      entry.value
+                          .where((constructor) =>
+                              constructor.parameters.isNotEmpty)
+                          .toList())));
 
   /// Retrieves enum constructors.
   /// Parameters:
   /// - [d]: An iterable of annotated elements.
   /// Returns:
   /// - A list of enum constructors.
-  List<ConstructorElement> extractEnumConstructors(final Iterable<AnnotatedElement> d) => List<ConstructorElement>.from(
+  List<ConstructorElement> extractEnumConstructors(
+          final Iterable<AnnotatedElement> d) =>
+      List<ConstructorElement>.from(
         d
             // Transforming each annotated element into an element and filtering to keep only EnumElement instances
             .map<Element>((final a) => a.element)

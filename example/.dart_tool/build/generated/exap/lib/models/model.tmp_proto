@@ -1,4 +1,15 @@
 /*
+  class: User
+  Source: 'package:/exap/lib/models/model.dart';
+*/
+  message DTOUser {
+    // String User.name
+    string name = 1;
+    // int User.age
+    int32 age = 2;
+  }
+
+/*
   class: Person
   Source: 'package:/exap/lib/models/model.dart';
 */

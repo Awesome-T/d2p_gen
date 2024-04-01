@@ -5,6 +5,72 @@ import 'package:exap/models/model.mp.dart';
 import 'package:exap/models/model.dart';
 
 void main() {
+  group(r'Testing $MapperUser methods', () {
+// Test the toDTO method (which returns a DTO class)
+    test(r'$MapperUser.toDTO Output class User should be DTOUser', () {
+      // Arrange - Setup facts, Put Expected outputs or Initialize
+      final model = User(
+        'ZymI7ohW2Dq9XeUE',
+        49,
+      );
+
+      // Act - Call the function that is to be tested
+      final dto = $MapperUser.toDTO(model);
+
+      // Assert - Compare the actual result and expected result
+      // Check if the output is of the expected type
+      expect(
+        dto,
+        TypeMatcher<DTOUser>(),
+        reason: 'The output should be of type DTOUser',
+      );
+// Check if the output is not null
+      expect(
+        dto,
+        isNotNull,
+        reason: 'The output must not be null',
+      );
+// Check if the output is not an exception
+      expect(
+        dto,
+        isNot(isException),
+        reason: 'The output must not be an exception',
+      );
+    });
+
+// Test the fromDTO method (which returns a dart data class or enum)
+    test(r'$MapperUser.fromDTO Output class User should be User', () {
+      // Arrange - Setup facts, Put Expected outputs or Initialize
+      final dto = DTOUser(
+        name: '8O',
+        age: 48,
+      );
+
+      // Act - Call the function that is to be tested
+      final model = $MapperUser.fromDTO(dto);
+
+      // Assert - Compare the actual result and expected result
+      // Check if the output is of the expected type
+      expect(
+        model,
+        TypeMatcher<User>(),
+        reason: 'The output should be of type User',
+      );
+// Check if the output is not null
+      expect(
+        model,
+        isNotNull,
+        reason: 'The output must not be null',
+      );
+// Check if the output is not an exception
+      expect(
+        model,
+        isNot(isException),
+        reason: 'The output must not be an exception',
+      );
+    });
+  });
+
   group(r'Testing $MapperPerson methods', () {
 // Test the toDTO method (which returns a DTO class)
     test(r'$MapperPerson.toDTO Output class Person should be DTOPerson', () {
@@ -13,14 +79,15 @@ void main() {
         DateTime.now(),
         blahs: <Blah>[
           Blah(
-            id: 'cR0wAQlvFk5nSXd10rfmrMiqtTNs4',
+            id: 'PXEqxfg1chZzQHDBPkCMLpZAAiVim7smrtFfC4szvSwnD2hp',
             tags: <String>[],
-            price: 0.8745282213717436,
+            price: 0.7464197105902506,
             isVerifyed: true,
             settings: <String, double>{
-              '5U6dl3g7': 0.3523577521781627,
+              'RVyCvCuPim4uOsYJLg8Bh6l8tfyTd9xJRBb5SvWu8a3JFlMVMrQPkT2M':
+                  0.3843385175027739,
             },
-            count: 34,
+            count: 59,
           )
         ],
       );
@@ -56,13 +123,13 @@ void main() {
         createdAt: DateTime.now().toIso8601String(),
         blahs: <DTOBlah>[
           DTOBlah(
-            id: '5mM7ENYrAlP2NsmUKWwkQH2PyUP1DR3ezGFuGADpDSLkkTmIZv3x4Sz8pxCVk',
+            id: 'kK2JQAk7rK60IKMi8fDynnvoHEjzu9',
             tags: <String>[],
-            price: 0.3863781420541921,
+            price: 0.5698010885835318,
             isVerifyed: true,
             settings: jsonEncode(
               <String, double>{
-                'i2bUMu88mtLyB3VsVJsDpllqDjP': 0.526994686125402,
+                'X6OMnbIQCabQzHDL': 0.5205083222874509,
               },
             ),
             count: null,
@@ -100,14 +167,14 @@ void main() {
     test(r'$MapperBlah.toDTO Output class Blah should be DTOBlah', () {
       // Arrange - Setup facts, Put Expected outputs or Initialize
       final model = Blah(
-        id: 'GqtuJpzpgZuX0zN',
+        id: 'De9jh3mo',
         tags: <String>[],
-        price: 0.8502695282298374,
+        price: 0.5299082573921756,
         isVerifyed: false,
         settings: <String, double>{
-          'CsnXaEI2budHQIDyWkOS6E0iDfcrB': 0.3507870536917611,
+          '4z': 0.9999174481004598,
         },
-        count: null,
+        count: 20,
       );
 
       // Act - Call the function that is to be tested
@@ -138,17 +205,16 @@ void main() {
     test(r'$MapperBlah.fromDTO Output class Blah should be Blah', () {
       // Arrange - Setup facts, Put Expected outputs or Initialize
       final dto = DTOBlah(
-        id: 'LUCtoYPEKbMuMLCsQFzoxjQjdloxgFuRd',
+        id: 'R8OcaCsONnTldNxvYuJdO',
         tags: <String>[],
-        price: 0.9390961683043042,
+        price: 0.6433179075597572,
         isVerifyed: true,
         settings: jsonEncode(
           <String, double>{
-            'vO6LXYY3xeK1FRRR2IaCc3z5RKDRnElAYzv8iqp7dRTqLoqLXRvB7FEY0xms':
-                0.5529742336786506,
+            '0HFl3CjBqe9iBYBywac2bjkQUxgcS9TCr': 0.47140325471728584,
           },
         ),
-        count: 4,
+        count: 6,
       );
 
       // Act - Call the function that is to be tested

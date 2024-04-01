@@ -3,6 +3,46 @@ import '../generated/proto/messages.g.pb.dart';
 import 'package:exap/models/model.dart';
 import 'package:exap/models/model.mp.dart';
 
+/// Mapper that converts a DTO [DTOUser] object
+/// into a Model [User] and back.
+abstract class $MapperUser {
+  /// Converts the model [User]
+  /// to the DTO [DTOUser].
+  static User fromDTO(DTOUser model) {
+    try {
+      return User(
+        model.name,
+        model.age,
+      );
+    } on FormatException catch (e, trace) {
+      throw FormatException(
+        '''Exception
+      ${e.source}
+      ${e.message}
+      $trace''',
+      );
+    }
+  }
+
+  /// Converts the model [User]
+  /// to the DTO [DTOUser]
+  static DTOUser toDTO(User model) {
+    try {
+      return DTOUser(
+        name: model.name,
+        age: model.age,
+      );
+    } on FormatException catch (e, trace) {
+      throw FormatException(
+        '''Exception
+      ${e.source}
+      ${e.message}
+      $trace''',
+      );
+    }
+  }
+}
+
 /// Mapper that converts a DTO [DTOPerson] object
 /// into a Model [Person] and back.
 abstract class $MapperPerson {

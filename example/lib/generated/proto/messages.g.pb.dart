@@ -1332,6 +1332,87 @@ class DTOEngine_Union extends $pb.GeneratedMessage {
 }
 
 ///
+/// class: User
+/// Source: 'package:/exap/lib/models/model.dart';
+class DTOUser extends $pb.GeneratedMessage {
+  factory DTOUser({
+    $core.String? name,
+    $core.int? age,
+  }) {
+    final $result = create();
+    if (name != null) {
+      $result.name = name;
+    }
+    if (age != null) {
+      $result.age = age;
+    }
+    return $result;
+  }
+  DTOUser._() : super();
+  factory DTOUser.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory DTOUser.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'DTOUser',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'messages'),
+      createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'name')
+    ..a<$core.int>(2, _omitFieldNames ? '' : 'age', $pb.PbFieldType.O3)
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  DTOUser clone() => DTOUser()..mergeFromMessage(this);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  DTOUser copyWith(void Function(DTOUser) updates) =>
+      super.copyWith((message) => updates(message as DTOUser)) as DTOUser;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static DTOUser create() => DTOUser._();
+  DTOUser createEmptyInstance() => create();
+  static $pb.PbList<DTOUser> createRepeated() => $pb.PbList<DTOUser>();
+  @$core.pragma('dart2js:noInline')
+  static DTOUser getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<DTOUser>(create);
+  static DTOUser? _defaultInstance;
+
+  /// String User.name
+  @$pb.TagNumber(1)
+  $core.String get name => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set name($core.String v) {
+    $_setString(0, v);
+  }
+
+  @$pb.TagNumber(1)
+  $core.bool hasName() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearName() => clearField(1);
+
+  /// int User.age
+  @$pb.TagNumber(2)
+  $core.int get age => $_getIZ(1);
+  @$pb.TagNumber(2)
+  set age($core.int v) {
+    $_setSignedInt32(1, v);
+  }
+
+  @$pb.TagNumber(2)
+  $core.bool hasAge() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearAge() => clearField(2);
+}
+
+///
 /// class: Person
 /// Source: 'package:/exap/lib/models/model.dart';
 class DTOPerson extends $pb.GeneratedMessage {
