@@ -90,7 +90,7 @@ base class TmpClasProtoBuilder implements _TmpProtoBuilder {
         final hasIlligalType = entry.value.hasIllegalType;
         //
         if (hasIlligalType) {
-          errorNotification('''
+          exitWitErrorCode('''
 \n
 Exception:
 You've illigal data types in this file: ${_element.values.first.first.librarySource.uri} 

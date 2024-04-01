@@ -10,8 +10,8 @@ void main() {
     test(r'$MapperUser.toDTO Output class User should be DTOUser', () {
       // Arrange - Setup facts, Put Expected outputs or Initialize
       final model = User(
-        'ZymI7ohW2Dq9XeUE',
-        49,
+        'ipWPsjO592cgzERu0tziJsBJtc1el8Dnbp',
+        75,
       );
 
       // Act - Call the function that is to be tested
@@ -42,8 +42,8 @@ void main() {
     test(r'$MapperUser.fromDTO Output class User should be User', () {
       // Arrange - Setup facts, Put Expected outputs or Initialize
       final dto = DTOUser(
-        name: '8O',
-        age: 48,
+        name: 'dF9fgCDEMFizC5ZjgrJuBhSdRN',
+        age: 95,
       );
 
       // Act - Call the function that is to be tested
@@ -79,15 +79,15 @@ void main() {
         DateTime.now(),
         blahs: <Blah>[
           Blah(
-            id: 'PXEqxfg1chZzQHDBPkCMLpZAAiVim7smrtFfC4szvSwnD2hp',
+            id: 'is48jL',
             tags: <String>[],
-            price: 0.7464197105902506,
-            isVerifyed: true,
+            price: 0.78153915918976,
+            isVerifyed: false,
             settings: <String, double>{
-              'RVyCvCuPim4uOsYJLg8Bh6l8tfyTd9xJRBb5SvWu8a3JFlMVMrQPkT2M':
-                  0.3843385175027739,
+              'phhyy7TDp8CFPrRvqNIAdcyYyygDnoVDj2mzmKjtzndHUhkYNoWY':
+                  0.2147076464481532,
             },
-            count: 59,
+            count: null,
           )
         ],
       );
@@ -123,13 +123,13 @@ void main() {
         createdAt: DateTime.now().toIso8601String(),
         blahs: <DTOBlah>[
           DTOBlah(
-            id: 'kK2JQAk7rK60IKMi8fDynnvoHEjzu9',
+            id: 'DR2B0',
             tags: <String>[],
-            price: 0.5698010885835318,
-            isVerifyed: true,
+            price: 0.9306579076774815,
+            isVerifyed: false,
             settings: jsonEncode(
               <String, double>{
-                'X6OMnbIQCabQzHDL': 0.5205083222874509,
+                'L7bRTVxMIP1LLOsbSAeVcM1VtxiyrTYFx': 0.2534929421071862,
               },
             ),
             count: null,
@@ -167,14 +167,14 @@ void main() {
     test(r'$MapperBlah.toDTO Output class Blah should be DTOBlah', () {
       // Arrange - Setup facts, Put Expected outputs or Initialize
       final model = Blah(
-        id: 'De9jh3mo',
+        id: 'G8kNZwaEBaD03w9hwHZMO14GGM6n6pCutvZEArTeJQS',
         tags: <String>[],
-        price: 0.5299082573921756,
+        price: 0.9016582581122198,
         isVerifyed: false,
         settings: <String, double>{
-          '4z': 0.9999174481004598,
+          'rvbLoCkWOvvT9C6pnZzp9V': 0.8460725180322456,
         },
-        count: 20,
+        count: null,
       );
 
       // Act - Call the function that is to be tested
@@ -205,16 +205,16 @@ void main() {
     test(r'$MapperBlah.fromDTO Output class Blah should be Blah', () {
       // Arrange - Setup facts, Put Expected outputs or Initialize
       final dto = DTOBlah(
-        id: 'R8OcaCsONnTldNxvYuJdO',
+        id: 'THHANzdJPIVXLiB9Tn',
         tags: <String>[],
-        price: 0.6433179075597572,
-        isVerifyed: true,
+        price: 0.5795394900467863,
+        isVerifyed: false,
         settings: jsonEncode(
           <String, double>{
-            '0HFl3CjBqe9iBYBywac2bjkQUxgcS9TCr': 0.47140325471728584,
+            'k': 0.0901577856636957,
           },
         ),
-        count: 6,
+        count: null,
       );
 
       // Act - Call the function that is to be tested

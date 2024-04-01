@@ -4,7 +4,7 @@ import 'dart:io';
 /// Function is designed to display an error message in the command line interface.
 /// It determines the platform (Windows or Unix-like), then runs the appropriate
 /// command to display the error message with the specified color scheme.
-void errorNotification(String msg) {
+void exitWitErrorCode(String msg) {
   final p = Platform.isWindows
       ? Process.run(
           'cmd',
@@ -22,6 +22,6 @@ void errorNotification(String msg) {
         );
   p.then((d) {
     stdout.writeln(d.stdout);
-    return exit(1);
+    return exit(d.exitCode);
   });
 }

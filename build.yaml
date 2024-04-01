@@ -1,19 +1,22 @@
 targets:
-  $default:
-    sources:
-      - lib/**
-      - src/**
-      - test/**
-      - bin/**
-      - web/**
-      - $package$
-      - "benchmark/**"
+  # $default:
+    # sources:
+    #   - lib/**
+    #   - src/**
+    #   - test/**
+    #   - bin/**
+    #   - web/**
+    #   - $package$
+    #   - "benchmark/**"
 
   d2p_gen:d2p_gen:
     builders:
       d2p_gen:tmpProto:
-        generate_for:
-          - lib/**.dart
+        # generate_for:
+        #   - lib/**.dart
+        #   - src/**.dart
+        #   - bin/**.dart
+
         options:
           enableLog: false
           rootProto: proto
@@ -62,9 +65,10 @@ builders:
       - finalizerProto
     defaults:
       generate_for:
-        include:
-          - lib/**.dart
-          - src/**.dart
+        # include:
+        #   - lib/**.dart
+        #   - src/**.dart
+        #   - bin/**.dart
         exclude:
           - .freezed.dart
 
@@ -105,7 +109,6 @@ builders:
     auto_apply: root_package
     required_inputs:
       - .tmp1
-      # - "**/*.g.pb.dart"
     build_extensions:
       $lib$:
         - "**/*.mp.dart"
@@ -141,7 +144,7 @@ builders:
         - "test/unit_testing/{{}}_test.dart"
     defaults:
       generate_for:
-        include:
-          - lib/**.dart
+        # include:
+        #   - lib/**.dart
         exclude:
           - .freezed.dart

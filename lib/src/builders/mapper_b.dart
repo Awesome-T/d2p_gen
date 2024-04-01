@@ -452,7 +452,7 @@ base class MapperClassBuilder
               final errormessage =
                   'This type ${generics.first.element} is not supported\ntype ${element.displayName}\npath: ${element.librarySource?.uri.path}\n';
               // the shutdown of the builder
-              errorNotification(errormessage);
+              exitWitErrorCode(errormessage);
               throw Exception(errormessage);
           }
         }
@@ -541,7 +541,7 @@ base class MapperClassBuilder
           final errormessage =
               'Exception  invalid type ${element?.displayName}\npath: ${element?.librarySource?.uri.path}\n';
           // the shutdown of the builder
-          errorNotification(errormessage);
+          exitWitErrorCode(errormessage);
           throw Exception(errormessage);
       }
     }

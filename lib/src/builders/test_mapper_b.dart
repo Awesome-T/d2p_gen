@@ -16,6 +16,7 @@ import '../unils/extensions.dart';
 import '../unils/file_utils.dart';
 import '../unils/header.dart';
 import '../unils/protoc_exeption.dart';
+import 'protoc_runner_b.dart';
 
 /// Builder that generates test code based on annotated
 /// classes and methods.
@@ -63,14 +64,14 @@ base class TestBuilder extends Builder with ValueReader {
       } else if (error is PackageNotFoundException) {
         throw PackageNotFoundException(error.name);
       } else {
-        throw Exception('$runtimeType\nerror $error');
+        exitWitErrorCode('$runtimeType\nerror $error');
       }
     }
   }
 
   /// Automate the formatting and fixing of Dart source
   /// code using Dart's built-in tools.
-  Future<void> formatting() async {
+  Future<void> formattingAndRunTests() async {
     // Define the command to format the code, apply fixes, and run tests
     const command =
         '''dart format . && dart fix --apply && dart test --coverage="coverage" --reporter="github" --file-reporter "json:reports/mapper_tests.json"''';
@@ -81,9 +82,16 @@ base class TestBuilder extends Builder with ValueReader {
         : await Process.run('bash', ['-c', command]);
 
     // Check the exit code and print the output or error message accordingly
-    (result.exitCode != 0)
-        ? stderr.writeln(result.stderr)
-        : stdout.writeln(result.stdout);
+    if (result.exitCode != 0) {
+      stderr.writeln('''
+Exit with exitCode $exitCode
+There are several issues:
+${result.stderr}
+${result.stdout}
+''');
+    } else {
+      stdout.writeln(result.stdout);
+    }
   }
 
   /// Generates a random value for custom data types
@@ -175,7 +183,7 @@ base class TestBuilder extends Builder with ValueReader {
     else {
       final errormessage = '$element is not supported';
       // the shutdown of the builder
-      errorNotification(errormessage);
+      exitWitErrorCode(errormessage);
       throw Exception(errormessage);
     }
   }
@@ -203,7 +211,7 @@ base class TestBuilder extends Builder with ValueReader {
     } on Exception catch (e) {
       final errormessage = '$e';
       // the shutdown of the builder
-      errorNotification(errormessage);
+      exitWitErrorCode(errormessage);
       throw Exception(errormessage);
     }
   }
@@ -329,7 +337,7 @@ ${_classTest(constructor, mapperName, false)}
       // Handle exceptions
       final errormessage = '$e';
       // the shutdown of the builder
-      errorNotification(errormessage);
+      exitWitErrorCode(errormessage);
       throw Exception(errormessage);
     }
   }
@@ -411,18 +419,31 @@ expect(
       late final _allClasses = <ClassElement, (Element, Element)>{};
 
       // Iterate over each class element
-      _classes.forEach((final ClassElement clMapper) {
-        // Extract method information from the class
-        final method = clMapper.methods
-            .where((final w) =>
-                w.displayName.toLowerCase() != 'toDTO'.toLowerCase())
-            .first;
-        late final returnType = method.returnType.element!;
-        late final argument = method.parameters.first.type.element!;
-        _allClasses.addAll(<ClassElement, (Element, Element)>{
-          clMapper: (returnType, argument)
-        });
-      });
+      _classes.forEach(
+        (final ClassElement clMapper) async {
+          // Extract method information from the class
+          final method = clMapper.methods
+              .where((final w) =>
+                  w.displayName.toLowerCase() != 'toDTO'.toLowerCase())
+              .first;
+          late final returnType = method.returnType.element;
+          late final argument = method.parameters.first.type.element;
+          if (returnType != null && argument != null) {
+            _allClasses.addAll(
+              <ClassElement, (Element, Element)>{
+                clMapper: (
+                  returnType,
+                  argument,
+                ),
+              },
+            );
+          }
+          // 
+          else {
+            await runProtoC();
+          }
+        },
+      );
 
       for (final entry in _allClasses.entries) {
         late final clMapper = entry.key;
@@ -551,7 +572,7 @@ expect(
 
       if (isLast) {
         // Format the code
-        await formatting();
+        await formattingAndRunTests();
       }
     } on Exception catch (error, stackTrace) {
       final errormessage = '''
@@ -560,7 +581,7 @@ inputId: ${buildStep.inputId}
 stackTrace:
 $stackTrace''';
       // the shutdown of the builder
-      errorNotification(errormessage);
+      exitWitErrorCode(errormessage);
       // Handle error when analyzing the file
       throw Exception(errormessage);
     }
@@ -624,7 +645,7 @@ $stackTrace''';
         const errormessage =
             'Error: Unable to get analysis of the generated file';
         // the shutdown of the builder
-        errorNotification(errormessage);
+        exitWitErrorCode(errormessage);
         // If the result is not a ResolvedUnitResult, handle the error or take other actions
         throw Exception(errormessage);
       }
@@ -632,7 +653,7 @@ $stackTrace''';
     } catch (e) {
       final errormessage = 'Error analyzing the generated file: $e';
       // the shutdown of the builder
-      errorNotification(errormessage);
+      exitWitErrorCode(errormessage);
       // Handle error when analyzing the file
       throw Exception(errormessage);
     }
@@ -685,7 +706,7 @@ abstract base class DataGenerator {
         // Throw an exception for unsupported data types
         final errormessage = 'dataByType $type is not supported';
         // the shutdown of the builder
-        errorNotification(errormessage);
+        exitWitErrorCode(errormessage);
         // Handle error when analyzing the file
         throw Exception(errormessage);
     }

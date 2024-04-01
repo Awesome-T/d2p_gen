@@ -45,13 +45,13 @@ class UnionProtoBuilder implements Builder {
         final errormessage =
             'Exception: $error\n${buildStep.inputId}\n$stackTrace';
         // the shutdown of the builder
-        errorNotification(errormessage);
+        exitWitErrorCode(errormessage);
       });
     } catch (error, stackTrace) {
       final errormessage =
           'Exception: $error\n${buildStep.inputId}\n$stackTrace';
       // the shutdown of the builder
-      errorNotification(errormessage);
+      exitWitErrorCode(errormessage);
     }
   }
 
