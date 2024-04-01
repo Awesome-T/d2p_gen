@@ -180,9 +180,10 @@ packages:
   d2p_gen:
     dependency: "direct main"
     description:
-      path: ".."
-      relative: true
-    source: path
+      name: d2p_gen
+      sha256: "14ae01b7f30a686e9755edc5b1824a7c149de095fb61da1d0c54c3c9bfe01630"
+      url: "https://pub.dev"
+    source: hosted
     version: "1.0.2"
   dart_style:
     dependency: transitive
