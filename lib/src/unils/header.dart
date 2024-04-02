@@ -2,9 +2,6 @@
 const NAME_PROTO_PACKAGE = 'messages';
 const _SYNTAX = 'proto3';
 
-///
-const PATH_TO_DTO = 'lib/generated/proto';
-
 final String header = '''
 syntax = "$_SYNTAX";
 package $NAME_PROTO_PACKAGE;

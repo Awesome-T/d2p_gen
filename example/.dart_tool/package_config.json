@@ -135,7 +135,7 @@
     },
     {
       "name": "d2p_gen",
-      "rootUri": "file:///Users/shentsov1988gmail.com/.pub-cache/hosted/pub.dev/d2p_gen-1.0.2",
+      "rootUri": "file:///Users/shentsov1988gmail.com/.pub-cache/hosted/pub.dev/d2p_gen-1.0.3",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
@@ -464,13 +464,13 @@
       "languageVersion": "2.19"
     },
     {
-      "name": "exap",
+      "name": "example",
       "rootUri": "../",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     }
   ],
-  "generated": "2024-04-01T08:22:18.517783Z",
+  "generated": "2024-04-02T04:48:00.634823Z",
   "generator": "pub",
   "generatorVersion": "3.4.0-282.0.dev",
   "flutterRoot": "file:///Users/shentsov1988gmail.com/development/flutter",

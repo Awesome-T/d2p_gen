@@ -57,10 +57,10 @@ base class MapperBuilder extends Builder with ValueReader {
 
       //
       final buf = StringBuffer();
-      final classes2 = extractClassConstructors(annotatedElements);
-      final enums2 = extractEnumConstructors(annotatedElements);
+      final cClasses = extractClassConstructors(annotatedElements);
+      final cEmuns = extractEnumConstructors(annotatedElements);
       //
-      final outerImports = classes2.values
+      final outerImports = cClasses.values
           .expand((final List<ConstructorElement> cl) => cl.expand(
               (final ConstructorElement constrictor) => constrictor.parameters.expand(
                   (final ParameterElement e) => e.type.allGenericTypes.isNotEmpty
@@ -91,8 +91,8 @@ base class MapperBuilder extends Builder with ValueReader {
 
       // writing into buffer
       <String?>[
-        MapperClassBuilder(classes2).content(),
-        MapperEnumBuilder(enums2).content(),
+        MapperClassBuilder(cClasses).content(),
+        MapperEnumBuilder(cEmuns).content(),
       ].nonNulls.forEach(buf.writeln);
 
       //
@@ -104,9 +104,9 @@ base class MapperBuilder extends Builder with ValueReader {
       if (lineCount > 3) {
         final result = buf.toString();
         buf.clear();
-        // *
+        //
         await _createMapperFile(buildStep, result);
-        // *
+        //
         final _util = FideTmpUtils(buildStep.inputId.package);
         final islast = await _util.decrementing(OutputFormats.cMp.val);
         if (islast) {
@@ -539,7 +539,7 @@ base class MapperClassBuilder
               : '''${element.name}.values.firstWhere((e) => e.name.toLowerCase()==$pathToField.$name.name.toLowerCase())''';
         default:
           final errormessage =
-              'Exception  invalid type ${element?.displayName}\npath: ${element?.librarySource?.uri.path}\n';
+              'Exception invalid type ${element?.displayName}\npath: ${element?.librarySource?.uri.path}\n';
           // the shutdown of the builder
           exitWitErrorCode(errormessage);
           throw Exception(errormessage);

@@ -1,8 +1,8 @@
-import 'package:exap/generated/proto/messages.g.pb.dart';
+import 'package:example/generated/proto/messages.g.pb.dart';
 import 'dart:convert';
 import 'package:test/test.dart';
-import 'package:exap/models/fr_union.mp.dart';
-import 'package:exap/models/fr_union.dart';
+import 'package:example/models/fr_union.mp.dart';
+import 'package:example/models/fr_union.dart';
 
 void main() {
   group(r'Testing $MapperFreezedCl', () {
@@ -13,7 +13,7 @@ void main() {
           () {
         // Arrange - Setup facts, Put Expected outputs or Initialize
         final model = ErrorDetails(
-          'kovQnvg8WmDPwSOiLUkt2Z7NXaI8f',
+          null,
         );
 
         // Act - Call the function that is to be tested
@@ -82,8 +82,8 @@ void main() {
           () {
         // Arrange - Setup facts, Put Expected outputs or Initialize
         final model = Complex(
-          82,
-          '3zdu6z3k59Rz6ZQl32CgzCwP',
+          80,
+          'FdS3SAZLaqgEeHcWcmcst71qfA7eEsc4rOKLPhgf',
         );
 
         // Act - Call the function that is to be tested
@@ -116,8 +116,8 @@ void main() {
         // Arrange - Setup facts, Put Expected outputs or Initialize
         final dto = DTOFreezedCl_Union(
             complex: DTOComplex(
-          a: 69,
-          b: '3c0jhXBMTSYKRLhBKWeS0M8hN',
+          a: 89,
+          b: '7OkYsk5CmKK7DyEOJDfieEfyvdHCKGpJmM8y5SgCAZnhmhSc62U',
         ));
 
         // Act - Call the function that is to be tested

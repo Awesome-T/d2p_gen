@@ -19,7 +19,7 @@ export 'messages.g.pbenum.dart';
 
 ///
 /// class: AbsFactories.first
-/// Source: 'package:/exap/lib/models/abstract_factories.dart';
+/// Source: 'package:/example/lib/models/abstract_factories.dart';
 class DTOAbsSecond extends $pb.GeneratedMessage {
   factory DTOAbsSecond({
     $core.String? a,
@@ -120,7 +120,7 @@ class DTOAbsSecond extends $pb.GeneratedMessage {
 
 ///
 /// class: AbsFactories.second
-/// Source: 'package:/exap/lib/models/abstract_factories.dart';
+/// Source: 'package:/example/lib/models/abstract_factories.dart';
 class DTOAbsTherd extends $pb.GeneratedMessage {
   factory DTOAbsTherd({
     $core.String? d,
@@ -287,7 +287,7 @@ class DTOAbsFactories_Union extends $pb.GeneratedMessage {
 
 ///
 /// class: CarModel
-/// Source: 'package:/exap/lib/models/auto.dart';
+/// Source: 'package:/example/lib/models/auto.dart';
 class DTOCarModel extends $pb.GeneratedMessage {
   factory DTOCarModel({
     $core.String? produsedAt,
@@ -492,7 +492,7 @@ class DTOCarModel extends $pb.GeneratedMessage {
 
 ///
 /// class: Automakers
-/// Source: 'package:/exap/lib/models/auto.dart';
+/// Source: 'package:/example/lib/models/auto.dart';
 class DTOAutomakers extends $pb.GeneratedMessage {
   factory DTOAutomakers({
     $core.Iterable<$core.String>? brands,
@@ -584,7 +584,7 @@ class DTOAutomakers extends $pb.GeneratedMessage {
 
 ///
 /// class: Brand
-/// Source: 'package:/exap/lib/models/auto.dart';
+/// Source: 'package:/example/lib/models/auto.dart';
 class DTOBrand extends $pb.GeneratedMessage {
   factory DTOBrand({
     $core.String? name,
@@ -657,7 +657,7 @@ class DTOBrand extends $pb.GeneratedMessage {
 
 ///
 /// class: BodyStyle.sUv
-/// Source: 'package:/exap/lib/models/auto.dart';
+/// Source: 'package:/example/lib/models/auto.dart';
 class DTOSuV extends $pb.GeneratedMessage {
   factory DTOSuV({
     $core.bool? is4WD,
@@ -720,7 +720,7 @@ class DTOSuV extends $pb.GeneratedMessage {
 
 ///
 /// class: BodyStyle.coupe
-/// Source: 'package:/exap/lib/models/auto.dart';
+/// Source: 'package:/example/lib/models/auto.dart';
 class DTOCoupe extends $pb.GeneratedMessage {
   factory DTOCoupe({
     $core.bool? isFoldingRoof,
@@ -783,7 +783,7 @@ class DTOCoupe extends $pb.GeneratedMessage {
 
 ///
 /// class: BodyStyle.pickup
-/// Source: 'package:/exap/lib/models/auto.dart';
+/// Source: 'package:/example/lib/models/auto.dart';
 class DTOPickup extends $pb.GeneratedMessage {
   factory DTOPickup({
     $core.double? cargoSpace,
@@ -970,7 +970,7 @@ class DTOBodyStyle_Union extends $pb.GeneratedMessage {
 
 ///
 /// class: GasolineEngine
-/// Source: 'package:/exap/lib/models/auto.dart';
+/// Source: 'package:/example/lib/models/auto.dart';
 class DTOGasolineEngine extends $pb.GeneratedMessage {
   factory DTOGasolineEngine({
     $core.int? hp,
@@ -1055,7 +1055,7 @@ class DTOGasolineEngine extends $pb.GeneratedMessage {
 
 ///
 /// class: DiselEngine
-/// Source: 'package:/exap/lib/models/auto.dart';
+/// Source: 'package:/example/lib/models/auto.dart';
 class DTODiselEngine extends $pb.GeneratedMessage {
   factory DTODiselEngine({
     $core.int? hp,
@@ -1140,7 +1140,7 @@ class DTODiselEngine extends $pb.GeneratedMessage {
 
 ///
 /// class: ElectricEngine
-/// Source: 'package:/exap/lib/models/auto.dart';
+/// Source: 'package:/example/lib/models/auto.dart';
 class DTOElectricEngine extends $pb.GeneratedMessage {
   factory DTOElectricEngine({
     $core.int? hp,
@@ -1333,7 +1333,7 @@ class DTOEngine_Union extends $pb.GeneratedMessage {
 
 ///
 /// class: User
-/// Source: 'package:/exap/lib/models/model.dart';
+/// Source: 'package:/example/lib/models/model.dart';
 class DTOUser extends $pb.GeneratedMessage {
   factory DTOUser({
     $core.String? name,
@@ -1414,7 +1414,7 @@ class DTOUser extends $pb.GeneratedMessage {
 
 ///
 /// class: Person
-/// Source: 'package:/exap/lib/models/model.dart';
+/// Source: 'package:/example/lib/models/model.dart';
 class DTOPerson extends $pb.GeneratedMessage {
   factory DTOPerson({
     $core.String? createdAt,
@@ -1487,7 +1487,7 @@ class DTOPerson extends $pb.GeneratedMessage {
 
 ///
 /// class: Blah
-/// Source: 'package:/exap/lib/models/model.dart';
+/// Source: 'package:/example/lib/models/model.dart';
 class DTOBlah extends $pb.GeneratedMessage {
   factory DTOBlah({
     $core.String? id,
@@ -1631,7 +1631,7 @@ class DTOBlah extends $pb.GeneratedMessage {
 
 ///
 /// class: FreezedCl.error
-/// Source: 'package:/exap/lib/models/fr_union.dart';
+/// Source: 'package:/example/lib/models/fr_union.dart';
 class DTOErrorDetails extends $pb.GeneratedMessage {
   factory DTOErrorDetails({
     $core.String? message,
@@ -1696,7 +1696,7 @@ class DTOErrorDetails extends $pb.GeneratedMessage {
 
 ///
 /// class: FreezedCl.complex
-/// Source: 'package:/exap/lib/models/fr_union.dart';
+/// Source: 'package:/example/lib/models/fr_union.dart';
 class DTOComplex extends $pb.GeneratedMessage {
   factory DTOComplex({
     $core.int? a,
@@ -1878,7 +1878,7 @@ class DTOFreezedCl_Union extends $pb.GeneratedMessage {
 
 ///
 /// class: Cow
-/// Source: 'package:/exap/lib/models/sealeds.dart';
+/// Source: 'package:/example/lib/models/sealeds.dart';
 class DTOCow extends $pb.GeneratedMessage {
   factory DTOCow({
     $core.Iterable<$core.String>? dates,
@@ -2024,7 +2024,7 @@ class DTOCow extends $pb.GeneratedMessage {
 
 ///
 /// class: Sheep
-/// Source: 'package:/exap/lib/models/sealeds.dart';
+/// Source: 'package:/example/lib/models/sealeds.dart';
 class DTOSheep extends $pb.GeneratedMessage {
   factory DTOSheep({
     $core.String? one,
@@ -2087,7 +2087,7 @@ class DTOSheep extends $pb.GeneratedMessage {
 
 ///
 /// class: Pig
-/// Source: 'package:/exap/lib/models/sealeds.dart';
+/// Source: 'package:/example/lib/models/sealeds.dart';
 class DTOPig extends $pb.GeneratedMessage {
   factory DTOPig({
     $core.double? se,

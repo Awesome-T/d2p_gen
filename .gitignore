@@ -3,6 +3,7 @@
 .packages
 reports/
 coverage/
+.dart_tool/ 
 # Common build output
 /*/build/
 

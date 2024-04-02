@@ -50,6 +50,194 @@
 
   <div id="dartdoc-main-content" class="main-content">
       
+<section class="desc markdown">
+  <h1 id="d2p_gen">d2p_gen</h1>
+<p>The "d2p_proto" Dart package facilitates the automatic generation of protocol buffer files (.proto) by leveraging Dart code annotations provided by the <a href="https://github.com/Awesome-T/d2p_annotation">d2p_annotation</a> package. It streamlines the process of creating .g.proto files, mappers, and associated tests, enhancing the efficiency of working with protocol buffers in Dart projects.</p>
+<h2 id="reason">Reason</h2>
+<p>Protocol Buffers (Proto) provides a compact representation of data, reducing the size of transmitted messages by up to 3-5 times compared to JSON. With more efficient serialization and deserialization, using Proto speeds up data exchange by 30-40%. Proto's data typing and strict schema simplify development and provide more robust data validation, making it the preferred choice for distributed systems.</p>
+<h2 id="installation">Installation</h2>
+<p>To use <a href="d2p_gen/d2p_gen-library.html">d2p_gen</a>, you will need your typical <code>build_runner</code>/code-generator setup.<br>
+First, install <code>build_runner</code> and <a href="d2p_gen/d2p_gen-library.html">d2p_gen</a> by adding them to your <code>pubspec.yaml</code> file:</p>
+<pre class="language-yaml"><code class="language-yaml">dependencies:
+ d2p_annotation: any
+ # other dependencies
+dev_dependencies:
+  d2p_gen: any
+</code></pre>
+<p>Alternativies for install the package - run conamd folowwing comand:</p>
+<ul>
+<li>For a Flutter project:</li>
+</ul>
+<pre class="language-console"><code class="language-console">flutter pub add d2p_annotation
+flutter pub add dev:build_runner
+flutter pub add dev:d2p_gen
+</code></pre>
+<ul>
+<li>-For a Dart project:</li>
+</ul>
+<pre class="language-console"><code class="language-console">dart pub add d2p_annotation
+dart pub add dev:build_runner
+dart pub add dev:d2p_gen
+</code></pre>
+<h2 id="annotation">Annotation</h2>
+<p>Place annotations under the classes that you prefer to receive notifications from.</p>
+<pre class="language-dart"><code class="language-dart">
+import 'package:d2p_annotation/d2p_annotation.dart';
+
+@ProtoGen(createMappers: false)
+class User {
+  final String name;
+  final int age;
+  const User(this.name, this.age);
+}
+</code></pre>
+<p>run the following command:</p>
+<pre class="language-bash"><code class="language-bash">dart run build_runner build
+</code></pre>
+<p>This package create a new foldeer at the root directory of project proto with single file <code>messages.g.proto</code> with all of your proto messeges. For this class it will look like this:</p>
+<pre class="language-proto"><code class="language-proto">syntax = "proto3";
+package messages;
+// -- Some other messages.
+/*
+  class: User
+*/
+  message DTOUser {
+    // String User.name
+    string name = 1;
+    // int User.age
+    int32 age = 2;
+  }
+
+</code></pre>
+<p>If you use the <code>@ProtoGen</code> annotation with the <code>createMappers</code> option set to <code>true</code>, you will also get a mapper class that can convert the generated Dart code into the model class and vice versa. These mapper classes are always saved in separate files with a <code>.mp.dart</code> extension.</p>
+<pre class="language-dart"><code class="language-dart">/// Mapper that converts a DTO [DTOUser] object
+/// into a Model [User] and back.
+abstract class $MapperUser {
+  /// Converts the model [User]
+  /// to the DTO [DTOUser].
+  static User fromDTO(DTOUser model) {
+    try {
+      return User(
+        model.name,
+        model.age,
+      );
+    } on FormatException catch (e, trace) {
+      throw FormatException(
+        '''Exception
+      ${e.source}
+      ${e.message}
+      $trace''',
+      );
+    }
+  }
+
+  /// Converts the model [User]
+  /// to the DTO [DTOUser]
+  static DTOUser toDTO(User model) {
+    try {
+      return DTOUser(
+        name: model.name,
+        age: model.age,
+      );
+    } on FormatException catch (e, trace) {
+      throw FormatException(
+        '''Exception
+      ${e.source}
+      ${e.message}
+      $trace''',
+      );
+    }
+  }
+}
+</code></pre>
+<p>In order to ensure that the mapper function operates correctly, the tool also generates a test case for each mapper function.</p>
+<pre class="language-dart"><code class="language-dart">
+  group(r'Testing $MapperUser methods', () {
+// Test the toDTO method (which returns a DTO class)
+    test(r'$MapperUser.toDTO Output class User should be DTOUser', () {
+      // Arrange - Setup facts, Put Expected outputs or Initialize
+      final model = User(
+        'ZymI7ohW2Dq9XeUE',
+        49,
+      );
+
+      // Act - Call the function that is to be tested
+      final dto = $MapperUser.toDTO(model);
+
+      // Assert - Compare the actual result and expected result
+      // Check if the output is of the expected type
+      expect(
+        dto,
+        TypeMatcher&lt;DTOUser&gt;(),
+        reason: 'The output should be of type DTOUser',
+      );
+// Check if the output is not null
+      expect(
+        dto,
+        isNotNull,
+        reason: 'The output must not be null',
+      );
+// Check if the output is not an exception
+      expect(
+        dto,
+        isNot(isException),
+        reason: 'The output must not be an exception',
+      );
+    });
+
+// Test the fromDTO method (which returns a dart data class or enum)
+    test(r'$MapperUser.fromDTO Output class User should be User', () {
+      // Arrange - Setup facts, Put Expected outputs or Initialize
+      final dto = DTOUser(
+        name: '8O',
+        age: 48,
+      );
+
+      // Act - Call the function that is to be tested
+      final model = $MapperUser.fromDTO(dto);
+
+      // Assert - Compare the actual result and expected result
+      // Check if the output is of the expected type
+      expect(
+        model,
+        TypeMatcher&lt;User&gt;(),
+        reason: 'The output should be of type User',
+      );
+// Check if the output is not null
+      expect(
+        model,
+        isNotNull,
+        reason: 'The output must not be null',
+      );
+// Check if the output is not an exception
+      expect(
+        model,
+        isNot(isException),
+        reason: 'The output must not be an exception',
+      );
+    });
+  });
+</code></pre>
+<p>Once all relevant files have been created, the testing of the mapper will begin automatically. You will then see a screen similar to the one below.</p>
+<pre class="language-console"><code class="language-console">🎉 2 tests passed.
+</code></pre>
+<h3 id="table-of-comparison-of-dart-types-to-proto-which-is-implemented-by-the-package">Table of comparison of Dart types to Proto which is implemented by the package</h3>
+<pre class="language-dart"><code>            | proto3   | dart     |
+            |----------|----------|
+            | double   | double   |
+            | double   | mun      |
+            | Int64    | int      |
+            | bool     | bool     |
+            | string   | String   |
+            | string   | Map      |
+            | enum     | enum     |
+            | repeated | Iterables|
+</code></pre>
+<blockquote>
+<p>Full comparison of proto types to programming languages on the official website <a href="https://protobuf.dev/programming-guides/proto3/#scalar">website</a></p>
+</blockquote>
+ <!-- > It's not a -->
+</section>
 
 
       <section class="summary">
@@ -96,7 +284,7 @@
 <footer>
   <span class="no-break">
     d2p_gen
-      0.0.1
+      1.0.3
   </span>
 
   

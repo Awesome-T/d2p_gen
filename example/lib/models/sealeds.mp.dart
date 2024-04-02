@@ -1,7 +1,7 @@
 import 'dart:convert';
 import '../generated/proto/messages.g.pb.dart';
-import 'package:exap/models/sealeds.dart';
-import 'package:exap/models/sealeds.mp.dart';
+import 'package:example/models/sealeds.dart';
+import 'package:example/models/sealeds.mp.dart';
 
 /// Mapper that converts a DTO [DTOAnimal_Union] object
 /// into a Model [Animal] and back.

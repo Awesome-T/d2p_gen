@@ -1,7 +1,7 @@
 import 'dart:convert';
 import '../generated/proto/messages.g.pb.dart';
-import 'package:exap/models/abstract_factories.dart';
-import 'package:exap/models/abstract_factories.mp.dart';
+import 'package:example/models/abstract_factories.dart';
+import 'package:example/models/abstract_factories.mp.dart';
 
 /// Mapper that converts a DTO [DTOAbsFactories_Union] object
 /// into a Model [AbsFactories] and back.

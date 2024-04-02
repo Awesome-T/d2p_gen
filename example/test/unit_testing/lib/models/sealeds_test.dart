@@ -1,8 +1,8 @@
-import 'package:exap/generated/proto/messages.g.pb.dart';
+import 'package:example/generated/proto/messages.g.pb.dart';
 import 'dart:convert';
 import 'package:test/test.dart';
-import 'package:exap/models/sealeds.mp.dart';
-import 'package:exap/models/sealeds.dart';
+import 'package:example/models/sealeds.mp.dart';
+import 'package:example/models/sealeds.dart';
 
 void main() {
   group(r'Testing $MapperAnimal', () {
@@ -14,8 +14,8 @@ void main() {
         final model = Cow(
           <DateTime>[],
           false,
-          weight: 0.1180511260342535,
-          height: 43,
+          weight: 0.5930264211568259,
+          height: 32,
           nullableString: null,
           nullableDateTime: DateTime.now(),
         );
@@ -50,10 +50,10 @@ void main() {
         final dto = DTOAnimal_Union(
             cow: DTOCow(
           dates: <String>[],
-          bolean: false,
-          weight: 0.453621192555721,
-          height: 67,
-          nullableString: '99n6Ft1OmIEXu4xQx7OZyiaB',
+          bolean: true,
+          weight: 0.9655139846539936,
+          height: null,
+          nullableString: 'jpndOhZvaRBz',
           nullableDateTime: DateTime.now().toIso8601String(),
         ));
 
@@ -88,7 +88,7 @@ void main() {
           () {
         // Arrange - Setup facts, Put Expected outputs or Initialize
         final model = Sheep(
-          one: 'w0ggAmEI181CVneA0fxyZQiUoGi0dOS10rmUhIxdDRkexPEHX52uMe',
+          one: 'PUJpS9',
         );
 
         // Act - Call the function that is to be tested
@@ -120,7 +120,7 @@ void main() {
         // Arrange - Setup facts, Put Expected outputs or Initialize
         final dto = DTOAnimal_Union(
             sheep: DTOSheep(
-          one: 'vXKzQ8Hs9s7nXDv',
+          one: 'G2CBkzZDWs3nUdqLL7wBYE6jDKqRuNRYJIsPozykxJhBLJJ',
         ));
 
         // Act - Call the function that is to be tested
@@ -154,7 +154,7 @@ void main() {
           () {
         // Arrange - Setup facts, Put Expected outputs or Initialize
         final model = Pig(
-          se: 0.5708273668218932,
+          se: 0.5304609751619191,
         );
 
         // Act - Call the function that is to be tested
@@ -186,7 +186,7 @@ void main() {
         // Arrange - Setup facts, Put Expected outputs or Initialize
         final dto = DTOAnimal_Union(
             pig: DTOPig(
-          se: 0.30239266732418424,
+          se: 0.8509473234227716,
         ));
 
         // Act - Call the function that is to be tested

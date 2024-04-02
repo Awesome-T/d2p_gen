@@ -1,7 +1,7 @@
 import 'dart:convert';
 import '../generated/proto/messages.g.pb.dart';
-import 'package:exap/models/model.dart';
-import 'package:exap/models/model.mp.dart';
+import 'package:example/models/model.dart';
+import 'package:example/models/model.mp.dart';
 
 /// Mapper that converts a DTO [DTOUser] object
 /// into a Model [User] and back.

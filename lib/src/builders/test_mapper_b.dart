@@ -45,7 +45,7 @@ base class TestBuilder extends Builder with ValueReader {
     final BuildStep buildStep,
     final String result,
   ) async {
-    final newPathSegments = [
+    final newPathSegments = <String>[
       'test',
       'unit_testing',
       ...buildStep.inputId.pathSegments
@@ -60,9 +60,11 @@ base class TestBuilder extends Builder with ValueReader {
           AssetId(buildStep.inputId.package, newPath), result);
     } catch (error) {
       if (error is InvalidOutputException) {
-        throw InvalidOutputException(buildStep.inputId, result);
+        exitWitErrorCode(
+            '$runtimeType\nerror InvalidOutputException ${error.message}  ${error.assetId}');
       } else if (error is PackageNotFoundException) {
-        throw PackageNotFoundException(error.name);
+        exitWitErrorCode(
+            '$runtimeType\nerror PackageNotFoundException ${error.name}');
       } else {
         exitWitErrorCode('$runtimeType\nerror $error');
       }
@@ -438,7 +440,7 @@ expect(
               },
             );
           }
-          // 
+          //
           else {
             await runProtoC();
           }

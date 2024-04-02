@@ -52,7 +52,7 @@ option objc_class_prefix = "RTG";
 //                           repeated |   Iterables
 //                           string   |   DateTime                           
 // **************************************************************************
-// Generated At at 2024-04-01 08:12:17.678606Z
+// Generated At at 2024-04-02 04:36:40.646789Z
 
 /*
       google/protobuf/empty.proto 
@@ -82,7 +82,7 @@ option objc_class_prefix = "RTG";
 
 /**
     Enum Corpus
-    Source: 'package:/exap/lib/models/enums.dart';
+    Source: 'package:/example/lib/models/enums.dart';
 */
 enum DTOCorpus {
    CORPUS_UNSPECIFIED = 0;
@@ -99,7 +99,7 @@ enum DTOCorpus {
 
 /*
   class: AbsFactories.first
-  Source: 'package:/exap/lib/models/abstract_factories.dart';
+  Source: 'package:/example/lib/models/abstract_factories.dart';
 */
   message DTOAbsSecond {
     // String AbsSecond.a
@@ -112,7 +112,7 @@ enum DTOCorpus {
 
 /*
   class: AbsFactories.second
-  Source: 'package:/exap/lib/models/abstract_factories.dart';
+  Source: 'package:/example/lib/models/abstract_factories.dart';
 */
   message DTOAbsTherd {
     // String AbsTherd.d
@@ -136,7 +136,7 @@ enum DTOCorpus {
 
 /*
   class: CarModel
-  Source: 'package:/exap/lib/models/auto.dart';
+  Source: 'package:/example/lib/models/auto.dart';
 */
   message DTOCarModel {
     // DateTime CarModel.produsedAt
@@ -161,7 +161,7 @@ enum DTOCorpus {
 
 /*
   class: Automakers
-  Source: 'package:/exap/lib/models/auto.dart';
+  Source: 'package:/example/lib/models/auto.dart';
 */
   message DTOAutomakers {
     // List<String> Automakers.brands
@@ -174,7 +174,7 @@ enum DTOCorpus {
 
 /*
   class: Brand
-  Source: 'package:/exap/lib/models/auto.dart';
+  Source: 'package:/example/lib/models/auto.dart';
 */
   message DTOBrand {
     // String Brand.name
@@ -185,7 +185,7 @@ enum DTOCorpus {
 
 /*
   class: BodyStyle.sUv
-  Source: 'package:/exap/lib/models/auto.dart';
+  Source: 'package:/example/lib/models/auto.dart';
 */
   message DTOSuV {
     // bool SuV.is4WD
@@ -194,7 +194,7 @@ enum DTOCorpus {
 
 /*
   class: BodyStyle.coupe
-  Source: 'package:/exap/lib/models/auto.dart';
+  Source: 'package:/example/lib/models/auto.dart';
 */
   message DTOCoupe {
     // bool Coupe.isFoldingRoof
@@ -203,7 +203,7 @@ enum DTOCorpus {
 
 /*
   class: BodyStyle.pickup
-  Source: 'package:/exap/lib/models/auto.dart';
+  Source: 'package:/example/lib/models/auto.dart';
 */
   message DTOPickup {
     // double Pickup.cargoSpace
@@ -227,7 +227,7 @@ enum DTOCorpus {
 
 /*
   class: GasolineEngine
-  Source: 'package:/exap/lib/models/auto.dart';
+  Source: 'package:/example/lib/models/auto.dart';
 */
   message DTOGasolineEngine {
     // int GasolineEngine.hp
@@ -238,7 +238,7 @@ enum DTOCorpus {
 
 /*
   class: DiselEngine
-  Source: 'package:/exap/lib/models/auto.dart';
+  Source: 'package:/example/lib/models/auto.dart';
 */
   message DTODiselEngine {
     // int DiselEngine.hp
@@ -249,7 +249,7 @@ enum DTOCorpus {
 
 /*
   class: ElectricEngine
-  Source: 'package:/exap/lib/models/auto.dart';
+  Source: 'package:/example/lib/models/auto.dart';
 */
   message DTOElectricEngine {
     // int ElectricEngine.hp
@@ -274,7 +274,7 @@ enum DTOCorpus {
 
 /**
     Enum Gears
-    Source: 'package:/exap/lib/models/auto.dart';
+    Source: 'package:/example/lib/models/auto.dart';
 */
 enum DTOGears {
    NAMUAL = 0;
@@ -283,7 +283,7 @@ enum DTOGears {
 
 /**
     Enum Colors
-    Source: 'package:/exap/lib/models/auto.dart';
+    Source: 'package:/example/lib/models/auto.dart';
 */
 enum DTOColors {
    RED = 0;
@@ -297,7 +297,7 @@ enum DTOColors {
 
 /*
   class: User
-  Source: 'package:/exap/lib/models/model.dart';
+  Source: 'package:/example/lib/models/model.dart';
 */
   message DTOUser {
     // String User.name
@@ -308,7 +308,7 @@ enum DTOColors {
 
 /*
   class: Person
-  Source: 'package:/exap/lib/models/model.dart';
+  Source: 'package:/example/lib/models/model.dart';
 */
   message DTOPerson {
     // DateTime Person.createdAt
@@ -319,7 +319,7 @@ enum DTOColors {
 
 /*
   class: Blah
-  Source: 'package:/exap/lib/models/model.dart';
+  Source: 'package:/example/lib/models/model.dart';
 */
   message DTOBlah {
     // String Blah.id
@@ -340,7 +340,7 @@ enum DTOColors {
 
 /*
   class: FreezedCl.error
-  Source: 'package:/exap/lib/models/fr_union.dart';
+  Source: 'package:/example/lib/models/fr_union.dart';
 */
   message DTOErrorDetails {
     // String? ErrorDetails.message
@@ -349,7 +349,7 @@ enum DTOColors {
 
 /*
   class: FreezedCl.complex
-  Source: 'package:/exap/lib/models/fr_union.dart';
+  Source: 'package:/example/lib/models/fr_union.dart';
 */
   message DTOComplex {
     // int Complex.a
@@ -375,7 +375,7 @@ enum DTOColors {
 
 /*
   class: Cow
-  Source: 'package:/exap/lib/models/sealeds.dart';
+  Source: 'package:/example/lib/models/sealeds.dart';
 */
   message DTOCow {
     // List<DateTime>? Cow.dates
@@ -394,7 +394,7 @@ enum DTOColors {
 
 /*
   class: Sheep
-  Source: 'package:/exap/lib/models/sealeds.dart';
+  Source: 'package:/example/lib/models/sealeds.dart';
 */
   message DTOSheep {
     // String Sheep.one
@@ -403,7 +403,7 @@ enum DTOColors {
 
 /*
   class: Pig
-  Source: 'package:/exap/lib/models/sealeds.dart';
+  Source: 'package:/example/lib/models/sealeds.dart';
 */
   message DTOPig {
     // double Pig.se

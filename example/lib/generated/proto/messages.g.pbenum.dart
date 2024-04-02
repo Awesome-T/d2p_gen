@@ -15,7 +15,7 @@ import 'package:protobuf/protobuf.dart' as $pb;
 
 /// *
 /// Enum Corpus
-/// Source: 'package:/exap/lib/models/enums.dart';
+/// Source: 'package:/example/lib/models/enums.dart';
 class DTOCorpus extends $pb.ProtobufEnum {
   static const DTOCorpus CORPUS_UNSPECIFIED =
       DTOCorpus._(0, _omitEnumNames ? '' : 'CORPUS_UNSPECIFIED');
@@ -54,7 +54,7 @@ class DTOCorpus extends $pb.ProtobufEnum {
 
 /// *
 /// Enum Gears
-/// Source: 'package:/exap/lib/models/auto.dart';
+/// Source: 'package:/example/lib/models/auto.dart';
 class DTOGears extends $pb.ProtobufEnum {
   static const DTOGears NAMUAL = DTOGears._(0, _omitEnumNames ? '' : 'NAMUAL');
   static const DTOGears AUTO = DTOGears._(1, _omitEnumNames ? '' : 'AUTO');
@@ -73,7 +73,7 @@ class DTOGears extends $pb.ProtobufEnum {
 
 /// *
 /// Enum Colors
-/// Source: 'package:/exap/lib/models/auto.dart';
+/// Source: 'package:/example/lib/models/auto.dart';
 class DTOColors extends $pb.ProtobufEnum {
   static const DTOColors RED = DTOColors._(0, _omitEnumNames ? '' : 'RED');
   static const DTOColors BLUE = DTOColors._(1, _omitEnumNames ? '' : 'BLUE');

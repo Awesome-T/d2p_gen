@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:build/build.dart';
 import 'package:glob/glob.dart';
 
-import '../unils/protoc_exeption.dart';
 import '../unils/header.dart';
+import '../unils/protoc_exeption.dart';
 
 /// The UnionProtoBuilder class, implementing the Builder interface,
 /// facilitates the automated generation of proto files during the

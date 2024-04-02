@@ -181,10 +181,10 @@ packages:
     dependency: "direct main"
     description:
       name: d2p_gen
-      sha256: "14ae01b7f30a686e9755edc5b1824a7c149de095fb61da1d0c54c3c9bfe01630"
+      sha256: "634c0e48a2a7f8778c8003fb7e71de654ed2b656c179632e753928ecd805b779"
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.2"
+    version: "1.0.3"
   dart_style:
     dependency: transitive
     description:

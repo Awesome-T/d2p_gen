@@ -1,8 +1,8 @@
-import 'package:exap/generated/proto/messages.g.pb.dart';
+import 'package:example/generated/proto/messages.g.pb.dart';
 import 'dart:convert';
 import 'package:test/test.dart';
-import 'package:exap/models/auto.mp.dart';
-import 'package:exap/models/auto.dart';
+import 'package:example/models/auto.mp.dart';
+import 'package:example/models/auto.dart';
 
 void main() {
   group(r'Testing $MapperCarModel methods', () {
@@ -13,26 +13,25 @@ void main() {
       final model = CarModel(
         DateTime.now(),
         DateTime.now(),
-        'XKORlVReRyXgRn53Pox2mZYlDxhPEOY28IaB9UM4Bwwm00aw2Saiewb',
+        'gtu6OPsTNnx44vS9h5FiSdmVAQENJ0WBic9eiZ2XYuNpi',
         Automakers(
           <String>[],
-          name: 'TKCOwZ9L6wOcrAUYiVc94Ofe6qchoskJoktEYpa',
-          country:
-              'Zt5mm6Omj6m4LlErgVdUl3Zr3YlqIi2URJ1Jhm6gfxT8IZRK7Sldx6occeaF',
+          name: 'hJU6TVsRKEMmNeFlgcLE0MqxYvmO7KFTnFs7ZlxhNohnzrhG09JWH0Ug',
+          country: 'ofJT2XbjRmiBZ0oDWJtEOuWzN2MfJ5TaMYDjmmz5YHiBJVVnBAAm',
         ),
         <BodyStyle>[
           SuV(
-            false,
+            true,
           )
         ],
         variants: <String, int>{
-          'FatbauoVdMxSNkiVjQ5ovEUjeARitdvkn253NvhMN3Y': 1,
+          'RLp71QDY978sYyhCQ65ETi': 76,
         },
-        avalebleColors: Colors.red,
+        avalebleColors: Colors.blue,
         engines: <Engine>[
           GasolineEngine(
-            hp: 10,
-            fuelConsumption: 0.08761657312863302,
+            hp: 0,
+            fuelConsumption: 0.5132069918408657,
           )
         ],
         gear: Gears.auto,
@@ -69,29 +68,29 @@ void main() {
       final dto = DTOCarModel(
         produsedAt: DateTime.now().toIso8601String(),
         dateOfSale: DateTime.now().toIso8601String(),
-        modelName: 'Tk3mYrdgGa0hX1GmPgWf',
+        modelName: 'EYeFwfA7KpZfl3g55qoVg5JqW5NcbKyuI0pqWG2lVoCbYYFutL9lQnN8T',
         produser: DTOAutomakers(
           brands: <String>[],
-          name: 'fWsrEVcrgvB8C4Dh6ww19YQ2vMwtocIDeQqxif',
-          country: 'G31gA4WzzJs1KiLP5Q',
+          name: 'Wecax7DpLOnB5',
+          country: 'FONdFkhLnqU7ArOk3LIh1F5b31cssa0e6IkmrfOF',
         ),
         bodyStyles: <DTOBodyStyle_Union>[
           DTOBodyStyle_Union(
               suv: DTOSuV(
-            is4WD: true,
+            is4WD: false,
           ))
         ],
         variants: jsonEncode(
           <String, int>{
-            '70y0': 72,
+            'Ee8AnHmjn4FqikwYPe2z1mIeb21CeCAssdobLw1RfQF67': 5,
           },
         ),
         avalebleColors: DTOColors.BLACK,
         engines: <DTOEngine_Union>[
           DTOEngine_Union(
               gasolineengine: DTOGasolineEngine(
-            hp: 43,
-            fuelConsumption: 0.580602628362517,
+            hp: 87,
+            fuelConsumption: 0.02977193636464248,
           ))
         ],
         gear: DTOGears.NAMUAL,
@@ -229,7 +228,7 @@ void main() {
         // Arrange - Setup facts, Put Expected outputs or Initialize
         final dto = DTOBodyStyle_Union(
             coupe: DTOCoupe(
-          isFoldingRoof: true,
+          isFoldingRoof: false,
         ));
 
         // Act - Call the function that is to be tested
@@ -264,7 +263,7 @@ void main() {
           () {
         // Arrange - Setup facts, Put Expected outputs or Initialize
         final model = Pickup(
-          cargoSpace: 0.3303057677508753,
+          cargoSpace: 0.9658102659981004,
         );
 
         // Act - Call the function that is to be tested
@@ -297,7 +296,7 @@ void main() {
         // Arrange - Setup facts, Put Expected outputs or Initialize
         final dto = DTOBodyStyle_Union(
             pickup: DTOPickup(
-          cargoSpace: 0.29024685495456015,
+          cargoSpace: 0.6855721423652567,
         ));
 
         // Act - Call the function that is to be tested
@@ -333,8 +332,8 @@ void main() {
           () {
         // Arrange - Setup facts, Put Expected outputs or Initialize
         final model = GasolineEngine(
-          hp: 7,
-          fuelConsumption: 0.34733433062939567,
+          hp: 53,
+          fuelConsumption: 0.8283244313614923,
         );
 
         // Act - Call the function that is to be tested
@@ -368,8 +367,8 @@ void main() {
         // Arrange - Setup facts, Put Expected outputs or Initialize
         final dto = DTOEngine_Union(
             gasolineengine: DTOGasolineEngine(
-          hp: 80,
-          fuelConsumption: 0.4924803527546294,
+          hp: 1,
+          fuelConsumption: 0.5573032091030642,
         ));
 
         // Act - Call the function that is to be tested
@@ -404,8 +403,8 @@ void main() {
           () {
         // Arrange - Setup facts, Put Expected outputs or Initialize
         final model = DiselEngine(
-          hp: 95,
-          fuelConsumption: 0.24361810955077956,
+          hp: 98,
+          fuelConsumption: 0.034762380927869985,
         );
 
         // Act - Call the function that is to be tested
@@ -439,8 +438,8 @@ void main() {
         // Arrange - Setup facts, Put Expected outputs or Initialize
         final dto = DTOEngine_Union(
             diselengine: DTODiselEngine(
-          hp: 40,
-          fuelConsumption: 0.2951769620337168,
+          hp: 9,
+          fuelConsumption: 0.6562174242747567,
         ));
 
         // Act - Call the function that is to be tested
@@ -475,7 +474,7 @@ void main() {
           () {
         // Arrange - Setup facts, Put Expected outputs or Initialize
         final model = ElectricEngine(
-          68,
+          24,
         );
 
         // Act - Call the function that is to be tested
@@ -509,7 +508,7 @@ void main() {
         // Arrange - Setup facts, Put Expected outputs or Initialize
         final dto = DTOEngine_Union(
             electricengine: DTOElectricEngine(
-          hp: 33,
+          hp: 54,
         ));
 
         // Act - Call the function that is to be tested
@@ -545,8 +544,8 @@ void main() {
       // Arrange - Setup facts, Put Expected outputs or Initialize
       final model = Automakers(
         <String>[],
-        name: 'OmUVlqaBVFMvH7Dk104sEJxv',
-        country: 'dbtToUcyr5gUAhyZNubxYviLA31Le9JrD6FVpqo1Wr7lszEC6bd9',
+        name: 'b',
+        country: 'FpoeZ9dJGANmJkCXdo6Whv3xsdvkRi8LHZh',
       );
 
       // Act - Call the function that is to be tested
@@ -580,8 +579,8 @@ void main() {
       // Arrange - Setup facts, Put Expected outputs or Initialize
       final dto = DTOAutomakers(
         brands: <String>[],
-        name: '3GKwZPnqbB0e',
-        country: 'umZMRpgLwi5VibkPwh8d5FxWU9sU9A2SCFUXEGAlzv9j',
+        name: 'FDgwfE0PU8c2Svg41ODTzhevQGnkIYpMXFeCc54LkNevbiEwqI',
+        country: 'GU1v9PGXm',
       );
 
       // Act - Call the function that is to be tested
@@ -614,33 +613,34 @@ void main() {
     test(r'$MapperBrand.toDTO Output class Brand should be DTOBrand', () {
       // Arrange - Setup facts, Put Expected outputs or Initialize
       final model = Brand(
-        name: '2gV4Ra9XU9vev9T1RI6XCgtptY69cIP0RRoqlhTLkUUEpgbnqUUHnZ',
+        name: 'udMrifCffWaH4TJ7gk22SyqDLkeScvfjIQIYEOTO6itPSSCYvm',
         models: <CarModel>[
           CarModel(
             DateTime.now(),
             DateTime.now(),
-            'hxSsqwOe3azVaIYzgTSDWApJa1vRqwFja59HOGr3zAprsnvZVnrMmcwS',
+            '',
             Automakers(
               <String>[],
-              name: 'CdZGc4B3x',
-              country: 'MTPwn6Q7Ms64brs5kZRd18GM',
+              name: '9ZpMkXzyNozcGAKsZMfWu5kivmt98UAOq5JeTCSuqJSOi2AM1eNG',
+              country:
+                  '34I6UUVPJoDV3R0jfTy3rMhPvcGHw0tMtEKrlhKYXnEfwjhsFebAw5ipFM9CK',
             ),
             <BodyStyle>[
               SuV(
-                true,
+                false,
               )
             ],
             variants: <String, int>{
-              'NSgbxFjtjDNPeTcDHadNOvAdZofuoT6OHeDysRko9xZCKxYW4ieUht': 88,
+              'l7tNdLFIbac6tDRv5KvT0FCg4ewSemQwnGptetb8kYPxoJoP9h0QQfD': 65,
             },
-            avalebleColors: Colors.green,
+            avalebleColors: Colors.red,
             engines: <Engine>[
               GasolineEngine(
-                hp: 80,
-                fuelConsumption: 0.5785733413300045,
+                hp: 14,
+                fuelConsumption: 0.701047873672026,
               )
             ],
-            gear: Gears.auto,
+            gear: Gears.namual,
           )
         ],
       );
@@ -673,34 +673,35 @@ void main() {
     test(r'$MapperBrand.fromDTO Output class Brand should be Brand', () {
       // Arrange - Setup facts, Put Expected outputs or Initialize
       final dto = DTOBrand(
-        name: '',
+        name: 'LFcjyHffQlmhNVglwWTP6KXJb6YQj8g7LgZCES9Jo3sMIOO65YRx',
         models: <DTOCarModel>[
           DTOCarModel(
             produsedAt: DateTime.now().toIso8601String(),
             dateOfSale: DateTime.now().toIso8601String(),
-            modelName: 'Nr9a77G5d2re5JREluff3hs73d2BeVMYO33iRyNPKy6e',
+            modelName: 'njbTNjbJD',
             produser: DTOAutomakers(
               brands: <String>[],
-              name: 'kaoGdoLubcpAqtR9SEWbARqhhwqZeN9Vf',
-              country: 'CbRAteaL4U5eei4e4fhHMAjLEUiPKjC9SgA5jbgi9rTG',
+              name: 'lPWSpTmpJUav4Z1',
+              country:
+                  'RSRPWenqVdCtg1HkU2s8nzzAJwFXl87BaOFqG8fnDAK9XNhOWik7gEyMpR2',
             ),
             bodyStyles: <DTOBodyStyle_Union>[
               DTOBodyStyle_Union(
                   suv: DTOSuV(
-                is4WD: true,
+                is4WD: false,
               ))
             ],
             variants: jsonEncode(
               <String, int>{
-                'YXZCBjn2bYQJE4BmO0nQyGCVXTXBt5kZxx0aICwr50HVW1pCj6JQ': 87,
+                'y0aquykEecjsr4T49y4of9kL38LNtuF8DC8Tjqnvg6awa3nvJ8VUP8DY': 17,
               },
             ),
-            avalebleColors: DTOColors.GREEN,
+            avalebleColors: DTOColors.RED,
             engines: <DTOEngine_Union>[
               DTOEngine_Union(
                   gasolineengine: DTOGasolineEngine(
-                hp: 25,
-                fuelConsumption: 0.16975466384081384,
+                hp: 9,
+                fuelConsumption: 0.3753331516886034,
               ))
             ],
             gear: DTOGears.AUTO,

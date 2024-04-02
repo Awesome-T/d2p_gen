@@ -14,8 +14,9 @@ import '../unils/protoc_exeption.dart';
 import '../unils/file_utils.dart';
 import '../unils/header.dart';
 
+// const PATH_TO_DTO = 'lib/generated/proto';
 // proto/messages  'lib/generated';
-final pathToGenDTOdart = Uri(pathSegments: ['lib', 'generated', 'proto']);
+final PATH_TO_DTO = Uri(pathSegments: ['lib', 'generated', 'proto']);
 
 /// A builder class responsible for running the `protoc`
 /// compiler to generate Dart code from protobuf files.
@@ -32,10 +33,12 @@ class ProtocRunner extends Builder {
   FutureOr<void> build(final BuildStep buildStep) async {
     try {
       // Count imports
-      final _impCounting = await _imports([
-        pathToGenDTOdart.pathSegments.first,
-        'src',
-      ]);
+      final _impCounting = await _imports(
+        <String>[
+          PATH_TO_DTO.pathSegments.first,
+          'src',
+        ],
+      );
 
       // Create test directory if it doesn't exist
       testDirCreateIfNotExist();
@@ -47,6 +50,7 @@ class ProtocRunner extends Builder {
 
       await activateProtoc();
 
+      deliteExisingDTOs();
       // Run protoc
       await runProtoC();
 
@@ -60,11 +64,22 @@ class ProtocRunner extends Builder {
   }
 
   ///
+  void deliteExisingDTOs() {
+    final pathToDTO = <String>[PATH_TO_DTO.path, NAME_PROTO_PACKAGE]
+        .join(Platform.pathSeparator);
+    <String>['.g.pb.dart', '.g.pbenum.dart', '.g.pbjson.dart']
+        .forEach((final e) {
+      final _file = File('$pathToDTO$e');
+      return _file.existsSync() ? _file.deleteSync() : null;
+    });
+  }
+
+  ///
   void testDirCreateIfNotExist() {
     // Define the path to the tests directory
     try {
       final pathToTests =
-          [Directory.current.path, 'test'].join(Platform.pathSeparator);
+          <String>[Directory.current.path, 'test'].join(Platform.pathSeparator);
 
       // Create a directory object for the tests directory
       final dirTests = Directory(pathToTests);
@@ -82,7 +97,7 @@ class ProtocRunner extends Builder {
   Future<void> activateProtoc() async {
     const _f = 'dart pub global activate protoc_plugin';
     final p = Platform.isWindows
-        ? await Process.run('cmd', ['/c', _f])
+        ? await Process.run('cmd', <String>['/c', _f])
         : await Process.run('bash', ['-c', _f]);
     if (p.exitCode != 0) {
       final errorMessage = p.stderr;
@@ -94,7 +109,6 @@ class ProtocRunner extends Builder {
   /// Identify and collect import statements
   Future<String?> _imports(final List<String> dirs) async {
     try {
-      //? final resourceProvider = PhysicalResourceProvider.INSTANCE;
       final _currentDir = Directory.current.path;
       final _s = Platform.pathSeparator;
       // *
@@ -143,13 +157,13 @@ class ProtocRunner extends Builder {
 
       // Check if 'protobuf' dependency is already included
       final hasProtobuf =
-          lines.any((line) => line.contains(RegExp('(  protobuf:){1}')));
+          lines.any((final line) => line.contains(RegExp('(  protobuf:){1}')));
       if (hasProtobuf) return;
 
       // Find the position to add 'protobuf' dependency
-      var insertIndex =
-          lines.indexWhere((line) => line.contains(RegExp('^dependencies:'))) +
-              1;
+      var insertIndex = lines.indexWhere(
+              (final line) => line.contains(RegExp('^dependencies:'))) +
+          1;
       if (insertIndex == 0) {
         // 'dependencies:' line not found, add at the end of the file
         insertIndex = lines.length;
@@ -188,7 +202,7 @@ This is needed to generate DTO dart classes.
 /// compiler `protoc` to generate Dart code from` .proto` files.
 Future<void> runProtoC() async {
   // Create the output directory if it doesn't exist
-  final outputDirectory = Directory(PATH_TO_DTO);
+  final outputDirectory = Directory(PATH_TO_DTO.path);
   if (!outputDirectory.existsSync()) {
     outputDirectory.createSync(recursive: true);
   }
@@ -228,7 +242,7 @@ class AnnVisitor extends RecursiveAstVisitor<void> {
   final List<String> annotations = <String>[];
 
   @override
-  void visitAnnotation(Annotation node) {
+  void visitAnnotation(final Annotation node) {
     // Check if the annotation name is '$ProtoGen' and contains 'createMappers: true'
     if (node.name.name == '$ProtoGen' &&
         node.toSource().contains(RegExp('createMappers: true'))) {

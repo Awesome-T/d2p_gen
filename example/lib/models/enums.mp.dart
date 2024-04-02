@@ -1,6 +1,6 @@
 import 'dart:convert';
 import '../generated/proto/messages.g.pb.dart';
-import 'package:exap/models/enums.dart';
+import 'package:example/models/enums.dart';
 
 ///
 /// Mapper that converts a DTO [$MapperCorpus] object into a enum [Corpus] and back.

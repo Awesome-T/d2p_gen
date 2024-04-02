@@ -65,8 +65,6 @@ extension ExtensionConstructorElement on ConstructorElement {
       enclosingElement.name.trim();
 
   ///
-  ///
-  ///
   String? get fdf {
     return (superConstructor != null &&
             superConstructor!.displayName != 'Object')
@@ -98,21 +96,6 @@ extension ExtensionConstructorElement on ConstructorElement {
     return ds == null ? dtoMsgName : 'DTO${ds}_Union';
   }
 
-  /// Returns the name of the constructor that redirects
-  /// if it doesn't exist, or null.
-  ///
-  /// For an exapmle  this on `ConstructorElement`
-  /// will be recived name ==`OtherClass`
-  ///  ```dart
-  ///     abstract class Foo {
-  ///       const Foo();
-  ///        const factory Foo.other() = OtherClass;
-  ///     }
-  /// ```
-  // String? get redirectedName => redirectedConstructor?.displayName;
-  //bool get _stertFrom_ => (redirectedName != null ? (redirectedName!.startsWith('_')) : false);
-
-  ///
   ///
   String get fomDtoRD => ((redirectedConstructor?.displayName != null
           ? ((redirectedConstructor?.displayName)!.startsWith('_'))
@@ -121,11 +104,9 @@ extension ExtensionConstructorElement on ConstructorElement {
       : redirectedConstructor?.displayName ?? displayName);
 
   ///
-  ///
   String get nameOfField =>
       (declaration.name == '' ? fomDtoRD : declaration.name).toLowerCase();
 
-  ///
   ///
   String get protoMessageCl {
     final buf = StringBuffer();
@@ -187,20 +168,18 @@ enum $prefixMsg$displayName {''');
   }
 }
 
-///
 extension _ExInString on String? {
   /// is this name start with `_`
   bool checkName_() => this != null ? (this!.startsWith('_')) : false;
 }
 
-///
 extension ExtensionParameterElement on ParameterElement {
   /// Converts Dart type [type] to Proto type.
   String get toProtoType {
-    //*  checking whether the type is sealed based on its element.
+    // checking whether the type is sealed based on its element.
     final _isSealed = '${type.element}'.startsWith('sealed');
-    // * checks if this string starts with the substring 'sealed'.
-    // * If it does, concatenation _Union, otherwise nothing.
+    //  checks if this string starts with the substring 'sealed'.
+    //  If it does, concatenation _Union, otherwise nothing.
     final _uPostfix = '${_isSealed ? postfixUnion : ''}';
 
     /// Determines the protocol buffer type
@@ -218,12 +197,9 @@ extension ExtensionParameterElement on ParameterElement {
 
     /// Converts Dart type [type] to Proto type.
     String _toProtoType(final DartType type) {
-      //
       if (type.isDartCoreMap) {
         return 'string';
-      }
-      //
-      else if (type.isIterableValue) {
+      } else if (type.isIterableValue) {
         final generics = type.allGenericTypes;
 
         if (generics.isNotEmpty && generics.first.element is ClassElement) {
@@ -233,9 +209,7 @@ extension ExtensionParameterElement on ParameterElement {
           return 'repeated ${_typeMatching(generics.first)}${_isUnion ? postfixUnion : ''}';
         }
         return 'repeated ${_typeMatching(generics.first)}';
-      }
-      //
-      else {
+      } else {
         return '${type.protoOptional} ${_typeMatching(type)}';
       }
     }

@@ -1,7 +1,7 @@
 import 'dart:convert';
 import '../generated/proto/messages.g.pb.dart';
-import 'package:exap/models/auto.dart';
-import 'package:exap/models/auto.mp.dart';
+import 'package:example/models/auto.dart';
+import 'package:example/models/auto.mp.dart';
 
 /// Mapper that converts a DTO [DTOCarModel] object
 /// into a Model [CarModel] and back.
