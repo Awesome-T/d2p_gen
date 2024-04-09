@@ -1,3 +1,15 @@
+[![Pub package](https://img.shields.io/pub/v/d2p_gen.svg)](https://pub.dev/packages/d2p_gen)
+[![GH: WiKi](https://img.shields.io/badge/FAQ-90e22b)](https://github.com/Awesome-T/d2p_gen/wiki/FAQ)
+[![Pub likes](https://badgen.net/pub/likes/d2p_gen)](https://pub.dev/packages/d2p_gen)
+![GH: issues](https://img.shields.io/github/issues/Awesome-T/d2p_gen)
+![GH: PRs](https://img.shields.io/github/issues-pr/Awesome-T/d2p_gen)
+![GH: last commit](https://img.shields.io/github/last-commit/Awesome-T/d2p_gen?color=blue&logo=GitHub&style=flat)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](ttps://github.com/Naereen/StrapDown.js/graphs/commit-activity)
+![GitHub Discussions](https://img.shields.io/github/discussions/Awesome-T/d2p_gen)
+[![style: lint](https://img.shields.io/badge/style-lint-4BC0F5.svg)](https://pub.dev/packages/lint)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/Awesome-T/d2p_gen/blob/dev/LICENSE)
+
+
 # d2p_gen
 
 The "d2p_proto" Dart package facilitates the automatic generation of protocol buffer files (.proto) by leveraging Dart code annotations provided by the [d2p_annotation](https://github.com/Awesome-T/d2p_annotation) package. It streamlines the process of creating .g.proto files, mappers, and associated tests, enhancing the efficiency of working with protocol buffers in Dart projects.
